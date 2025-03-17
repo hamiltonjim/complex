@@ -14,9 +14,5 @@ fun Double.round(decimals: Int): Double {
 }
 
 fun Complex.round(decimals: Int): Complex {
-    val multiplier = 10.0.pow(decimals)
-    return Complex(
-        round(re * multiplier) / multiplier,
-        round(im * multiplier) / multiplier
-    )
+    return Complex(re.round(decimals), im.round(decimals))
 }

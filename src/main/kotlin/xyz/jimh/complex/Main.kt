@@ -1,10 +1,5 @@
 package xyz.jimh.complex
 
-import kotlin.math.atan2
-import kotlin.math.cos
-import kotlin.math.sin
-import kotlin.math.sqrt
-
 fun main() {
     val real = -1.0
     val complex = real.sqrt()

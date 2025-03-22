@@ -28,6 +28,11 @@ fun main() {
     println(base)
     println(base.pow(z1))
     println(Complex(2, 2).pow(Complex(2,-2)))
-
+    println(Complex(2, 2) pow Complex(2,-2))
+    println(Complex(2, 2) pow Complex.J)
+    println(Complex.J pow Complex.J)
+    println(Complex(5, 10) / Complex.ZERO)
+    println(Complex(Double.POSITIVE_INFINITY))
+    println(Complex(3) / Complex(9, 6))
 }
 

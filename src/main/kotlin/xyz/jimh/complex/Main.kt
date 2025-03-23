@@ -1,5 +1,8 @@
 package xyz.jimh.complex
 
+import kotlin.math.E
+import kotlin.math.PI
+
 fun main() {
     val real = -1.0
     val complex = real.sqrt()
@@ -34,5 +37,8 @@ fun main() {
     println(Complex(5, 10) / Complex.ZERO)
     println(Complex(Double.POSITIVE_INFINITY))
     println(Complex(3) / Complex(9, 6))
+    println(Complex(E) pow Complex(0, PI))
+    println(expITheta(PI))
+    println(Complex(0, PI).exp())
 }
 

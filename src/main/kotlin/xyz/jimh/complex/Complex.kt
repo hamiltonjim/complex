@@ -26,6 +26,10 @@ data class Complex(val re: Double, val im: Double) {
     constructor(re: Float, im: Double): this(re.toDouble(), im)
     constructor(re: Double, im: Float): this(re, im.toDouble())
 
+    val isNaN = re.isNaN() || im.isNaN()
+    val isInfinite = !isNaN && (re.isInfinite() || im.isInfinite())
+    val isZero = re == 0.0 && im == 0.0
+
     infix fun close(other: Complex): Boolean {
         return close(other, EPSILON)
     }
@@ -39,9 +43,9 @@ data class Complex(val re: Double, val im: Double) {
     }
 
     override fun toString(): String {
-        if (re.isNaN() || im.isNaN()) {
+        if (isNaN) {
             return Double.NaN.toString()
-        } else if (re.isInfinite() || im.isInfinite()) {
+        } else if (isInfinite) {
             return Double.POSITIVE_INFINITY.toString()
         }
         return if (im.close(0.0))
@@ -89,19 +93,28 @@ data class Complex(val re: Double, val im: Double) {
     operator fun plus(other: Double): Complex = Complex(re + other, im)
 
     operator fun minus(other: Double): Complex = Complex(re - other, im)
+
     operator fun times(other: Double): Complex =
         Complex(re * other, im * other)
-
     operator fun div(other: Double): Complex = this / Complex(other)
 
-    infix fun pow(exponent: Complex): Complex {
-        val polar = this.polar()
-        val realRealPart = polar.first.pow(exponent.re)
-        val imagRealPart = exp(polar.second * -exponent.im)
-        val exponentOfE = exponent.re * (polar.second + exponent.im * ln(polar.first))
-        val eToTheExponent = expITheta(exponentOfE)
+    fun ln(): Complex {
+        // z = a + bj => Log(z) = Log(re^(jθ)) = ln(r) + jθ
+        if (isZero) return INFINITY
 
-        return realRealPart * imagRealPart * eToTheExponent
+        val polar = polar()
+        return ln(polar.first) + polar.second.j()
+    }
+
+    fun exp(): Complex {
+        // e^(a + bj) == (e^a)(e^bj)
+        return exp(re) * expITheta(im)
+    }
+
+    infix fun pow(exponent: Complex): Complex {
+        // z^w == e^(w log z)
+        val wLogZ = exponent * ln()
+        return wLogZ.exp()
     }
 
     infix fun pow(exponent: Double): Complex {
@@ -175,19 +188,20 @@ const val NUL = '\u0000'
 
 fun Double.fmt(char: Char = NUL): String {
     // add epsilon AWAY FROM zero
-    val add: Double = if (this > 0) Complex.EPSILON else -Complex.EPSILON
-    val intPart = (this + add).toInt()
-    val fraction = this.minus(intPart)
+    val negative = this < 0.0
+    val positive = abs(this)
+    val intPart = (positive + Complex.EPSILON).toInt()
+    val fraction = positive.minus(intPart)
 
     val sb = StringBuilder()
     val printFraction = !fraction.close(0.0)
 
-    if (intPart != 1 || char == NUL) {
+    if (negative) sb.append('-')
+
+    if (intPart != 1 || char == NUL || printFraction) {
         sb.append(intPart)
     }
-    if (intPart == 0 && !printFraction) {
-        sb.append('0')
-    }
+
     if (printFraction) {
         sb.append(fraction.toString().substring(1))
     }

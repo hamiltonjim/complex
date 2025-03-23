@@ -17,6 +17,30 @@ class ComplexTest {
     }
 
     @Test
+    fun ` test constructors`() {
+        val real = Complex(1, 0)
+        assertAll(
+            Executable { assertEquals(real, Complex(1.0)) },
+            Executable { assertEquals(real, Complex(1)) },
+            Executable { assertEquals(real, Complex(1L)) },
+            Executable { assertEquals(real, Complex(1.0F)) },
+        )
+
+        val complex = Complex(1.0, 1.0)
+        assertAll(
+            Executable { assertEquals(complex, Complex(1.0, 1)) },
+            Executable { assertEquals(complex, Complex(1.0, 1L)) },
+            Executable { assertEquals(complex, Complex(1.0, 1.0F)) },
+            Executable { assertEquals(complex, Complex(1, 1.0)) },
+            Executable { assertEquals(complex, Complex(1L, 1.0)) },
+            Executable { assertEquals(complex, Complex(1.0F, 1.0)) },
+            Executable { assertEquals(complex, Complex(1, 1)) },
+            Executable { assertEquals(complex, Complex(1L, 1L)) },
+            Executable { assertEquals(complex, Complex(1.0F, 1.0F)) },
+        )
+    }
+
+    @Test
     fun round() {
         assertEquals(Complex(3, 3), Complex(PI, E).round(0))
         assertEquals(Complex(3.1, 2.7), Complex(PI, E).round(1))
@@ -93,10 +117,12 @@ class ComplexTest {
     @Test
     fun sqrt() {
         val number = Complex(1, 2)
+        val sqrt2ov2 = sqrt(2.0) / 2.0
         assertAll(
             Executable { assertEquals(number, (number * number).sqrt()) },
             Executable { assertEquals(Complex.ONE, Complex.ONE.sqrt()) },
-            Executable { assertEquals(Complex.J, (-Complex.ONE).sqrt()) }
+            Executable { assertEquals(Complex.J, (-Complex.ONE).sqrt()) },
+            Executable { assertEquals(Complex(sqrt2ov2, -sqrt2ov2), (-Complex.J).sqrt()) },
         )
     }
 
@@ -151,6 +177,51 @@ class ComplexTest {
 
     @Test
     fun pow() {
+        val complex = Complex(1, 2)
+        assertAll(
+            Executable { assertEquals(Complex.ONE, Complex.ONE pow Complex.ONE) },
+            Executable { assertEquals(-Complex.ONE, Complex(E) pow Complex(0, PI)) },
+            Executable { assertEquals(Complex.ONE, Complex.ONE pow 8.0) },
+            Executable { assertEquals(Complex.ONE, Complex.ONE pow -10.0) },
+            Executable { assertEquals(Complex.ONE, Complex.ONE pow 0.5) },
+            Executable { assertEquals(Complex.ONE, Complex(3, E) pow 0.0) },
+            Executable { assertEquals(Complex(-3, 4), complex pow 2.0) },
+            Executable { assertEquals(
+                Complex(-12.419913389139916, -11.191704454359792),
+                complex.pow(3.5)
+            ) },
+        )
+    }
+
+    @Test
+    fun ln() {
+        assertAll(
+            Executable { assertEquals(Complex.ZERO, Complex.ONE.ln()) },
+            Executable { assertEquals(Complex(0, -PI), (-Complex.ONE).ln()) },
+            Executable { assertEquals(Complex.INFINITY, Complex.ZERO.ln()) },
+        )
+    }
+
+    @Test
+    fun `funny values`() {
+        assertAll(
+            Executable { assertTrue(Complex(Double.NaN, Double.POSITIVE_INFINITY).isNaN) },
+            Executable { assertTrue(Complex(Double.POSITIVE_INFINITY, Double.NaN).isNaN) },
+            Executable { assertFalse(Complex(Double.POSITIVE_INFINITY, Double.NaN).isInfinite) },
+            Executable { assertFalse(Complex(Double.NaN, Double.POSITIVE_INFINITY).isInfinite) },
+            Executable { assertTrue(Complex(1, Double.POSITIVE_INFINITY).isInfinite) },
+            Executable { assertTrue(Complex(Double.POSITIVE_INFINITY, 1).isInfinite) },
+            Executable { assertFalse(Complex(0, 1).isInfinite) },
+            Executable { assertFalse(Complex(0, 1).isZero) },
+            Executable { assertFalse(Complex(1, 0).isZero) },
+            Executable { assertTrue(Complex(0, 0).isZero) },
+        )
+    }
+
+    @Test
+    fun hash() {
+        val expect = -33554432
+        assertEquals(expect, Complex(1, 1).hashCode())
     }
 
     @Test
@@ -210,6 +281,48 @@ class ComplexTest {
                 Complex(E, E + Complex.EPSILON / 2),
                 Complex(E, E)
             ) },
+            Executable { assertNotEquals(Complex.ONE, 1.0) },
+        )
+    }
+
+    @Test
+    fun `zerored parts`() {
+        assertAll(
+            Executable { assertTrue(Complex(1).isReal()) },
+            Executable { assertFalse(Complex(1, 1).isReal()) },
+            Executable { assertFalse(Complex.J.isReal()) },
+            Executable { assertTrue(Complex.J.isImaginary()) },
+            Executable { assertFalse(Complex.ONE.isImaginary()) },
+            Executable { assertFalse(Complex(1, 2).isImaginary()) },
+        )
+    }
+
+    @Test
+    fun `close with specified epsilon`() {
+        val test = Complex(PI, E)
+        assertAll(
+            Executable { assertTrue(test.close(Complex(3.14, 2.71), 0.1)) },
+            Executable { assertFalse(test.close(Complex(3.14, 2.71), 0.001)) },
+            Executable { assertFalse(test.close(Complex(3.14159, 2.71), 0.001)) },
+        )
+    }
+
+    @Test
+    fun `toString oddities`() {
+        assertAll(
+            Executable { assertEquals("NaN", Complex(1.0, Double.NaN).toString()) },
+            Executable { assertEquals("NaN", Complex(Double.NaN, 1.0).toString()) },
+            Executable { assertEquals("Infinity", Complex(Double.POSITIVE_INFINITY, 1.0).toString()) },
+            Executable { assertEquals("Infinity", Complex(1.0, Double.POSITIVE_INFINITY).toString()) },
+            Executable { assertEquals("Infinity", Complex.INFINITY.toString()) },
+            Executable { assertEquals("j", Complex(0, 1.0).toString()) },
+            Executable { assertEquals("-j", Complex(0, -1.0).toString()) },
+            Executable { assertEquals("-2j", Complex(0, -2.0).toString()) },
+            Executable { assertEquals("-2", Complex(-2.0, 0).toString()) },
+            Executable { assertEquals("-2 - j", Complex(-2.0, -1).toString()) },
+            Executable { assertEquals("-2 + j", Complex(-2.0, 1).toString()) },
+            Executable { assertEquals("-1 + 2j", Complex(-1.0, 2).toString()) },
+            Executable { assertEquals("-1.5 + 1.5j", Complex(-1.5, 1.5).toString()) },
         )
     }
 }

@@ -125,5 +125,4 @@ The hyperbolic functions and their inverses:
 - asech(): Complex (Arc secant)
 - acsch(): Complex (Arc cosecant)
 
-Distributed under the MIT License which is included
-in the repository.
+Distributed under the MIT License.

@@ -27,7 +27,8 @@ real part, such as with
 You can create a pure imaginary with the extension
 function 
 ```kotlin
-Double.j()
+fun Double.j(): Complex = Complex(0.0, this)
+
 ```
 (Aside: I used j instead of i because my degree is
 in electrical engineering, and I stands for current, 
@@ -41,8 +42,9 @@ val J_CHAR = 'j'
 The latter is used by `toString()` to display a
 complex number as "3 + 4j" for example.)
 
-If you want to modify J, please do it with an IDE that
-supports "Refactor" so you don't miss any instances.
+If you want to modify J, or Double.j(), please do it 
+with an IDE that supports "Refactor" so you don't 
+miss any instances.
 
 There are operator overloads for plus, minus, times,
 and div, that work for Complex op Complex, and any

@@ -32,7 +32,7 @@ fun Double.j(): Complex = Complex(0.0, this)
 ```
 (Aside: I used j instead of i because my degree is
 in electrical engineering, and I stands for current, 
-as in V = IR. If you want to use I, you have the 
+as in "V = IR" (Ohm's Law). If you want to use I, you have the 
 source code. The companion object has definitions 
 for J:
 ```kotlin
@@ -52,15 +52,26 @@ combination of Complex and Double, Float, Int, and
 Long.
 
 There is a method called 
-`.close(other: Complex): Boolean` which will return
+```kotlin
+    fun close(other: Complex, epsilon: Double = EPSILON): Boolean {
+    return abs(re - other.re) < epsilon && abs(im - other.im) < epsilon
+}
+```
+which will return
 true if other is within "epsilon" of this. That is
 defined as both the real and imaginary parts are 
-within 1.0e-10 of their counterparts. Note that this is
-the adjective "close," as in "nearby," not the verb
-"close," as in "shut the door."
+within "epsilon" (defaults to 1.0e-10) of their 
+counterparts. (Note that this is the adjective 
+"close," as in "nearby," not the verb "close," as
+in "shut the door.") Why is this here? [What 
+Every Computer Scientist Should Know About 
+Floating Point](http://docs.sun.com/source/806-3568/ncg_goldberg.html)
 
 The following functions are defined:
 - polar(): returns magnitude and angle as a Pair
+- abs(): Double (returns the magnitude of this)
+- arg(): Double (returns the angle in radians,
+  counter-clockwise from the real axis)
 - exp(): Complex (returns e^this)
 - ln(): Complex (returns the principal value of the natural logarithm--
 remember polar coordinates are periodic)
@@ -75,9 +86,6 @@ are close enough to zero to PRINT zero when formatted)
 - pow(exponent: Complex): Complex and
 - pow(exponent: Double): Complex (to take this to
 any arbitrary power)
-- abs(): Double (returns the magnitude of this)
-- arg(): Double (returns the angle in radians, 
-counter-clockwise from the real axis)
 - isReal(): Boolean (returns true if imaginary
 part is zero)
 - isImaginary(): Boolean (returns true if real

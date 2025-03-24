@@ -40,5 +40,26 @@ fun main() {
     println(Complex(E) pow Complex(0, PI))
     println(expITheta(PI))
     println(Complex(0, PI).exp())
+
+    println("---trig & hyp functions---")
+    val halfPi = PI / 2
+    println(Complex(halfPi).sin())
+    println(Complex(halfPi).sinh())
+    println(Complex(halfPi).cos())
+    println(Complex(halfPi).cosh())
+    println(Complex(halfPi).tan())
+    println(Complex(halfPi).tanh())
+    println(Complex(halfPi).cot())
+    println(Complex(halfPi).coth())
+    println(Complex(halfPi).sec())
+    println(Complex(halfPi).sech())
+    println(Complex(halfPi).csc())
+    println(Complex(halfPi).csch())
+
+    println(Complex.ZERO.acsc())
+    println(Complex.ZERO.asec())
+
+    println((Complex.PI_C / 2.0).cos())
+
 }
 

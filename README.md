@@ -35,7 +35,7 @@ as in V = IR. If you want to use I, you have the
 source code. The companion object has definitions 
 for J:
 ```kotlin
-val J = Complex(0, 1)
+val J = 1.0.j()
 val J_CHAR = 'j'
 ```
 The latter is used by `toString()` to display a

@@ -319,8 +319,16 @@ class ComplexTest {
 
     @Test
     fun hash() {
-        val expect = -33554432
-        assertEquals(expect, Complex(1, 1).hashCode())
+        val expect11 = -33554432
+        val expect10 = -1106247680
+        val expect01 = 1072693248
+        assertAll(
+            Executable { assertEquals(expect11, Complex(1, 1).hashCode()) },
+            Executable { assertEquals(expect10, Complex(1, 0).hashCode()) },
+            Executable { assertEquals(expect01, Complex(0, 1).hashCode()) },
+        )
+
+
     }
 
     @Test
@@ -367,7 +375,20 @@ class ComplexTest {
 
     @Test
     fun equals() {
+        val one = Complex(1, 1)
+        val two = Complex(1, 1)
+
         assertAll(
+            // reflexive
+            Executable {
+                val only = Complex(1, 1)
+                assertEquals(only, only)
+            },
+            // next two for symmetric
+            Executable { assertEquals(one, two) },
+            Executable { assertEquals(two, one) },
+            // against null
+            Executable { assertNotEquals(one, null) },
             Executable { assertEquals(
                 Complex(3, 3),
                 Complex(3.0 + Complex.EPSILON / 2, 3)

@@ -55,7 +55,9 @@ There is a method called
 `.close(other: Complex): Boolean` which will return
 true if other is within "epsilon" of this. That is
 defined as both the real and imaginary parts are 
-within 1.0e-10 of their counterparts.
+within 1.0e-10 of their counterparts. Note that this is
+the adjective "close," as in "nearby," not the verb
+"close," as in "shut the door."
 
 The following functions are defined:
 - polar(): returns magnitude and angle as a Pair

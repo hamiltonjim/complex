@@ -65,7 +65,7 @@ counterparts. (Note that this is the adjective
 "close," as in "nearby," not the verb "close," as
 in "shut the door.") Why is this here? [What 
 Every Computer Scientist Should Know About 
-Floating Point](http://docs.sun.com/source/806-3568/ncg_goldberg.html)
+Floating Point](https://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html)
 
 The following functions are defined:
 - polar(): returns magnitude and angle as a Pair

@@ -258,10 +258,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
      */
     fun isImaginary(): Boolean = re == 0.0
 
-    /**
-     * Returns the square of this.
-     */
-    fun sqr(): Complex = this * this
+    private fun sqr(): Complex = this * this
 
     /**
      * Returns 1 / this
@@ -465,7 +462,9 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     }
 
     /**
-     *  equals in terms of [close], so we don't have to deal with approximations
+     *  equals in terms of [close], so we don't have to deal with approximations.
+     *  Note: will return false if either side is NaN; will return true if both
+     *  sides are infinite (there is only a single infinity on the complex plane).
      *  */
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

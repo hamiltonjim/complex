@@ -68,7 +68,7 @@ Every Computer Scientist Should Know About
 Floating Point](https://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html)
 
 The following functions are defined:
-- polar(): Pair<Double, Double> returns magnitude and angle
+- polar(): Pair<Double, Double> (returns magnitude and angle)
 - abs(): Double (returns the magnitude of this)
 - arg(): Double (returns the angle in radians,
   counter-clockwise from the real axis)

@@ -25,35 +25,16 @@ import kotlin.math.tanh
  * @constructor takes values [re] for the real part and [im] for the imaginary part.
  */
 data class Complex(val re: Double, val im: Double = 0.0) {
-
     /**
-     * Secondary constructor from a single (real) Int [re]
+     * Secondary constructor from a single (real) Number [re]
      */
-    constructor(re: Int): this(re.toDouble())
+    constructor(re: Number): this(re.toDouble())
     /**
-     * Secondary constructor from a single (real) Long [re]
+     * Secondary constructor, where the real and/or imaginary parts are
+     * from a type other than Double. We use Number, which is the super
+     * interface of all numeric types (other than Complex).
      */
-    constructor(re: Long): this(re.toDouble())
-    /**
-     * Secondary constructor from a single (real) Float [re]
-     */
-    constructor(re: Float): this(re.toDouble())
-
-    /**
-     * Secondary constructors, where the real and/or imaginary parts are
-     * from a type other than Double. We do not have ALL combinations; only
-     * that both parts are the same type, or one part is Double.
-     */
-    constructor(re: Int, im: Int): this(re.toDouble(), im.toDouble())
-    constructor(re: Int, im: Double): this(re.toDouble(), im)
-    constructor(re: Double, im: Int): this(re, im.toDouble())
-    constructor(re: Long, im: Long): this(re.toDouble(), im.toDouble())
-    constructor(re: Long, im: Double): this(re.toDouble(), im)
-    constructor(re: Double, im: Long): this(re, im.toDouble())
-
-    constructor(re: Float, im: Float): this(re.toDouble(), im.toDouble())
-    constructor(re: Float, im: Double): this(re.toDouble(), im)
-    constructor(re: Double, im: Float): this(re, im.toDouble())
+    constructor(re: Number, im: Number): this(re.toDouble(), im.toDouble())
 
     /** A complex is a NaN if either part is NaN */
     val isNaN = re.isNaN() || im.isNaN()
@@ -61,6 +42,16 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     val isInfinite = !isNaN && (re.isInfinite() || im.isInfinite())
     /** A complex is zero if BOTH parts are (close to) zero */
     val isZero = abs(re) <= EPSILON / 1000 && abs(im) <= EPSILON / 1000
+
+    /**
+     * A complex number is real if its imaginary part is zero
+     */
+    val isReal = im.close(0.0, EPSILON / 1000.0)
+
+    /**
+     * A complex number is imaginary if its real part is zero
+     */
+    val isImaginary = re.close(0.0, EPSILON / 1000.0)
 
     /**
      * A complex is close to another if both parts of [other] are within [epsilon] of
@@ -149,7 +140,6 @@ data class Complex(val re: Double, val im: Double = 0.0) {
             imSign * sqrt((magnitude - re) / 2.0)
         )
     }
-
     // operators for Complex op Double, Float, Int, Long
     /**
      * Expands [other] to [Complex] and adds it to this.
@@ -163,11 +153,11 @@ data class Complex(val re: Double, val im: Double = 0.0) {
      * Expands [other] to [Complex] and adds it to this.
      */
     operator fun plus(other: Int): Complex = Complex(re + other, im)
+
     /**
      * Expands [other] to [Complex] and adds it to this.
      */
     operator fun plus(other: Long): Complex = Complex(re + other, im)
-
     /**
      * Expands [other] to [Complex] and subtracts it from this.
      */
@@ -180,11 +170,11 @@ data class Complex(val re: Double, val im: Double = 0.0) {
      * Expands [other] to [Complex] and subtracts it from this.
      */
     operator fun minus(other: Int): Complex = Complex(re - other, im)
+
     /**
      * Expands [other] to [Complex] and subtracts it from this.
      */
     operator fun minus(other: Long): Complex = Complex(re - other, im)
-
     /**
      * Expands [other] to [Complex] and multiplies it with this.
      */
@@ -197,11 +187,11 @@ data class Complex(val re: Double, val im: Double = 0.0) {
      * Expands [other] to [Complex] and multiplies it with this.
      */
     operator fun times(other: Int): Complex = Complex(re * other, im * other)
+
     /**
      * Expands [other] to [Complex] and multiplies it with this.
      */
     operator fun times(other: Long): Complex = Complex(re * other, im * other)
-
     /**
      * Expands [other] to [Complex] and divides it into this.
      */
@@ -214,6 +204,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
      * Expands [other] to [Complex] and divides it into this.
      */
     operator fun div(other: Int): Complex = this / Complex(other)
+
     /**
      * Expands [other] to [Complex] and divides it into this.
      */
@@ -265,6 +256,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
      * Rectangular to polar format
      * @see abs
      * @see arg
+     * @see Companion.fromPolar2
      */
     fun polar(): Pair<Double, Double> {
         val rho = abs()
@@ -283,16 +275,6 @@ data class Complex(val re: Double, val im: Double = 0.0) {
      * @see polar
      */
     fun arg(): Double = atan2(im, re)
-
-    /**
-     * A complex number is real if its imaginary part is zero
-     */
-    fun isReal(): Boolean = im == 0.0
-
-    /**
-     * A complex number is imaginary if its real part is zero
-     */
-    fun isImaginary(): Boolean = re == 0.0
 
     /**
      * Returns the square of this.
@@ -543,6 +525,26 @@ data class Complex(val re: Double, val im: Double = 0.0) {
          * see [https://math.stackexchange.com/questions/420557/whats-the-difference-between-complex-infinity-and-undefined#:~:text=%22Undefined%22%20is%20something%20that%20one,is%20itself%20a%20mathematical%20object.]
          */
         val INFINITY = Complex(Double.POSITIVE_INFINITY)
+
+        /**
+         * Constructs a Complex from polar coordinates; the values in [polarCoordinates] are the
+         * radius and the angle (in radians), respectively. This is the exact format returned by
+         * the member function [polar].
+         * @see polar
+         * @see fromPolar2
+         */
+        fun fromPolar(polarCoordinates: Pair<Double, Double>): Complex {
+            return polarCoordinates.first * expITheta(polarCoordinates.second)
+        }
+
+        /**
+         * Constructs a Complex from polar coordinates, [radius] and [theta] (in radians).
+         * @see polar
+         * @see fromPolar
+         */
+        fun fromPolar2(radius: Double, theta: Double): Complex {
+            return radius * expITheta(theta)
+        }
     }
 }
 
@@ -651,8 +653,8 @@ operator fun Long.div(other: Complex): Complex = Complex(this) / other
  * Just like Complex.close; returns true if a Double is within epsilon of another.
  * @see [Complex.close]
  */
-fun Double.close(other: Double): Boolean {
-    return abs(other - this) < Complex.EPSILON
+fun Double.close(other: Double, epsilon: Double = Complex.EPSILON): Boolean {
+    return abs(other - this) < epsilon
 }
 
 const val NUL = '\u0000'

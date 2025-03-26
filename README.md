@@ -9,13 +9,16 @@ imaginary parts to the constructor for Complex.
 ```kotlin
     val num = Complex(1.5, 3.25)
 ```
-Both parts are notionally Double, but you may 
-pass both parts as Long, Int, or Float; or one 
-Double and one other type.
+The properties are called `re` and `im` for
+the real and imaginary parts, respectively.
+Both parts are Double, but you may construct a 
+Complex with either or both parts as any type 
+that descends from Number. For example:
 ```kotlin
     val withInts = Complex(1, 4)
     val withLongs = Complex(3L, 1L)
     val withOneInt = Complex(3.1, 4)
+    val withOneIntOneFloat = Complex(3, 4F)
 ```
 
 To create a pure real number as Complex (that is,
@@ -46,12 +49,7 @@ If you want to modify J, or Double.j(), please do it
 with an IDE that supports "Refactor" so you don't 
 miss any instances.
 
-There are operator overloads for plus, minus, times,
-and div, that work for Complex op Complex, and any
-combination of Complex and Double, Float, Int, and
-Long.
-
-There is a method called 
+There is a method called
 ```kotlin
 fun close(other: Complex, epsilon: Double = EPSILON): Boolean {
     return abs(re - other.re) < epsilon && abs(im - other.im) < epsilon
@@ -59,13 +57,33 @@ fun close(other: Complex, epsilon: Double = EPSILON): Boolean {
 ```
 which will return
 true if other is within "epsilon" of this. That is
-defined as both the real and imaginary parts are 
-within "epsilon" (defaults to 1.0e-10) of their 
-counterparts. (Note that this is the adjective 
+defined as both the real and imaginary parts are
+within "epsilon" (defaults to 1.0e-10) of their
+counterparts. (Note that this is the adjective
 "close," as in "nearby," not the verb "close," as
-in "shut the door.") Why is this here? [What 
-Every Computer Scientist Should Know About 
+in "shut the door.") Why is this here? [What
+Every Computer Scientist Should Know About
 Floating Point](https://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html)
+
+There is also an extension function Double.close()
+that does the same test.
+
+A Complex has the following properties:
+```kotlin
+val isNaN = re.isNan || im.isNaN // true if either part is a NaN
+val isInfinite = !isNaN && (re.isInfinite || im.isInfinite) // true if !isNan and either part is infinite
+val isZero = abs(re) <= EPSILON / 1000 && abs(im) <= EPSILON / 1000 // true if both parts are "close" to zero
+val isReal = im.close(0.0, EPSILON / 1000) // true if imaginary part is zero
+val isImaginary = re.close(0.0, EPSILON / 1000) // true if real part is zero
+```
+Note that isZero, isReal, and isImaginary check
+more stringently than the "standard" close() 
+function.
+
+There are operator overloads for plus, minus, times,
+and div, that work for Complex op Complex, and any
+combination of Complex and Double, Float, Int, and
+Long.
 
 The following functions are defined:
 - polar(): Pair<Double, Double> (returns magnitude and angle)
@@ -86,10 +104,6 @@ are close enough to zero to PRINT zero when formatted)
 - pow(exponent: Complex): Complex and
 - pow(exponent: Double): Complex (to take this to
 any arbitrary power)
-- isReal(): Boolean (returns true if imaginary
-part is zero)
-- isImaginary(): Boolean (returns true if real
-part is zero)
 - reciprocal(): Complex (returns 1 / this)
 - equals(other: Any?): Boolean (returns true
 if other is Complex and close to this; written
@@ -124,5 +138,12 @@ The hyperbolic functions and their inverses:
 - acoth(): Complex (Arc cotangent)
 - asech(): Complex (Arc secant)
 - acsch(): Complex (Arc cosecant)
+
+The companion object also defines two 
+functions:
+- Companion.fromPolar(polar: Pair<Double, Double>): Complex
+- Companion.fromPolar2(radius: Double, theta: Double): Complex
+Either of these will create a complex number in
+rectangular coordinates from the given values.
 
 Distributed under the MIT License.

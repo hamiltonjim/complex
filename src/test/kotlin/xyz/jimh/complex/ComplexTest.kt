@@ -1,7 +1,10 @@
 package xyz.jimh.complex
 
+import java.math.BigDecimal
+import java.util.concurrent.atomic.AtomicInteger
 import kotlin.math.E
 import kotlin.math.PI
+import kotlin.math.atan
 import kotlin.math.atan2
 import kotlin.math.cos
 import kotlin.math.cosh
@@ -44,6 +47,9 @@ class ComplexTest {
             Executable { assertEquals(complex, Complex(1, 1)) },
             Executable { assertEquals(complex, Complex(1L, 1L)) },
             Executable { assertEquals(complex, Complex(1.0F, 1.0F)) },
+            Executable { assertEquals(complex, Complex(1.toShort(), 1.toLong())) },
+            Executable { assertEquals(complex, Complex(BigDecimal("1"), BigDecimal("1"))) },
+            Executable { assertEquals(complex, Complex(AtomicInteger(1), 1.toByte())) },
         )
     }
 
@@ -413,12 +419,13 @@ class ComplexTest {
     @Test
     fun `zeroed parts`() {
         assertAll(
-            Executable { assertTrue(Complex(1).isReal()) },
-            Executable { assertFalse(Complex(1, 1).isReal()) },
-            Executable { assertFalse(Complex.J.isReal()) },
-            Executable { assertTrue(Complex.J.isImaginary()) },
-            Executable { assertFalse(Complex.ONE.isImaginary()) },
-            Executable { assertFalse(Complex(1, 2).isImaginary()) },
+            Executable { assertTrue(Complex(1).isReal) },
+            Executable { assertFalse(Complex(1, 1).isReal) },
+            Executable { assertFalse(Complex.J.isReal) },
+            Executable { assertTrue(Complex.J.isImaginary) },
+            Executable { assertFalse(Complex.ONE.isImaginary) },
+            Executable { assertFalse(Complex(1, 2).isImaginary) },
+            Executable { assertTrue(Complex(1e-40, 2e-50).isZero) },
         )
     }
 
@@ -556,12 +563,24 @@ class ComplexTest {
         )
     }
 
-@Test
-fun `reciprocal test`() {
-    assertAll(
-        Executable { assertEquals(Complex.ONE, Complex.ONE.reciprocal()) },
-        Executable { assertEquals(Complex.INFINITY, Complex.ZERO.reciprocal()) },
-        Executable { assertEquals(Complex.J, (-Complex.J).reciprocal()) },
+    @Test
+    fun `reciprocal test`() {
+        assertAll(
+            Executable { assertEquals(Complex.ONE, Complex.ONE.reciprocal()) },
+            Executable { assertEquals(Complex.INFINITY, Complex.ZERO.reciprocal()) },
+            Executable { assertEquals(Complex.J, (-Complex.J).reciprocal()) },
+        )
+    }
+
+    @Test
+    fun `from polar test`() {
+        assertAll(
+            Executable { assertEquals(Complex(1, 1), Complex.fromPolar2(sqrt(2.0), PI / 4.0)) },
+            Executable { assertEquals(Complex(2, 1), Complex.fromPolar2(sqrt(5.0), atan(0.5))) },
+            Executable { assertEquals(
+                Complex(472, 981),
+                Complex.fromPolar(Complex(472,981).polar())
+            ) },
         )
     }
 }

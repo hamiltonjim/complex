@@ -144,16 +144,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     /**
      * Expands [other] to [Complex] and adds it to this.
      */
-    operator fun plus(other: Float): Complex = Complex(re + other, im)
-    /**
-     * Expands [other] to [Complex] and adds it to this.
-     */
-    operator fun plus(other: Int): Complex = Complex(re + other, im)
-
-    /**
-     * Expands [other] to [Complex] and adds it to this.
-     */
-    operator fun plus(other: Long): Complex = Complex(re + other, im)
+    operator fun plus(other: Number): Complex = Complex(re + other.toDouble(), im)
     /**
      * Expands [other] to [Complex] and subtracts it from this.
      */
@@ -161,16 +152,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     /**
      * Expands [other] to [Complex] and subtracts it from this.
      */
-    operator fun minus(other: Float): Complex = Complex(re - other, im)
-    /**
-     * Expands [other] to [Complex] and subtracts it from this.
-     */
-    operator fun minus(other: Int): Complex = Complex(re - other, im)
-
-    /**
-     * Expands [other] to [Complex] and subtracts it from this.
-     */
-    operator fun minus(other: Long): Complex = Complex(re - other, im)
+    operator fun minus(other: Number): Complex = Complex(re - other.toDouble(), im)
     /**
      * Expands [other] to [Complex] and multiplies it with this.
      */
@@ -178,16 +160,10 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     /**
      * Expands [other] to [Complex] and multiplies it with this.
      */
-    operator fun times(other: Float): Complex = Complex(re * other, im * other)
-    /**
-     * Expands [other] to [Complex] and multiplies it with this.
-     */
-    operator fun times(other: Int): Complex = Complex(re * other, im * other)
-
-    /**
-     * Expands [other] to [Complex] and multiplies it with this.
-     */
-    operator fun times(other: Long): Complex = Complex(re * other, im * other)
+    operator fun times(other: Number): Complex {
+        val real = other.toDouble()
+        return Complex(re * real, im * real)
+    }
     /**
      * Expands [other] to [Complex] and divides it into this.
      */
@@ -195,16 +171,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     /**
      * Expands [other] to [Complex] and divides it into this.
      */
-    operator fun div(other: Float): Complex = this / Complex(other)
-    /**
-     * Expands [other] to [Complex] and divides it into this.
-     */
-    operator fun div(other: Int): Complex = this / Complex(other)
-
-    /**
-     * Expands [other] to [Complex] and divides it into this.
-     */
-    operator fun div(other: Long): Complex = this / Complex(other)
+    operator fun div(other: Number): Complex = this / Complex(other)
 
     /**
      * Complex natural logarithm of this (principal value, where imaginary part
@@ -240,10 +207,11 @@ data class Complex(val re: Double, val im: Double = 0.0) {
      * terms of z^w, where w's imaginary part is zero, but this is an
      * optimization.
      */
-    infix fun pow(exponent: Double): Complex {
+    infix fun pow(exponent: Number): Complex {
         val polar = this.polar()
-        val realRealPart = polar.first.pow(exponent)
-        val exponentOfE = exponent * polar.second
+        val realExponent = exponent.toDouble()
+        val realRealPart = polar.first.pow(realExponent)
+        val exponentOfE = realExponent * polar.second
         val eToTheExponent = expITheta(exponentOfE)
         return realRealPart * eToTheExponent
     }
@@ -583,70 +551,25 @@ fun Double.sqrt(): Complex {
 /**
  * Expands the receiver to [Complex] and adds [other] to it.
  */
-operator fun Double.plus(other: Complex): Complex = Complex(this + other.re, other.im)
-/**
- * Expands the receiver to [Complex] and adds [other] to it.
- */
-operator fun Float.plus(other: Complex): Complex = Complex(this + other.re, other.im)
-/**
- * Expands the receiver to [Complex] and adds [other] to it.
- */
-operator fun Int.plus(other: Complex): Complex = Complex(this + other.re, other.im)
-/**
- * Expands the receiver to [Complex] and adds [other] to it.
- */
-operator fun Long.plus(other: Complex): Complex = Complex(this + other.re, other.im)
+operator fun Number.plus(other: Complex): Complex = Complex(toDouble() + other.re, other.im)
 
 /**
  * Expands the receiver to [Complex] and subtracts [other] from it.
  */
-operator fun Double.minus(other: Complex): Complex = Complex(this - other.re, other.im)
-/**
- * Expands the receiver to [Complex] and subtracts [other] from it.
- */
-operator fun Float.minus(other: Complex): Complex = Complex(this - other.re, other.im)
-/**
- * Expands the receiver to [Complex] and subtracts [other] from it.
- */
-operator fun Int.minus(other: Complex): Complex = Complex(this - other.re, other.im)
-/**
- * Expands the receiver to [Complex] and subtracts [other] from it.
- */
-operator fun Long.minus(other: Complex): Complex = Complex(this - other.re, other.im)
+operator fun Number.minus(other: Complex): Complex = Complex(toDouble() - other.re, other.im)
 
 /**
  * Expands the receiver to [Complex] and multiplies it by [other]
  */
-operator fun Double.times(other: Complex): Complex = Complex(this * other.re, this * other.im)
-/**
- * Expands the receiver to [Complex] and multiplies it by [other]
- */
-operator fun Float.times(other: Complex): Complex = Complex(this * other.re, this * other.im)
-/**
- * Expands the receiver to [Complex] and multiplies it by [other]
- */
-operator fun Int.times(other: Complex): Complex = Complex(this * other.re, this * other.im)
-/**
- * Expands the receiver to [Complex] and multiplies it by [other]
- */
-operator fun Long.times(other: Complex): Complex = Complex(this * other.re, this * other.im)
+operator fun Number.times(other: Complex): Complex {
+    val real = toDouble()
+    return Complex(real * other.re, real * other.im)
+}
 
 /**
  * Expands the receiver to [Complex] and divides it by [other]
  */
-operator fun Double.div(other: Complex): Complex = Complex(this) / other
-/**
- * Expands the receiver to [Complex] and divides it by [other]
- */
-operator fun Float.div(other: Complex): Complex = Complex(this) / other
-/**
- * Expands the receiver to [Complex] and divides it by [other]
- */
-operator fun Int.div(other: Complex): Complex = Complex(this) / other
-/**
- * Expands the receiver to [Complex] and divides it by [other]
- */
-operator fun Long.div(other: Complex): Complex = Complex(this) / other
+operator fun Number.div(other: Complex): Complex = Complex(this) / other
 
 /**
  * Just like Complex.close; returns true if a Double is within epsilon of another.

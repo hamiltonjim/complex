@@ -204,6 +204,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
      * Rectangular to polar format
      * @see abs
      * @see arg
+     * @see Companion.fromPolar
      * @see Companion.fromPolar2
      */
     fun polar(): Pair<Double, Double> {

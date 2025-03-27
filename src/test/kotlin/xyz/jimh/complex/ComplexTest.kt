@@ -407,7 +407,16 @@ class ComplexTest {
                 Complex(E, E + Complex.EPSILON / 2),
                 Complex(E, E)
             ) },
-            Executable { assertNotEquals(Complex.ONE, 1.0) },
+
+            // is the complex number equal to a real number?
+            Executable { assertEquals(Complex.ONE, 1.0) },
+            Executable { assertEquals(Complex.ONE, 1.0F) },
+            Executable { assertEquals(Complex.ONE, 1) },
+            Executable { assertEquals(Complex.ONE, 1L) },
+            Executable { assertEquals(Complex.ONE, 1.toShort()) },
+            Executable { assertNotEquals(Complex(1, 1), 1.0) },
+            Executable { assertNotEquals(Complex.ONE, 1.1) },
+
             Executable { assertNotEquals(Complex.INFINITY, Complex(1.0, 1.0)) },
             Executable { assertNotEquals(Complex(1.0, 1.0), Complex.INFINITY) },
             Executable { assertNotEquals(Complex(Double.NaN), Complex(Double.NaN)) },

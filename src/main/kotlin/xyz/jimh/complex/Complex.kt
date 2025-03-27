@@ -26,15 +26,11 @@ import kotlin.math.tanh
  */
 data class Complex(val re: Double, val im: Double = 0.0) {
     /**
-     * Secondary constructor from a single (real) Number [re]
-     */
-    constructor(re: Number): this(re.toDouble())
-    /**
      * Secondary constructor, where the real and/or imaginary parts are
      * from a type other than Double. We use Number, which is the super
      * interface of all numeric types (other than Complex).
      */
-    constructor(re: Number, im: Number): this(re.toDouble(), im.toDouble())
+    constructor(re: Number, im: Number = 0.0): this(re.toDouble(), im.toDouble())
 
     /** A complex is a NaN if either part is NaN */
     val isNaN = re.isNaN() || im.isNaN()
@@ -322,7 +318,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     fun sec(): Complex {
         val cos = cos()
         if (cos.isZero) return INFINITY
-        return 1.0 / cos
+        return cos.reciprocal()
     }
 
     /**
@@ -331,7 +327,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     fun csc(): Complex {
         val sin = sin()
         if (sin.isZero) return INFINITY
-        return 1.0 / sin
+        return sin.reciprocal()
     }
 
     /**
@@ -417,7 +413,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     /**
      * Returns the hyperbolic secant of this
      */
-    fun sech(): Complex = 1.0 / cosh()
+    fun sech(): Complex = cosh().reciprocal()
 
     /**
      * Returns the hyperbolic cosecant of this
@@ -489,6 +485,9 @@ data class Complex(val re: Double, val im: Double = 0.0) {
      *  */
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
+        if (other is Number) {
+            return isReal && re.close(other.toDouble())
+        }
         if (javaClass != other?.javaClass) return false
 
         other as Complex

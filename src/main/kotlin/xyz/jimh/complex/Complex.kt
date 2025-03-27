@@ -136,11 +136,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
             imSign * sqrt((magnitude - re) / 2.0)
         )
     }
-    // operators for Complex op Double, Float, Int, Long
-    /**
-     * Expands [other] to [Complex] and adds it to this.
-     */
-    operator fun plus(other: Double): Complex = Complex(re + other, im)
+    // operators for Complex op Number
     /**
      * Expands [other] to [Complex] and adds it to this.
      */
@@ -148,15 +144,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     /**
      * Expands [other] to [Complex] and subtracts it from this.
      */
-    operator fun minus(other: Double): Complex = Complex(re - other, im)
-    /**
-     * Expands [other] to [Complex] and subtracts it from this.
-     */
     operator fun minus(other: Number): Complex = Complex(re - other.toDouble(), im)
-    /**
-     * Expands [other] to [Complex] and multiplies it with this.
-     */
-    operator fun times(other: Double): Complex = Complex(re * other, im * other)
     /**
      * Expands [other] to [Complex] and multiplies it with this.
      */
@@ -164,10 +152,6 @@ data class Complex(val re: Double, val im: Double = 0.0) {
         val real = other.toDouble()
         return Complex(re * real, im * real)
     }
-    /**
-     * Expands [other] to [Complex] and divides it into this.
-     */
-    operator fun div(other: Double): Complex = this / Complex(other)
     /**
      * Expands [other] to [Complex] and divides it into this.
      */

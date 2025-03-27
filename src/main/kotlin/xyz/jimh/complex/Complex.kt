@@ -467,13 +467,28 @@ data class Complex(val re: Double, val im: Double = 0.0) {
         /** See extension [Double.j] below. */
         val J = 1.0.j()
         // useful constants
+        /**
+         * Just zero as a Complex
+         */
         val ZERO = Complex(0.0)
+
+        /**
+         * 1 as a Complex
+         */
         val ONE = Complex(1)
+
+        /**
+         * π * sqrt(-1)
+         */
         val PI_J = PI.j()
+
+        /**
+         * π as a Complex
+         */
         val PI_C = Complex(PI)
         /**
          * There is only one infinity in the complex plain, and it's a point. Among others,
-         * see [https://math.stackexchange.com/questions/420557/whats-the-difference-between-complex-infinity-and-undefined#:~:text=%22Undefined%22%20is%20something%20that%20one,is%20itself%20a%20mathematical%20object.]
+         * see [here](https://math.stackexchange.com/questions/420557/whats-the-difference-between-complex-infinity-and-undefined#:~:text=%22Undefined%22%20is%20something%20that%20one,is%20itself%20a%20mathematical%20object.)
          */
         val INFINITY = Complex(Double.POSITIVE_INFINITY)
 

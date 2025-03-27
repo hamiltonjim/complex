@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>xyz.jimh.complex</title>
+    <link href="../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../styles/style.css" rel="Stylesheet">
+<link href="../../styles/main.css" rel="Stylesheet">
+<link href="../../styles/prism.css" rel="Stylesheet">
+<link href="../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../ui-kit/ui-kit.min.js" defer="defer"></script>
+<script type="text/javascript" src="../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+            <a class="library-name--link" href="../../index.html">
+                    Complex
+            </a>
+        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle"
+                type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active=""
+                        data-filter="Complex/JVM">JVM</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox"
+                        data-role="dropdown-toggle"
+                        aria-controls="platform-tags-listbox"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-label="Toggle source sets"
+                ></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id="Complex/JVM"
+                                       data-filter="Complex/JVM"/>
+                                <span class="checkbox--icon"></span>
+                                JVM
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button"
+                    type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
+                        data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    Complex
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="package" id="content" pageIds="Complex::xyz.jimh.complex////PointingToDeclaration//1630337454">
+  <div class="breadcrumbs"><a href="../../index.html">Complex</a><span class="delimiter">/</span><span class="current">xyz.jimh.complex</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Package-level</span></span> <span><span>declarations</span></span></h1>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="TYPE">Types</button><button class="section-tab" data-togglable="FUNCTION,EXTENSION_FUNCTION">Functions</button><button class="section-tab" data-togglable="PROPERTY,EXTENSION_PROPERTY">Properties</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="-578442785%2FClasslikes%2F1630337454" anchor-label="Complex" id="-578442785%2FClasslikes%2F1630337454" data-filterable-set="Complex/JVM"></a>
+          <div class="table-row" data-filterable-current="Complex/JVM" data-filterable-set="Complex/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-complex/index.html"><span><span>Complex</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-578442785%2FClasslikes%2F1630337454"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="Complex/JVM"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="-complex/index.html">Complex</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>re<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>im<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token operator"> = </span><span class="token constant">0.0</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Class representing a complex number (<a href="-complex/re.html">re</a> + <a href="-complex/im.html">im</a>j), where j == sqrt(-1). Yes, j, not i, because I'm an electrical engineer, and 'i' stands for current (V = IR).</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="1258806825%2FProperties%2F1630337454" anchor-label="NUL" id="1258806825%2FProperties%2F1630337454" data-filterable-set="Complex/JVM"></a>
+          <div class="table-row" data-filterable-current="Complex/JVM" data-filterable-set="Complex/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-n-u-l.html"><span><span>NUL</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1258806825%2FProperties%2F1630337454"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="Complex/JVM"><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-n-u-l.html">NUL</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-char/index.html">Char</a><span class="token operator"> = </span>'\u0000'</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-477868539%2FFunctions%2F1630337454" anchor-label="close" id="-477868539%2FFunctions%2F1630337454" data-filterable-set="Complex/JVM"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current="Complex/JVM" data-filterable-set="Complex/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="close.html"><span><span>close</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-477868539%2FFunctions%2F1630337454"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="Complex/JVM"><div class="symbol monospace"><span class="token keyword">fun </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token punctuation">.</span><a href="close.html"><span class="token function">close</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">other<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token punctuation">, </span></span><span class="parameter ">epsilon<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token operator"> = </span>Complex.EPSILON</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Just like Complex.close; returns true if a Double is within epsilon of another.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1378352354%2FFunctions%2F1630337454" anchor-label="div" id="1378352354%2FFunctions%2F1630337454" data-filterable-set="Complex/JVM"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current="Complex/JVM" data-filterable-set="Complex/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="div.html"><span><span>div</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1378352354%2FFunctions%2F1630337454"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="Complex/JVM"><div class="symbol monospace"><span class="token keyword">operator </span><span class="token keyword">fun </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token punctuation">.</span><a href="div.html"><span class="token function">div</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">other<span class="token operator">: </span><a href="-complex/index.html">Complex</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-complex/index.html">Complex</a></div><div class="brief "><p class="paragraph">Expands the receiver to <a href="-complex/index.html">Complex</a> and divides it by <a href="div.html">other</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1129493896%2FFunctions%2F1630337454" anchor-label="expITheta" id="1129493896%2FFunctions%2F1630337454" data-filterable-set="Complex/JVM"></a>
+          <div class="table-row" data-filterable-current="Complex/JVM" data-filterable-set="Complex/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="exp-i-theta.html"><span>exp</span><wbr></wbr><span><span>ITheta</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1129493896%2FFunctions%2F1630337454"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="Complex/JVM"><div class="symbol monospace"><span class="token keyword">fun </span><a href="exp-i-theta.html"><span class="token function">expITheta</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">theta<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-complex/index.html">Complex</a></div><div class="brief "><p class="paragraph">Turns the (radian) angle <a href="exp-i-theta.html">theta</a> into the complex number at that angle, with unit magnitude. Thanks to Leonhard Euler for discovering this property: e^(jθ) = cos θ + j sin θ</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1528805882%2FFunctions%2F1630337454" anchor-label="fmt" id="-1528805882%2FFunctions%2F1630337454" data-filterable-set="Complex/JVM"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current="Complex/JVM" data-filterable-set="Complex/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="fmt.html"><span><span>fmt</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1528805882%2FFunctions%2F1630337454"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="Complex/JVM"><div class="symbol monospace"><span class="token keyword">fun </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token punctuation">.</span><a href="fmt.html"><span class="token function">fmt</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">char<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-char/index.html">Char</a><span class="token operator"> = </span>NUL</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Format a double, optionally with another <a href="fmt.html">char</a> (like i or j). If <a href="fmt.html">char</a> is the default <a href="-n-u-l.html">NUL</a> (ASCII 0), it is not part of the result string.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1254116522%2FFunctions%2F1630337454" anchor-label="j" id="-1254116522%2FFunctions%2F1630337454" data-filterable-set="Complex/JVM"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current="Complex/JVM" data-filterable-set="Complex/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="j.html"><span><span>j</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1254116522%2FFunctions%2F1630337454"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="Complex/JVM"><div class="symbol monospace"><span class="token keyword">fun </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token punctuation">.</span><a href="j.html"><span class="token function">j</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-complex/index.html">Complex</a></div><div class="brief "><p class="paragraph">Creates a &quot;pure imaginary&quot; number from receiver * sqrt(-1).</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="850941971%2FFunctions%2F1630337454" anchor-label="main" id="850941971%2FFunctions%2F1630337454" data-filterable-set="Complex/JVM"></a>
+          <div class="table-row" data-filterable-current="Complex/JVM" data-filterable-set="Complex/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="main.html"><span><span>main</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="850941971%2FFunctions%2F1630337454"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="Complex/JVM"><div class="symbol monospace"><span class="token keyword">fun </span><a href="main.html"><span class="token function">main</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="80966849%2FFunctions%2F1630337454" anchor-label="minus" id="80966849%2FFunctions%2F1630337454" data-filterable-set="Complex/JVM"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current="Complex/JVM" data-filterable-set="Complex/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="minus.html"><span><span>minus</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="80966849%2FFunctions%2F1630337454"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="Complex/JVM"><div class="symbol monospace"><span class="token keyword">operator </span><span class="token keyword">fun </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token punctuation">.</span><a href="minus.html"><span class="token function">minus</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">other<span class="token operator">: </span><a href="-complex/index.html">Complex</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-complex/index.html">Complex</a></div><div class="brief "><p class="paragraph">Expands the receiver to <a href="-complex/index.html">Complex</a> and subtracts <a href="minus.html">other</a> from it.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="982548781%2FFunctions%2F1630337454" anchor-label="plus" id="982548781%2FFunctions%2F1630337454" data-filterable-set="Complex/JVM"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current="Complex/JVM" data-filterable-set="Complex/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="plus.html"><span><span>plus</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="982548781%2FFunctions%2F1630337454"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="Complex/JVM"><div class="symbol monospace"><span class="token keyword">operator </span><span class="token keyword">fun </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token punctuation">.</span><a href="plus.html"><span class="token function">plus</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">other<span class="token operator">: </span><a href="-complex/index.html">Complex</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-complex/index.html">Complex</a></div><div class="brief "><p class="paragraph">Expands the receiver to <a href="-complex/index.html">Complex</a> and adds <a href="plus.html">other</a> to it.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1257472792%2FFunctions%2F1630337454" anchor-label="round" id="1257472792%2FFunctions%2F1630337454" data-filterable-set="Complex/JVM"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current="Complex/JVM" data-filterable-set="Complex/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="round.html"><span><span>round</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1257472792%2FFunctions%2F1630337454"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="Complex/JVM"><div class="symbol monospace"><span class="token keyword">fun </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token punctuation">.</span><a href="round.html"><span class="token function">round</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">decimals<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a></div><div class="brief "><p class="paragraph">Round to <a href="round.html">decimals</a> places. If <a href="round.html">decimals</a> is negative, rounds to the desired power of 10; so round(-2) will round to the nearest hundred.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1496546944%2FFunctions%2F1630337454" anchor-label="sqr" id="-1496546944%2FFunctions%2F1630337454" data-filterable-set="Complex/JVM"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current="Complex/JVM" data-filterable-set="Complex/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="sqr.html"><span><span>sqr</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1496546944%2FFunctions%2F1630337454"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="Complex/JVM"><div class="symbol monospace"><span class="token keyword">fun </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token punctuation">.</span><a href="sqr.html"><span class="token function">sqr</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a></div><div class="brief "><p class="paragraph">Returns the square of the receiver.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="302441166%2FFunctions%2F1630337454" anchor-label="sqrt" id="302441166%2FFunctions%2F1630337454" data-filterable-set="Complex/JVM"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current="Complex/JVM" data-filterable-set="Complex/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="sqrt.html"><span><span>sqrt</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="302441166%2FFunctions%2F1630337454"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="Complex/JVM"><div class="symbol monospace"><span class="token keyword">fun </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token punctuation">.</span><a href="sqrt.html"><span class="token function">sqrt</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-complex/index.html">Complex</a></div><div class="brief "><p class="paragraph">Takes the square root, as a Complex number. Works just fine with negative real numbers. Does not interfere with Double.sqrt(x: Double), since the signature is different.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-749854441%2FFunctions%2F1630337454" anchor-label="times" id="-749854441%2FFunctions%2F1630337454" data-filterable-set="Complex/JVM"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current="Complex/JVM" data-filterable-set="Complex/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="times.html"><span><span>times</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-749854441%2FFunctions%2F1630337454"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="Complex/JVM"><div class="symbol monospace"><span class="token keyword">operator </span><span class="token keyword">fun </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-number/index.html">Number</a><span class="token punctuation">.</span><a href="times.html"><span class="token function">times</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">other<span class="token operator">: </span><a href="-complex/index.html">Complex</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-complex/index.html">Complex</a></div><div class="brief "><p class="paragraph">Expands the receiver to <a href="-complex/index.html">Complex</a> and multiplies it by <a href="times.html">other</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>© 2025 Copyright</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

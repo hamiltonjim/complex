@@ -2,7 +2,8 @@
 ### Copyright © 2025 Jim Hamilton
 ## A Kotlin class (and extension functions) to handle complex math.
 
-Usage: simply include Complex.kt in your project.
+Usage: simply include Complex.kt in your project. 
+[KDoc](https://hamiltonjim.github.io/complex/index.html)
 
 To create a complex val, just pass the real and 
 imaginary parts to the constructor for Complex. 

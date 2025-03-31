@@ -64,7 +64,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
 
     /**
      * A complex is close to another if both parts of [other] are within [epsilon] of
-     * their counterparts in this. Note: this is the adjective "close" as in "near to,"
+     * their counterparts in the receiver. Note: this is the adjective "close" as in "near to,"
      * not the verb "close" as in "shut the door."
      * @see equals()
      */
@@ -116,7 +116,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
         Complex(this.re - other.re, this.im - other.im)
 
     /**
-     * Complex multiplication: returns this * [other]
+     * Complex multiplication: returns the receiver * [other]
      */
     operator fun times(other: Complex): Complex {
         val real = other.re * this.re - other.im * this.im
@@ -125,7 +125,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     }
 
     /**
-     * Complex division: returns this / [other]
+     * Complex division: returns the receiver / [other]
      */
     operator fun div(other: Complex): Complex {
         val denominator = other.re * other.re + other.im * other.im
@@ -135,7 +135,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     }
 
     /**
-     * Returns the complex square root of this. When the imaginary part [im] is
+     * Returns the complex square root of the receiver. When the imaginary part [im] is
      * zero, acts just like [Double].sqrt
      */
     fun sqrt(): Complex {
@@ -151,27 +151,27 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     }
     // operators for Complex op Number
     /**
-     * Expands [other] to [Complex] and adds it to this.
+     * Expands [other] to [Complex] and adds it to the receiver.
      */
     operator fun plus(other: Number): Complex = Complex(re + other.toDouble(), im)
     /**
-     * Expands [other] to [Complex] and subtracts it from this.
+     * Expands [other] to [Complex] and subtracts it from the receiver.
      */
     operator fun minus(other: Number): Complex = Complex(re - other.toDouble(), im)
     /**
-     * Expands [other] to [Complex] and multiplies it with this.
+     * Expands [other] to [Complex] and multiplies it with the receiver.
      */
     operator fun times(other: Number): Complex {
         val real = other.toDouble()
         return Complex(re * real, im * real)
     }
     /**
-     * Expands [other] to [Complex] and divides it into this.
+     * Expands [other] to [Complex] and divides it into the receiver.
      */
     operator fun div(other: Number): Complex = this / Complex(other)
 
     /**
-     * Complex natural logarithm of this (principal value, where imaginary part
+     * Complex natural logarithm of the receiver (principal value, where imaginary part
      * is always between -π and π) (inverse of [exp]).
      */
     fun ln(): Complex {
@@ -183,7 +183,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     }
 
     /**
-     * e to the power of this (inverse of [ln])
+     * e to the power of the receiver (inverse of [ln])
      */
     fun exp(): Complex {
         // e^(a + bj) == (e^a)(e^bj)
@@ -191,7 +191,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     }
 
     /**
-     * Complex power [exponent] of a complex number this
+     * Complex power [exponent] of the receiver
      */
     infix fun pow(exponent: Complex): Complex {
         // z^w == e^(w log z)
@@ -224,24 +224,24 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     fun polar(): Polar = Polar(abs(), arg())
 
     /**
-     * Returns the magnitude of this.
+     * Returns the magnitude of the receiver (re^2 + im^2)^0.5.
      * @see polar
      */
     fun abs(): Double = sqrt(re.sqr() + im.sqr())
 
     /**
-     * Returns the angle of this.
+     * Returns the angle of the receiver.
      * @see polar
      */
     fun arg(): Double = atan2(im, re)
 
     /**
-     * Returns the square of this.
+     * Returns the square of the receiver.
      */
     private fun sqr(): Complex = this * this
 
     /**
-     * Returns 1 / this
+     * Returns 1 / the receiver
      */
     fun reciprocal(): Complex {
         return if (isZero)
@@ -253,21 +253,21 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     // Trigonometric functions
 
     /**
-     * Returns the circular sine of this.
+     * Returns the circular sine of the receiver.
      */
     fun sin(): Complex {
         return Complex(sin(re) * cosh(im), cos(re) * sinh(im))
     }
 
     /**
-     * Returns the circular cosine of this.
+     * Returns the circular cosine of the receiver.
      */
     fun cos(): Complex {
         return Complex(cos(re) * cosh(im), -sin(re) * sinh(im))
     }
 
     /**
-     * Returns the circular tangent of this
+     * Returns the circular tangent of the receiver
      */
     fun tan(): Complex {
         val numerator = Complex(tan(re), tanh(im))
@@ -276,7 +276,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     }
 
     /**
-     * Returns the circular secant of this
+     * Returns the circular secant of the receiver
      */
     fun sec(): Complex {
         val cos = cos()
@@ -285,7 +285,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     }
 
     /**
-     * Returns the circular cosecant of this
+     * Returns the circular cosecant of the receiver
      */
     fun csc(): Complex {
         val sin = sin()
@@ -294,7 +294,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     }
 
     /**
-     * Returns the circular cotangent of this
+     * Returns the circular cotangent of the receiver
      */
     fun cot(): Complex {
         val sin = sin()
@@ -305,7 +305,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     // inverse trig functions
 
     /**
-     * Returns the (principal) arc sine of this
+     * Returns the (principal) arc sine of the receiver
      */
     fun asin(): Complex {
         // acos(z) == ln(z + sqrt(z^2 - 1)) / i
@@ -313,26 +313,26 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     }
 
     /**
-     * Returns the (principal) arc cosine of this
+     * Returns the (principal) arc cosine of the receiver
      */
     fun acos(): Complex = PI / 2.0 - asin()
 
     /**
-     * Returns the (principal) arc tangent of this
+     * Returns the (principal) arc tangent of the receiver
      */
     fun atan(): Complex {
         return ((J - this) / (J + this)).ln() * -J / 2.0
     }
 
     /**
-     * Returns the (principal) arc cotangent of this
+     * Returns the (principal) arc cotangent of the receiver
      */
     fun acot(): Complex {
         return ((this + J) / (this - J)).ln() * -J / 2.0
     }
 
     /**
-     * Returns the (principal) arc cosecant of this
+     * Returns the (principal) arc cosecant of the receiver
      */
     fun acsc(): Complex {
         return if (isZero)
@@ -342,29 +342,29 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     }
 
     /**
-     * Returns the (principal) arc secant of this
+     * Returns the (principal) arc secant of the receiver
      */
     fun asec(): Complex = PI / 2.0 - acsc()
 
     // hyperbolic functions
 
     /**
-     * Returns the hyperbolic cosine of this
+     * Returns the hyperbolic cosine of the receiver
      */
     fun cosh(): Complex = (exp() + (-this).exp()) / 2.0
 
     /**
-     * Returns the hyperbolic sine of this
+     * Returns the hyperbolic sine of the receiver
      */
     fun sinh(): Complex = (exp() - (-this).exp()) / 2.0
 
     /**
-     * Returns the hyperbolic tangent of this
+     * Returns the hyperbolic tangent of the receiver
      */
     fun tanh(): Complex = ((this * 2.0).exp() - 1.0) / ((this * 2.0).exp() + 1.0)
 
     /**
-     * Returns the hyperbolic cotangent of this
+     * Returns the hyperbolic cotangent of the receiver
      */
     fun coth(): Complex {
         return if (isZero)
@@ -374,12 +374,12 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     }
 
     /**
-     * Returns the hyperbolic secant of this
+     * Returns the hyperbolic secant of the receiver
      */
     fun sech(): Complex = cosh().reciprocal()
 
     /**
-     * Returns the hyperbolic cosecant of this
+     * Returns the hyperbolic cosecant of the receiver
      */
     fun csch(): Complex {
         return if (isZero)
@@ -391,28 +391,28 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     // inverse functions
 
     /**
-     * Returns the (principal) arc sinh of this
+     * Returns the (principal) arc sinh of the receiver
      */
     fun asinh(): Complex {
         return (this + (this.sqr() + 1.0).sqrt()).ln()
     }
 
     /**
-     * Returns the (principal) arc cosh of this
+     * Returns the (principal) arc cosh of the receiver
      */
     fun acosh(): Complex {
         return (this + (this + 1.0).sqrt() * (this - 1.0).sqrt()).ln()
     }
 
     /**
-     * Returns the (principal) arc tanh of this
+     * Returns the (principal) arc tanh of the receiver
      */
     fun atanh(): Complex {
         return ((this + 1.0).ln() - (1.0 - this).ln()) / 2.0
     }
 
     /**
-     * Returns the (principal) arc coth of this
+     * Returns the (principal) arc coth of the receiver
      */
     fun acoth(): Complex {
         return if (isZero)
@@ -422,7 +422,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     }
 
     /**
-     * Returns the (principal) arc sech of this
+     * Returns the (principal) arc sech of the receiver
      */
     fun asech(): Complex {
         return if (isZero)
@@ -432,7 +432,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     }
 
     /**
-     * Returns the (principal) arc csch of this
+     * Returns the (principal) arc csch of the receiver
      */
     fun acsch(): Complex {
         return if (isZero)

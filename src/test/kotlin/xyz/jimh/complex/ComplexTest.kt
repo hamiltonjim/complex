@@ -345,8 +345,8 @@ class ComplexTest {
                 val theta = PI / 4.0
                 val polar = Complex(1, 1).polar()
                 assertAll(
-                    Executable { assertEquals(rho, polar.first, Complex.EPSILON) },
-                    Executable { assertEquals(theta, polar.second, Complex.EPSILON) }
+                    Executable { assertEquals(rho, polar.rho, Complex.EPSILON) },
+                    Executable { assertEquals(theta, polar.theta, Complex.EPSILON) }
                 )
             },
             Executable {
@@ -354,8 +354,8 @@ class ComplexTest {
                 val theta = atan2(1.0, 2.0)
                 val polar = Complex(2, 1).polar()
                 assertAll(
-                    Executable { assertEquals(rho, polar.first, Complex.EPSILON) },
-                    Executable { assertEquals(theta, polar.second, Complex.EPSILON) }
+                    Executable { assertEquals(rho, polar.rho, Complex.EPSILON) },
+                    Executable { assertEquals(theta, polar.theta, Complex.EPSILON) }
                 )
             },
             Executable {
@@ -363,8 +363,8 @@ class ComplexTest {
                 val theta = atan2(3.0, 4.0)
                 val polar = Complex(4, 3).polar()
                 assertAll(
-                    Executable { assertEquals(rho, polar.first, Complex.EPSILON) },
-                    Executable { assertEquals(theta, polar.second, Complex.EPSILON) }
+                    Executable { assertEquals(rho, polar.rho, Complex.EPSILON) },
+                    Executable { assertEquals(theta, polar.theta, Complex.EPSILON) }
                 )
             },
             Executable {
@@ -372,8 +372,8 @@ class ComplexTest {
                 val theta = atan2(3.0, 4.0)
                 val polar = Complex(4, 3).polar()
                 assertAll(
-                    Executable { assertEquals(rho, polar.first, Complex.EPSILON) },
-                    Executable { assertEquals(theta, polar.second, Complex.EPSILON) }
+                    Executable { assertEquals(rho, polar.rho, Complex.EPSILON) },
+                    Executable { assertEquals(theta, polar.theta, Complex.EPSILON) }
                 )
             },
         )
@@ -591,5 +591,14 @@ class ComplexTest {
                 Complex.fromPolar(Complex(472,981).polar())
             ) },
         )
+    }
+
+    /**
+     * Not really testing anything, main() is just some ad hoc tests; but
+     * will confirm that main runs and returns Unit.
+     */
+    @Test
+    fun `completion test main`() {
+        assertEquals(Unit, main())
     }
 }

@@ -35,6 +35,7 @@ fun main() {
     println(Complex(2, 2) pow Complex.J)
     println(Complex.J pow Complex.J)
     println(Complex(5, 10) / Complex.ZERO)
+    println(Complex(5, 10) / 0)
     println(Complex(Double.POSITIVE_INFINITY))
     println(Complex(3) / Complex(9, 6))
     println(Complex(E) pow Complex(0, PI))
@@ -60,6 +61,10 @@ fun main() {
     println(Complex.ZERO.asec())
 
     println((Complex.PI_C / 2.0).cos())
+
+    val cmplex = Complex(-4, 4)
+    val (radius, theta) = cmplex.polar()
+    println("$cmplex has radius $radius and angle $theta (or ${theta * 180 / PI}°)")
 
 }
 

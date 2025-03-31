@@ -24,8 +24,13 @@ $dokka.location:xyz.jimh.complex/Complex.Companion/ONE/#/PointingToDeclaration/
 $dokka.location:xyz.jimh.complex/Complex.Companion/PI_C/#/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/-companion/-p-i_-c.html
 $dokka.location:xyz.jimh.complex/Complex.Companion/PI_J/#/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/-companion/-p-i_-j.html
 $dokka.location:xyz.jimh.complex/Complex.Companion/ZERO/#/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/-companion/-z-e-r-o.html
-$dokka.location:xyz.jimh.complex/Complex.Companion/fromPolar/#kotlin.Pair[kotlin.Double,kotlin.Double]/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/-companion/from-polar.html
+$dokka.location:xyz.jimh.complex/Complex.Companion/fromPolar/#xyz.jimh.complex.Complex.Polar/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/-companion/from-polar.html
 $dokka.location:xyz.jimh.complex/Complex.Companion/fromPolar2/#kotlin.Double#kotlin.Double/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/-companion/from-polar2.html
+$dokka.location:xyz.jimh.complex/Complex.Polar///PointingToDeclaration/-complex/xyz.jimh.complex/-complex/-polar/index.html
+$dokka.location:xyz.jimh.complex/Complex.Polar/Polar/#kotlin.Double#kotlin.Double/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/-polar/-polar.html
+$dokka.location:xyz.jimh.complex/Complex.Polar/fromPolar/#/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/-polar/from-polar.html
+$dokka.location:xyz.jimh.complex/Complex.Polar/rho/#/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/-polar/rho.html
+$dokka.location:xyz.jimh.complex/Complex.Polar/theta/#/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/-polar/theta.html
 $dokka.location:xyz.jimh.complex/Complex///PointingToDeclaration/-complex/xyz.jimh.complex/-complex/index.html
 $dokka.location:xyz.jimh.complex/Complex/Complex/#kotlin.Double#kotlin.Double/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/-complex.html
 $dokka.location:xyz.jimh.complex/Complex/Complex/#kotlin.Number#kotlin.Number/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/-complex.html

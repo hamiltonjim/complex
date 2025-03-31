@@ -87,7 +87,7 @@ combination of Complex and Double, Float, Int, and
 Long.
 
 The following functions are defined:
-- polar(): Pair<Double, Double> (returns magnitude and angle)
+- polar(): Polar (returns radius and angle)
 - abs(): Double (returns the magnitude of this)
 - arg(): Double (returns the angle in radians,
   counter-clockwise from the real axis)
@@ -97,11 +97,6 @@ remember polar coordinates are periodic)
 - sqrt(): Complex (returns principal square root of this)
 - Double.sqrt(): Complex (replaces the standard lib function, 
 works on negative numbers)
-- isNaN(): Boolean (returns true if either part is NaN)
-- isInfinite(): Boolean (returns true if either part is 
-infinite and neither part is NaN)
-- isZero(): Boolean (returns true if both parts
-are close enough to zero to PRINT zero when formatted)
 - pow(exponent: Complex): Complex and
 - pow(exponent: Double): Complex (to take this to
 any arbitrary power)

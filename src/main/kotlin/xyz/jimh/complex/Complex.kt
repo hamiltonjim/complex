@@ -50,6 +50,17 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     val isImaginary = re.close(0.0, EPSILON / 1000.0)
 
     /**
+     * Data class for polar coordinates ([rho], [theta])
+     */
+    data class Polar(val rho: Double, val theta: Double) {
+        /**
+         * Returns a Complex (rectangular coordinates) from the given number in
+         * polar coordinate format.
+         */
+        fun fromPolar(): Complex = Complex(rho * cos(theta), rho * sin(theta))
+    }
+
+    /**
      * A complex is close to another if both parts of [other] are within [epsilon] of
      * their counterparts in this. Note: this is the adjective "close" as in "near to,"
      * not the verb "close" as in "shut the door."
@@ -166,7 +177,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
         if (isZero) return INFINITY
 
         val polar = polar()
-        return ln(polar.first) + polar.second.j()
+        return ln(polar.rho) + polar.theta.j()
     }
 
     /**
@@ -194,8 +205,8 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     infix fun pow(exponent: Number): Complex {
         val polar = this.polar()
         val realExponent = exponent.toDouble()
-        val realRealPart = polar.first.pow(realExponent)
-        val exponentOfE = realExponent * polar.second
+        val realRealPart = polar.rho.pow(realExponent)
+        val exponentOfE = realExponent * polar.theta
         val eToTheExponent = expITheta(exponentOfE)
         return realRealPart * eToTheExponent
     }
@@ -204,14 +215,11 @@ data class Complex(val re: Double, val im: Double = 0.0) {
      * Rectangular to polar format
      * @see abs
      * @see arg
+     * @see Polar
      * @see Companion.fromPolar
      * @see Companion.fromPolar2
      */
-    fun polar(): Pair<Double, Double> {
-        val rho = abs()
-        val theta = arg()
-        return rho to theta
-    }
+    fun polar(): Polar = Polar(abs(), arg())
 
     /**
      * Returns the magnitude of this.
@@ -497,21 +505,18 @@ data class Complex(val re: Double, val im: Double = 0.0) {
          * Constructs a Complex from polar coordinates; the values in [polarCoordinates] are the
          * radius and the angle (in radians), respectively. This is the exact format returned by
          * the member function [polar].
+         * @see Polar
          * @see polar
          * @see fromPolar2
          */
-        fun fromPolar(polarCoordinates: Pair<Double, Double>): Complex {
-            return polarCoordinates.first * expITheta(polarCoordinates.second)
-        }
+        fun fromPolar(polarCoordinates: Polar): Complex = polarCoordinates.fromPolar()
 
         /**
          * Constructs a Complex from polar coordinates, [radius] and [theta] (in radians).
          * @see polar
          * @see fromPolar
          */
-        fun fromPolar2(radius: Double, theta: Double): Complex {
-            return radius * expITheta(theta)
-        }
+        fun fromPolar2(radius: Double, theta: Double): Complex = Polar(radius, theta).fromPolar()
     }
 }
 

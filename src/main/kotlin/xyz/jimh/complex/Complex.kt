@@ -23,6 +23,8 @@ import kotlin.math.tanh
  * sense for complex numbers, like toDouble() and toInt().
  *
  * @constructor takes values [re] for the real part and [im] for the imaginary part.
+ * @property im The imaginary part of the complex number
+ * @property re The real part of the complex number
  */
 data class Complex(val re: Double, val im: Double = 0.0) {
     /**

@@ -15,8 +15,8 @@ import kotlin.math.tan
 import kotlin.math.tanh
 
 /**
- * Class representing a complex number ([re] + [im]j), where j == sqrt(-1). Yes, j,
- * not i, because I'm an electrical engineer, and 'i' stands for current (V = IR).
+ * Class representing a complex number ([re] + (im)j), where j == sqrt(-1). Yes, j,
+ * not i, because I'm an electrical engineer, and 'i' stands for current (Ohm's Law: V = IR).
  *
  * Note: this class does Not inherit from Number, even though it is a numeric
  * data type. That's because Number defines a lot of functions that don't make
@@ -512,11 +512,11 @@ data class Complex(val re: Double, val im: Double = 0.0) {
         fun fromPolar(polarCoordinates: Polar): Complex = polarCoordinates.fromPolar()
 
         /**
-         * Constructs a Complex from polar coordinates, [radius] and [theta] (in radians).
+         * Constructs a Complex from polar coordinates, [rho] and [theta] (in radians).
          * @see polar
          * @see fromPolar
          */
-        fun fromPolar2(radius: Double, theta: Double): Complex = Polar(radius, theta).fromPolar()
+        fun fromPolar2(rho: Double, theta: Double): Complex = Polar(rho, theta).fromPolar()
     }
 }
 

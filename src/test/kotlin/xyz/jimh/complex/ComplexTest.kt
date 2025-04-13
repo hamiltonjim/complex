@@ -14,11 +14,13 @@ import kotlin.math.sinh
 import kotlin.math.sqrt
 import org.junit.jupiter.api.Test
 
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertAll
+import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assertions.assertFalse
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNotEquals
+
 import org.junit.jupiter.api.function.Executable
-import xyz.jimh.complex.Complex.Companion.EPSILON_FLOAT
-import xyz.jimh.complex.Complex.Companion.J
-import xyz.jimh.complex.Complex.Companion.PI_J
 
 class ComplexTest {
 
@@ -57,16 +59,16 @@ class ComplexTest {
     @Test
     fun `test exp`() {
         assertAll(
-            Executable { assertEquals(Complex(-1.0), PI_J.exp()) },
-            Executable { assertEquals(Complex(0.0, 1.0), (PI_J / 2.0).exp()) },
-            Executable { assertEquals(Complex(0.0, -1.0), (PI_J * 1.5).exp()) },
+            Executable { assertEquals(Complex(-1.0), Complex.PI_J.exp()) },
+            Executable { assertEquals(Complex(0.0, 1.0), (Complex.PI_J / 2.0).exp()) },
+            Executable { assertEquals(Complex(0.0, -1.0), (Complex.PI_J * 1.5).exp()) },
         )
     }
 
     @Test
     fun `test abs and arg`() {
         assertAll(
-            Executable { assertEquals(PI, PI_J.abs(), Complex.EPSILON) },
+            Executable { assertEquals(PI, Complex.PI_J.abs(), Complex.EPSILON) },
             Executable { assertEquals(sqrt(2.0), Complex(1, 1).abs(), Complex.EPSILON) },
             Executable { assertEquals(5.0, Complex(4, 3).abs(), Complex.EPSILON) },
             Executable { assertEquals(PI / 4, Complex(2, 2).arg(), Complex.EPSILON) },
@@ -84,7 +86,9 @@ class ComplexTest {
     @Test
     operator fun unaryPlus() {
         val test = Complex(1.23456, 7.89012)
-        assertEquals(test, +test)
+        val newOne = +test
+        assertEquals(test, newOne)
+        assertFalse(test === newOne)     // because it's a copy, not the original object
     }
 
     @Test
@@ -173,8 +177,8 @@ class ComplexTest {
             Executable { assertEquals(cmp, 1.0 + 2.0.j()) },
         )
         assertAll(
-            Executable { assertTrue(fSum.close(cmp + flo, EPSILON_FLOAT)) },
-            Executable { assertTrue(fSum.close(flo + cmp, EPSILON_FLOAT)) },
+            Executable { assertTrue(fSum.close(cmp + flo, Complex.EPSILON_FLOAT)) },
+            Executable { assertTrue(fSum.close(flo + cmp, Complex.EPSILON_FLOAT)) },
             Executable { assertEquals(cmp, 1.0F + 2.0.j()) },
         )
         assertAll(
@@ -216,7 +220,7 @@ class ComplexTest {
     fun `test j function`() {
         assertAll(
             Executable { assertEquals(Complex(0,2), 2.0.j()) },
-            Executable { assertEquals(Complex(2), (2.0.j() / J)) },
+            Executable { assertEquals(Complex(2), (2.0.j() / Complex.J)) },
             Executable { assertEquals(Complex(0, 2.5), doubleJSample()) },
         )
     }
@@ -233,8 +237,8 @@ class ComplexTest {
             Executable { assertEquals(product, 1.0 * product) },
         )
         assertAll(
-            Executable { assertTrue(product.close(cmp * E.toFloat(), EPSILON_FLOAT)) },
-            Executable { assertTrue(product.close(E.toFloat() * cmp, EPSILON_FLOAT)) },
+            Executable { assertTrue(product.close(cmp * E.toFloat(), Complex.EPSILON_FLOAT)) },
+            Executable { assertTrue(product.close(E.toFloat() * cmp, Complex.EPSILON_FLOAT)) },
             Executable { assertEquals(product, product * 1.0F) },
             Executable { assertEquals(product, 1.0F * product) },
         )
@@ -601,6 +605,25 @@ class ComplexTest {
                 Complex(472, 981),
                 Complex.fromPolar(Complex(472,981).polar())
             ) },
+        )
+    }
+
+    @Test
+    fun `test increment and decrement`() {
+        var number = Complex(1, 1)
+        assertAll(
+            Executable { assertEquals(Complex(2, 1), ++number) },
+            Executable { assertEquals(Complex(3, 1), ++number) },
+            Executable { assertEquals(Complex(2, 1), --number) },
+            Executable { assertEquals(Complex(1, 1), --number) },
+            Executable { assertEquals(Complex(1, 1), number--) },
+            Executable { assertTrue(number.isImaginary) },
+            Executable { assertEquals(Complex(-1, 1), --number) },
+            Executable { assertEquals(Complex(-1, 1), number--) },
+            Executable { assertEquals(Complex(-2, 1), number) },
+            Executable { assertEquals(Complex(-2, 1), number++) },
+            Executable { assertEquals(Complex(-1, 1), number) },
+            Executable { assertFalse(number.isImaginary) },
         )
     }
 

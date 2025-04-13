@@ -15,7 +15,7 @@ import kotlin.math.tan
 import kotlin.math.tanh
 
 /**
- * Class representing a complex number ([re] + (im)j), where j == sqrt(-1). Yes, j,
+ * Class representing a complex number ([re] + [im]j), where j == sqrt(-1). Yes, j,
  * not i, because I'm an electrical engineer, and 'i' stands for current (Ohm's Law: V = IR).
  *
  * Note: this class does Not inherit from Number, even though it is a numeric
@@ -23,8 +23,8 @@ import kotlin.math.tanh
  * sense for complex numbers, like toDouble() and toInt().
  *
  * @constructor takes values [re] for the real part and [im] for the imaginary part.
- * @property im The imaginary part of the complex number
  * @property re The real part of the complex number
+ * @property im The imaginary part of the complex number
  * @author Jim Hamilton
  */
 data class Complex(val re: Double, val im: Double = 0.0) {
@@ -43,12 +43,12 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     val isZero = abs(re) <= EPSILON / 1000 && abs(im) <= EPSILON / 1000
 
     /**
-     * A complex number is real if its imaginary part is zero
+     * A complex number is real if its imaginary part is (close to) zero
      */
     val isReal = im.close(0.0, EPSILON / 1000.0)
 
     /**
-     * A complex number is imaginary if its real part is zero
+     * A complex number is imaginary if its real part is (close to) zero
      */
     val isImaginary = re.close(0.0, EPSILON / 1000.0)
 
@@ -93,32 +93,37 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     }
 
     override fun toString(): String {
-        if (isNaN) {
-            return Double.NaN.toString()
-        } else if (isInfinite) {
-            return Double.POSITIVE_INFINITY.toString()
+        return when {
+            isNaN -> Double.NaN.toString()
+            isInfinite -> Double.POSITIVE_INFINITY.toString()
+            im.close(0.0) -> re.fmt()
+            re.close(0.0) -> im.fmt(J_CHAR)
+            im < 0.0 -> "${re.fmt()} - ${(-im).fmt(J_CHAR)}"
+            else -> "${re.fmt()} + ${im.fmt(J_CHAR)}"
         }
-        return if (im.close(0.0))
-            re.fmt()
-        else if (re.close(0.0))
-            im.fmt(J_CHAR)
-        else if (im < 0.0)
-            "${re.fmt()} - ${(-im).fmt(J_CHAR)}"
-        else
-            "${re.fmt()} + ${im.fmt(J_CHAR)}"
     }
 
     // Operator overloads
 
     /**
-     * +foo == foo:  just return yourself
+     * +foo == foo:  just return (a copy of) yourself
      */
-    operator fun unaryPlus() = this
+    operator fun unaryPlus() = this.copy()
 
     /**
      * -foo negates both parts of foo
      */
-    operator fun unaryMinus(): Complex = Complex(-re, -im)
+    operator fun unaryMinus() = this.copy(re = -re, im = -im)
+
+    /**
+     * ++foo increments the real part, leaves the imaginary part alone
+     */
+    operator fun inc() = this.copy(re = re + 1)
+
+    /**
+     * --foo decrements the real part, leaves the imaginary part alone
+     */
+    operator fun dec() = this.copy(re = re - 1)
 
     operator fun plus(other: Complex): Complex =
         Complex(this.re + other.re, this.im + other.im)

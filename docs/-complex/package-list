@@ -58,12 +58,14 @@ $dokka.location:xyz.jimh.complex/Complex/cot/#/PointingToDeclaration/-complex/x
 $dokka.location:xyz.jimh.complex/Complex/coth/#/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/coth.html
 $dokka.location:xyz.jimh.complex/Complex/csc/#/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/csc.html
 $dokka.location:xyz.jimh.complex/Complex/csch/#/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/csch.html
+$dokka.location:xyz.jimh.complex/Complex/dec/#/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/dec.html
 $dokka.location:xyz.jimh.complex/Complex/div/#kotlin.Number/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/div.html
 $dokka.location:xyz.jimh.complex/Complex/div/#xyz.jimh.complex.Complex/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/div.html
 $dokka.location:xyz.jimh.complex/Complex/equals/#kotlin.Any?/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/equals.html
 $dokka.location:xyz.jimh.complex/Complex/exp/#/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/exp.html
 $dokka.location:xyz.jimh.complex/Complex/hashCode/#/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/hash-code.html
 $dokka.location:xyz.jimh.complex/Complex/im/#/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/im.html
+$dokka.location:xyz.jimh.complex/Complex/inc/#/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/inc.html
 $dokka.location:xyz.jimh.complex/Complex/isImaginary/#/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/is-imaginary.html
 $dokka.location:xyz.jimh.complex/Complex/isInfinite/#/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/is-infinite.html
 $dokka.location:xyz.jimh.complex/Complex/isNaN/#/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/is-na-n.html

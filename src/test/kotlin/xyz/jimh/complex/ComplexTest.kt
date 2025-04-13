@@ -585,6 +585,7 @@ class ComplexTest {
     fun `from polar test`() {
         assertAll(
             Executable { assertEquals(Complex(1, 1), Complex.fromPolar2(sqrt(2.0), PI / 4.0)) },
+            Executable { assertEquals(Complex(1, 1), Complex.Polar.fromPolarSample()) },
             Executable { assertEquals(Complex(2, 1), Complex.fromPolar2(sqrt(5.0), atan(0.5))) },
             Executable { assertEquals(
                 Complex(472, 981),

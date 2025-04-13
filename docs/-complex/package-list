@@ -26,6 +26,8 @@ $dokka.location:xyz.jimh.complex/Complex.Companion/PI_J/#/PointingToDeclaration/
 $dokka.location:xyz.jimh.complex/Complex.Companion/ZERO/#/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/-companion/-z-e-r-o.html
 $dokka.location:xyz.jimh.complex/Complex.Companion/fromPolar/#xyz.jimh.complex.Complex.Polar/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/-companion/from-polar.html
 $dokka.location:xyz.jimh.complex/Complex.Companion/fromPolar2/#kotlin.Double#kotlin.Double/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/-companion/from-polar2.html
+$dokka.location:xyz.jimh.complex/Complex.Polar.Companion///PointingToDeclaration/-complex/xyz.jimh.complex/-complex/-polar/-companion/index.html
+$dokka.location:xyz.jimh.complex/Complex.Polar.Companion/fromPolarSample/#/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/-polar/-companion/from-polar-sample.html
 $dokka.location:xyz.jimh.complex/Complex.Polar///PointingToDeclaration/-complex/xyz.jimh.complex/-complex/-polar/index.html
 $dokka.location:xyz.jimh.complex/Complex.Polar/Polar/#kotlin.Double#kotlin.Double/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/-polar/-polar.html
 $dokka.location:xyz.jimh.complex/Complex.Polar/fromPolar/#/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/-polar/from-polar.html

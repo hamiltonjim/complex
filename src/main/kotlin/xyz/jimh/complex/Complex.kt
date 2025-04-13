@@ -25,6 +25,7 @@ import kotlin.math.tanh
  * @constructor takes values [re] for the real part and [im] for the imaginary part.
  * @property im The imaginary part of the complex number
  * @property re The real part of the complex number
+ * @author Jim Hamilton
  */
 data class Complex(val re: Double, val im: Double = 0.0) {
     /**
@@ -58,8 +59,18 @@ data class Complex(val re: Double, val im: Double = 0.0) {
         /**
          * Returns a Complex (rectangular coordinates) from the given number in
          * polar coordinate format.
+         * @sample xyz.jimh.complex.Complex.Polar.fromPolarSample
          */
         fun fromPolar(): Complex = Complex(rho * cos(theta), rho * sin(theta))
+
+        companion object {
+            fun fromPolarSample(): Complex {
+                val polar = Polar(sqrt(2.0), PI / 4.0)
+                val complex = polar.fromPolar()
+                println("$polar.fromPolar() == $complex") // 1 + j
+                return complex
+            }
+        }
     }
 
     /**

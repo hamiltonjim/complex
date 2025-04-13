@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.function.Executable
 import xyz.jimh.complex.Complex.Companion.EPSILON_FLOAT
+import xyz.jimh.complex.Complex.Companion.J
 import xyz.jimh.complex.Complex.Companion.PI_J
 
 class ComplexTest {
@@ -208,6 +209,15 @@ class ComplexTest {
         assertAll(
             Executable { assertEquals(diff, cmp - 1L) },
             Executable { assertEquals(minusDiff, 1L - cmp) },
+        )
+    }
+
+    @Test
+    fun `test j function`() {
+        assertAll(
+            Executable { assertEquals(Complex(0,2), 2.0.j()) },
+            Executable { assertEquals(Complex(2), (2.0.j() / J)) },
+            Executable { assertEquals(Complex(0, 2.5), doubleJSample()) },
         )
     }
 

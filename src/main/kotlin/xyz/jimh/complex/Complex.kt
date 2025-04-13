@@ -550,8 +550,16 @@ fun Double.sqr(): Double = this * this
 
 /**
  * Creates a "pure imaginary" number from receiver * sqrt(-1).
+ * @sample xyz.jimh.complex.doubleJSample
  */
 fun Double.j(): Complex = Complex(0.0, this)
+
+fun doubleJSample(): Complex {
+    val aDouble = 2.5
+    val complex = aDouble.j()
+    println("$aDouble.j() == $complex")
+    return complex
+}
 
 /**
  * Takes the square root, as a Complex number. Works just fine with negative

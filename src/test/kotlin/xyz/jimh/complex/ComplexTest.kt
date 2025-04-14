@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotEquals
+import org.junit.jupiter.api.assertThrows
 
 import org.junit.jupiter.api.function.Executable
 
@@ -222,6 +223,52 @@ class ComplexTest {
             Executable { assertEquals(Complex(0,2), 2.0.j()) },
             Executable { assertEquals(Complex(2), (2.0.j() / Complex.J)) },
             Executable { assertEquals(Complex(0, 2.5), doubleJSample()) },
+            Executable { assertEquals(Complex(0, 10.1378), bigDecimalJSample()) },
+        )
+    }
+
+    @Test
+    fun `test toDouble`() {
+        assertAll(
+            Executable { assertEquals(10.0, Complex(10.0).toDouble()) },
+            Executable { assertThrows<ArithmeticException> { 1.j().toDouble() } },
+            Executable { assertThrows<ArithmeticException> { Complex(1, 1).toDouble() } },
+        )
+    }
+
+    @Test
+    fun `test toFloat`() {
+        assertAll(
+            Executable { assertEquals(10.0F, Complex(10.0).toFloat()) },
+            Executable { assertThrows<ArithmeticException> { 1.j().toFloat() } },
+            Executable { assertThrows<ArithmeticException> { Complex(1, 1).toFloat() } },
+        )
+    }
+
+    @Test
+    fun `test toLong`() {
+        assertAll(
+            Executable { assertEquals(10L, Complex(10.0).toLong()) },
+            Executable { assertThrows<ArithmeticException> { 1.j().toLong() } },
+            Executable { assertThrows<ArithmeticException> { Complex(1, 1).toLong() } },
+        )
+    }
+
+    @Test
+    fun `test toInt`() {
+        assertAll(
+            Executable { assertEquals(10, Complex(10.0).toInt()) },
+            Executable { assertThrows<ArithmeticException> { 1.j().toInt() } },
+            Executable { assertThrows<ArithmeticException> { Complex(1, 1).toInt() } },
+        )
+    }
+
+    @Test
+    fun `test toBigDecimal`() {
+        assertAll(
+            Executable { assertEquals(0, BigDecimal.TEN.compareTo(Complex(10.0).toBigDecimal())) },
+            Executable { assertThrows<ArithmeticException> { 1.j().toBigDecimal() } },
+            Executable { assertThrows<ArithmeticException> { Complex(1, 1).toBigDecimal() } },
         )
     }
 

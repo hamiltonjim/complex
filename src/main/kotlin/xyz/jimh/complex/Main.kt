@@ -66,5 +66,12 @@ fun main() {
     val (radius, theta) = cmplex.polar()
     println("$cmplex has radius $radius and angle $theta (or ${theta * 180 / PI}°)")
 
+    println(Complex.PI_C.toDouble())
+    try {
+        PI.j().toBigDecimal()
+    } catch (e: ArithmeticException) {
+        e.printStackTrace()
+    }
+
 }
 

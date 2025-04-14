@@ -1,5 +1,6 @@
 package xyz.jimh.complex
 
+import java.math.BigDecimal
 import kotlin.math.PI
 import kotlin.math.abs
 import kotlin.math.atan2
@@ -103,10 +104,55 @@ data class Complex(val re: Double, val im: Double = 0.0) {
         }
     }
 
+    /**
+     * If the imaginary part is (close to) zero, return the real part.
+     * @throws ArithmeticException if im is not zero.
+     */
+    fun toDouble(): Double {
+        if (isReal) return re
+        throw ArithmeticException("Cannot convert Complex to Double; imaginary part is $im")
+    }
+
+    /**
+     * If the imaginary part is (close to) zero, return the real part as [Float].
+     * @throws ArithmeticException if im is not zero.
+     */
+    fun toFloat(): Float {
+        if (isReal) return re.toFloat()
+        throw ArithmeticException("Cannot convert Complex to Float; imaginary part is $im")
+    }
+
+    /**
+     * If the imaginary part is (close to) zero, return the real part as [Long].
+     * @throws ArithmeticException if im is not zero.
+     */
+    fun toLong(): Long {
+        if (isReal) return re.toLong()
+        throw ArithmeticException("Cannot convert Complex to Long; imaginary part is $im")
+    }
+
+    /**
+     * If the imaginary part is (close to) zero, return the real part as [Int].
+     * @throws ArithmeticException if im is not zero.
+     */
+    fun toInt(): Int {
+        if (isReal) return re.toInt()
+        throw ArithmeticException("Cannot convert Complex to Int; imaginary part is $im")
+    }
+
+    /**
+     * If the imaginary part is (close to) zero, return the real part as [BigDecimal].
+     * @throws ArithmeticException if im is not zero.
+     */
+    fun toBigDecimal(): BigDecimal {
+        if (isReal) return re.toBigDecimal()
+        throw ArithmeticException("Cannot convert Complex to BigDecimal; imaginary part is $im")
+    }
+
     // Operator overloads
 
     /**
-     * +foo == foo:  just return (a copy of) yourself
+     * +foo == foo:  just returns (a copy of) itself
      */
     operator fun unaryPlus() = this.copy()
 
@@ -125,9 +171,15 @@ data class Complex(val re: Double, val im: Double = 0.0) {
      */
     operator fun dec() = this.copy(re = re - 1)
 
+    /**
+     * Adds [other] to the receiver, returns the sum.
+     */
     operator fun plus(other: Complex): Complex =
         Complex(this.re + other.re, this.im + other.im)
 
+    /**
+     * Subtracts [other] from the receiver, returns the difference.
+     */
     operator fun minus(other: Complex): Complex =
         Complex(this.re - other.re, this.im - other.im)
 
@@ -152,7 +204,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
 
     /**
      * Returns the complex square root of the receiver. When the imaginary part [im] is
-     * zero, acts just like [Double].sqrt
+     * zero, acts just like [Double.sqrt]
      */
     fun sqrt(): Complex {
         if (im == 0.0)
@@ -165,15 +217,18 @@ data class Complex(val re: Double, val im: Double = 0.0) {
             imSign * sqrt((magnitude - re) / 2.0)
         )
     }
+
     // operators for Complex op Number
     /**
      * Expands [other] to [Complex] and adds it to the receiver.
      */
     operator fun plus(other: Number): Complex = Complex(re + other.toDouble(), im)
+
     /**
      * Expands [other] to [Complex] and subtracts it from the receiver.
      */
     operator fun minus(other: Number): Complex = Complex(re - other.toDouble(), im)
+
     /**
      * Expands [other] to [Complex] and multiplies it with the receiver.
      */
@@ -181,6 +236,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
         val real = other.toDouble()
         return Complex(re * real, im * real)
     }
+
     /**
      * Expands [other] to [Complex] and divides it into the receiver.
      */
@@ -556,13 +612,21 @@ fun Double.sqr(): Double = this * this
 /**
  * Creates a "pure imaginary" number from receiver * sqrt(-1).
  * @sample xyz.jimh.complex.doubleJSample
+ * @sample xyz.jimh.complex.bigDecimalJSample
  */
-fun Double.j(): Complex = Complex(0.0, this)
+fun Number.j(): Complex = Complex(0.0, this)
 
 fun doubleJSample(): Complex {
     val aDouble = 2.5
     val complex = aDouble.j()
     println("$aDouble.j() == $complex")
+    return complex
+}
+
+fun bigDecimalJSample(): Complex {
+    val aNumber = BigDecimal("10.1378")
+    val complex = aNumber.j()
+    println("$aNumber.j() == $complex")
     return complex
 }
 

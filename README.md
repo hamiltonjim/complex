@@ -31,7 +31,7 @@ real part, such as with
 You can create a pure imaginary with the extension
 function 
 ```kotlin
-fun Double.j(): Complex = Complex(0.0, this)
+fun Number.j(): Complex = Complex(0.0, this)
 
 ```
 (Aside: I used j instead of i because my degree is
@@ -40,7 +40,7 @@ as in "V = IR" (Ohm's Law). If you want to use I, you have the
 source code. The companion object has definitions 
 for J:
 ```kotlin
-val J = 1.0.j()
+val J = 1.j()
 val J_CHAR = 'j'
 ```
 The latter is used by `toString()` to display a

@@ -16,6 +16,7 @@ $dokka.location:xyz.jimh.complex//round/kotlin.Double#kotlin.Int/PointingToDecla
 $dokka.location:xyz.jimh.complex//sqr/kotlin.Double#/PointingToDeclaration/-complex/xyz.jimh.complex/sqr.html
 $dokka.location:xyz.jimh.complex//sqrt/kotlin.Double#/PointingToDeclaration/-complex/xyz.jimh.complex/sqrt.html
 $dokka.location:xyz.jimh.complex//times/kotlin.Number#xyz.jimh.complex.Complex/PointingToDeclaration/-complex/xyz.jimh.complex/times.html
+$dokka.location:xyz.jimh.complex//toComplex/kotlin.Number#/PointingToDeclaration/-complex/xyz.jimh.complex/to-complex.html
 $dokka.location:xyz.jimh.complex/Complex.Companion///PointingToDeclaration/-complex/xyz.jimh.complex/-complex/-companion/index.html
 $dokka.location:xyz.jimh.complex/Complex.Companion/EPSILON/#/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/-companion/-e-p-s-i-l-o-n.html
 $dokka.location:xyz.jimh.complex/Complex.Companion/EPSILON_FLOAT/#/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/-companion/-e-p-s-i-l-o-n_-f-l-o-a-t.html

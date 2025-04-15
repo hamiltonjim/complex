@@ -87,7 +87,7 @@ combination of Complex and Double, Float, Int, and
 Long.
 
 The following functions are defined:
-- polar(): Polar (returns radius and angle)
+- polar(): Polar (returns radius and angle, as a Polar)
 - abs(): Double (returns the magnitude of this)
 - arg(): Double (returns the angle in radians,
   counter-clockwise from the real axis)
@@ -107,7 +107,20 @@ in terms of close(other: Complex): Boolean)
 - expITheta(theta: Double): Complex (leaning on
 Euler's formula, returns cos(theta) + j * sin(theta))
 
-The trigonometric functions and their inverses:
+#### Conversions to other numeric types
+
+These return the real part, if and only
+if the imaginary part is zero; otherwise,
+they throw an ArithmeticException
+- toDouble(): Double
+- toFloat(): Float
+- toInt(): Int
+- toLong(): Long
+- toBigDecimal(): BigDecimal
+
+
+#### The trigonometric functions and their inverses:
+
 - sin(): Complex (returns the sine)
 - cos(): Complex (cosine)
 - tan(): Complex (tangent)
@@ -121,7 +134,8 @@ The trigonometric functions and their inverses:
 - asec(): Complex (Arc secant)
 - acsc(): Complex (Arc cosecant)
 
-The hyperbolic functions and their inverses:
+#### The hyperbolic functions and their inverses:
+
 - cosh(): Complex (hyperbolic cosine (exp(z) + exp(-z)) / 2)
 - sinh(): Complex (returns the sine (exp(z) - exp(-z)) / 2))
 - tanh(): Complex (tangent sinh / cosh)
@@ -135,11 +149,34 @@ The hyperbolic functions and their inverses:
 - asech(): Complex (Arc secant)
 - acsch(): Complex (Arc cosecant)
 
-The companion object also defines two 
-functions:
+#### Polar
+
+There is a nested class, Polar, consisting of the
+radius (magnitude) and angle (arg) of a complex
+number. Polar defines one function:
+- fromPolar(): Complex (converts to rectangular
+coordinates)
+
+#### Complex's companion object also defines two functions:
+
 - Companion.fromPolar(polar: Pair<Double, Double>): Complex
 - Companion.fromPolar2(radius: Double, theta: Double): Complex
 Either of these will create a complex number in
 rectangular coordinates from the given values.
+
+## Extension Functions
+### on Double
+
+- round(decimals: Int): Double (returns the
+number rounded to the given number of places)
+- sqr(): Double (returns receiver squared)
+- sqrt(): Complex (returns the principal square
+root, even of a negative real.)
+
+### on Number
+
+- toComplex(): Complex (returns the receiver as
+a complex number, with imaginary part 0)
+- j(): Complex (returns the receiver * sqrt(-1))
 
 Distributed under the MIT License.

@@ -218,6 +218,16 @@ class ComplexTest {
     }
 
     @Test
+    fun `test toComplex()`() {
+        assertAll(
+            Executable { assertEquals(Complex(10), 10.toComplex()) },
+            Executable { assertEquals(Complex.PI_C, PI.toComplex()) },
+            Executable { assertEquals(Complex(BigDecimal.TEN), BigDecimal.TEN.toComplex()) },
+            Executable { assertEquals(Complex(BigDecimal.TEN), 10L.toComplex()) },
+        )
+    }
+
+    @Test
     fun `test j function`() {
         assertAll(
             Executable { assertEquals(Complex(0,2), 2.0.j()) },

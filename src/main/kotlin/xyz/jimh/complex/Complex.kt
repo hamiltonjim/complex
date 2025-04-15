@@ -545,16 +545,17 @@ data class Complex(val re: Double, val im: Double = 0.0) {
         const val EPSILON = 1.0e-10
         /** a "close enough" when one side was made with Float */
         const val EPSILON_FLOAT = 1.0e-6
+
         /** symbol for sqrt(-1) [hey, I'm an electrical engineer, so 'i' is current] */
         const val J_CHAR = 'j'
-        /** See extension [Double.j] below. */
-        val J = 1.0.j()
+        /** See extension [Number.j]. */
+        val J = 1.j()
+
         // useful constants
         /**
          * Just zero as a Complex
          */
-        val ZERO = Complex(0.0)
-
+        val ZERO = Complex(0)
         /**
          * 1 as a Complex
          */
@@ -564,11 +565,11 @@ data class Complex(val re: Double, val im: Double = 0.0) {
          * π * sqrt(-1)
          */
         val PI_J = PI.j()
-
         /**
          * π as a Complex
          */
         val PI_C = Complex(PI)
+
         /**
          * There is only one infinity in the complex plain, and it's a point. Among others,
          * see [here](https://math.stackexchange.com/questions/420557/whats-the-difference-between-complex-infinity-and-undefined#:~:text=%22Undefined%22%20is%20something%20that%20one,is%20itself%20a%20mathematical%20object.)
@@ -587,6 +588,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
 
         /**
          * Constructs a Complex from polar coordinates, [rho] and [theta] (in radians).
+         * By analogy to atan2(opp, adj)
          * @see polar
          * @see fromPolar
          */
@@ -608,6 +610,11 @@ fun Double.round(decimals: Int): Double {
  * Returns the square of the receiver.
  */
 fun Double.sqr(): Double = this * this
+
+/**
+ * Creates a "pure real" Complex number from the receiver
+ */
+fun Number.toComplex() = Complex(this.toDouble())
 
 /**
  * Creates a "pure imaginary" number from receiver * sqrt(-1).

@@ -65,6 +65,9 @@ data class Complex(val re: Double, val im: Double = 0.0) {
         fun fromPolar(): Complex = Complex(rho * cos(theta), rho * sin(theta))
 
         companion object {
+            /**
+             * Sample code to show in KDoc.
+             */
             fun fromPolarSample(): Complex {
                 val polar = Polar(sqrt(2.0), PI / 4.0)
                 val complex = polar.fromPolar()
@@ -623,6 +626,9 @@ fun Number.toComplex() = Complex(this.toDouble())
  */
 fun Number.j(): Complex = Complex(0.0, this)
 
+/**
+ * Sample code to show in KDoc.
+ */
 fun doubleJSample(): Complex {
     val aDouble = 2.5
     val complex = aDouble.j()
@@ -630,6 +636,9 @@ fun doubleJSample(): Complex {
     return complex
 }
 
+/**
+ * Sample code to show in KDoc.
+ */
 fun bigDecimalJSample(): Complex {
     val aNumber = BigDecimal("10.1378")
     val complex = aNumber.j()

@@ -87,24 +87,24 @@ combination of Complex and Double, Float, Int, and
 Long.
 
 The following functions are defined:
-- polar(): Polar (returns radius and angle, as a Polar)
-- abs(): Double (returns the magnitude of this)
-- arg(): Double (returns the angle in radians,
+- `polar(): Polar` (returns radius and angle, as a Polar)
+- `abs(): Double` (returns the magnitude of this)
+- `arg(): Double` (returns the angle in radians,
   counter-clockwise from the real axis)
-- exp(): Complex (returns e^this)
-- ln(): Complex (returns the principal value of the natural logarithm--
+- `exp(): Complex` (returns e^this)
+- `ln(): Complex` (returns the principal value of the natural logarithm--
 remember polar coordinates are periodic)
-- sqrt(): Complex (returns principal square root of this)
-- Double.sqrt(): Complex (replaces the standard lib function, 
+- `sqrt(): Complex` (returns principal square root of this)
+- `Double.sqrt(): Complex` (replaces the standard lib function, 
 works on negative numbers)
-- pow(exponent: Complex): Complex and
-- pow(exponent: Double): Complex (to take this to
+- `pow(exponent: Complex): Complex` and
+- `pow(exponent: Double): Complex` (to take this to
 any arbitrary power)
-- reciprocal(): Complex (returns 1 / this)
-- equals(other: Any?): Boolean (returns true
+- `reciprocal(): Complex` (returns 1 / this)
+- `equals(other: Any?): Boolean` (returns true
 if other is Complex and close to this; written
 in terms of close(other: Complex): Boolean)
-- expITheta(theta: Double): Complex (leaning on
+- expI`Theta(theta: Double): Complex` (leaning on
 Euler's formula, returns cos(theta) + j * sin(theta))
 
 #### Conversions to other numeric types
@@ -112,71 +112,71 @@ Euler's formula, returns cos(theta) + j * sin(theta))
 These return the real part, if and only
 if the imaginary part is zero; otherwise,
 they throw an ArithmeticException
-- toDouble(): Double
-- toFloat(): Float
-- toInt(): Int
-- toLong(): Long
-- toBigDecimal(): BigDecimal
+- `toDouble(): Double`
+- `toFloat(): Float`
+- `toInt(): Int`
+- `toLong(): Long`
+- `toBigDecimal(): BigDecimal`
 
 
 #### The trigonometric functions and their inverses:
 
-- sin(): Complex (returns the sine)
-- cos(): Complex (cosine)
-- tan(): Complex (tangent)
-- cot(): Complex (cotangent == 1 / tangent)
-- sec(): Complex (secant == 1 / cosine)
-- csc(): Complex (cosecant == 1 / sine)
-- asin(): Complex (Arc sine)
-- acos(): Complex (Arc cosine)
-- atan(): Complex (Arc tangent)
-- acot(): Complex (Arc cotangent)
-- asec(): Complex (Arc secant)
-- acsc(): Complex (Arc cosecant)
+- `sin(): Complex` (returns the sine)
+- `cos(): Complex` (cosine)
+- `tan(): Complex` (tangent)
+- `cot(): Complex` (cotangent == 1 / tangent)
+- `sec(): Complex` (secant == 1 / cosine)
+- `csc(): Complex` (cosecant == 1 / sine)
+- `asin(): Complex` (Arc sine)
+- `acos(): Complex` (Arc cosine)
+- `atan(): Complex` (Arc tangent)
+- `acot(): Complex` (Arc cotangent)
+- `asec(): Complex` (Arc secant)
+- `acsc(): Complex` (Arc cosecant)
 
 #### The hyperbolic functions and their inverses:
 
-- cosh(): Complex (hyperbolic cosine (exp(z) + exp(-z)) / 2)
-- sinh(): Complex (returns the sine (exp(z) - exp(-z)) / 2))
-- tanh(): Complex (tangent sinh / cosh)
-- coth(): Complex (cotangent == 1 / tanh)
-- sech(): Complex (secant == 1 / cosh)
-- csch(): Complex (cosecant == 1 / sinh)
-- asinh(): Complex (Arc sine)
-- acosh(): Complex (Arc cosine)
-- atanh(): Complex (Arc tangent)
-- acoth(): Complex (Arc cotangent)
-- asech(): Complex (Arc secant)
-- acsch(): Complex (Arc cosecant)
+- `cosh(): Complex` (hyperbolic cosine (exp(z) + exp(-z)) / 2)
+- `sinh(): Complex` (returns the sine (exp(z) - exp(-z)) / 2))
+- `tanh(): Complex` (tangent sinh / cosh)
+- `coth(): Complex` (cotangent == 1 / tanh)
+- `sech(): Complex` (secant == 1 / cosh)
+- `csch(): Complex` (cosecant == 1 / sinh)
+- `asinh(): Complex` (Arc sine)
+- `acosh(): Complex` (Arc cosine)
+- `atanh(): Complex` (Arc tangent)
+- `acoth(): Complex` (Arc cotangent)
+- `asech(): Complex` (Arc secant)
+- `acsch(): Complex` (Arc cosecant)
 
 #### Polar
 
 There is a nested class, Polar, consisting of the
 radius (magnitude) and angle (arg) of a complex
 number. Polar defines one function:
-- fromPolar(): Complex (converts to rectangular
+- `fromPolar(): Complex` (converts to rectangular
 coordinates)
 
 #### Complex's companion object also defines two functions:
 
-- Companion.fromPolar(polar: Pair<Double, Double>): Complex
-- Companion.fromPolar2(radius: Double, theta: Double): Complex
+- `Companion.fromPolar(polar: Pair<Double, Double>): Complex`
+- `Companion.fromPolar2(radius: Double, theta: Double): Complex`
 Either of these will create a complex number in
 rectangular coordinates from the given values.
 
 ## Extension Functions
 ### on Double
 
-- round(decimals: Int): Double (returns the
+- `round(decimals: Int): Double` (returns the
 number rounded to the given number of places)
-- sqr(): Double (returns receiver squared)
-- sqrt(): Complex (returns the principal square
+- `sqr(): Double` (returns receiver squared)
+- `sqrt(): Complex` (returns the principal square
 root, even of a negative real.)
 
 ### on Number
 
-- toComplex(): Complex (returns the receiver as
+- `toComplex(): Complex` (returns the receiver as
 a complex number, with imaginary part 0)
-- j(): Complex (returns the receiver * sqrt(-1))
+- `j(): Complex` (returns the receiver * sqrt(-1))
 
 Distributed under the MIT License.

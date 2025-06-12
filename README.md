@@ -159,7 +159,7 @@ coordinates)
 
 #### Complex's companion object also defines two functions:
 
-- `Companion.fromPolar(polar: Pair<Double, Double>): Complex`
+- `Companion.fromPolar(polarCoordinates: Polar): Complex`
 - `Companion.fromPolar2(radius: Double, theta: Double): Complex`
 Either of these will create a complex number in
 rectangular coordinates from the given values.

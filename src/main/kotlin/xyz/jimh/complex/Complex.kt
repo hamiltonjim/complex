@@ -166,12 +166,17 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     operator fun unaryMinus() = this.copy(re = -re, im = -im)
 
     /**
-     * ++foo increments the real part, leaves the imaginary part alone
+     * Increments the real part, leaves the imaginary part alone. (Yes,
+     * complex numbers are "unordered," but this sort of makes sense anyway.
+     * @see dec
      */
     operator fun inc() = this.copy(re = re + 1)
 
     /**
-     * --foo decrements the real part, leaves the imaginary part alone
+     * Decrements the real part, leaves the imaginary part alone. (See the
+     * documentation for [inc] for the reasoning for this function to
+     * exist.)
+     * @see inc
      */
     operator fun dec() = this.copy(re = re - 1)
 

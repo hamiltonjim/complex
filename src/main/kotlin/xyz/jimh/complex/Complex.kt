@@ -467,28 +467,28 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     // inverse functions
 
     /**
-     * Returns the (principal) arc sinh of the receiver
+     * Returns the (principal) hyperbolic arc sine of the receiver
      */
     fun asinh(): Complex {
         return (this + (this.sqr() + 1.0).sqrt()).ln()
     }
 
     /**
-     * Returns the (principal) arc cosh of the receiver
+     * Returns the (principal) hyperbolic arc cosine of the receiver
      */
     fun acosh(): Complex {
         return (this + (this + 1.0).sqrt() * (this - 1.0).sqrt()).ln()
     }
 
     /**
-     * Returns the (principal) arc tanh of the receiver
+     * Returns the (principal) hyperbolic arc tan of the receiver
      */
     fun atanh(): Complex {
         return ((this + 1.0).ln() - (1.0 - this).ln()) / 2.0
     }
 
     /**
-     * Returns the (principal) arc coth of the receiver
+     * Returns the (principal) hyperbolic arc cotangent of the receiver
      */
     fun acoth(): Complex {
         return if (isZero)
@@ -498,7 +498,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     }
 
     /**
-     * Returns the (principal) arc sech of the receiver
+     * Returns the (principal) hyperbolic arc secant of the receiver
      */
     fun asech(): Complex {
         return if (isZero)
@@ -508,7 +508,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     }
 
     /**
-     * Returns the (principal) arc csch of the receiver
+     * Returns the (principal) hyperbolic arc cosecant of the receiver
      */
     fun acsch(): Complex {
         return if (isZero)

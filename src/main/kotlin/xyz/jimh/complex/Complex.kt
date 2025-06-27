@@ -167,7 +167,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
 
     /**
      * Increments the real part, leaves the imaginary part alone. (Yes,
-     * complex numbers are "unordered," but this sort of makes sense anyway.
+     * complex numbers are "unordered," but this sort of makes sense anyway.)
      * @see dec
      */
     operator fun inc() = this.copy(re = re + 1)

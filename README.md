@@ -106,7 +106,7 @@ if other is Complex and close to the receiver; or if other
 is a Number, the reciever isReal, and other is
 close to the receiver. Written
 in terms of close(other: Complex): Boolean)
-- expI`Theta(theta: Double): Complex` (leaning on
+- `expITheta(theta: Double): Complex` (leaning on
 Euler's formula, returns cos(theta) + j * sin(theta))
 
 #### Conversions to other numeric types

@@ -83,8 +83,8 @@ function.
 
 There are operator overloads for plus, minus, times,
 and div, that work for Complex op Complex, and any
-combination of Complex and Double, Float, Int, and
-Long.
+combination of Complex and Double, Float, Int, 
+Long, and BigDecimal.
 
 The following functions are defined:
 - `polar(): Polar` (returns radius and angle, as a Polar)

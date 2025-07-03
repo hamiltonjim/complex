@@ -87,26 +87,26 @@ combination of Complex and Double, Float, Int,
 Long, and BigDecimal.
 
 The following functions are defined:
-- `polar(): Polar` (returns radius and angle, as a Polar)
-- `abs(): Double` (returns the magnitude of this)
-- `arg(): Double` (returns the angle in radians,
+- `fun polar(): Polar` (returns radius and angle, as a Polar)
+- `fun abs(): Double` (returns the magnitude of this)
+- `fun arg(): Double` (returns the angle in radians,
   counter-clockwise from the real axis)
-- `exp(): Complex` (returns e^this)
-- `ln(): Complex` (returns the principal value of the natural logarithm--
+- `fun exp(): Complex` (returns e^this)
+- `fun ln(): Complex` (returns the principal value of the natural logarithm--
 remember polar coordinates are periodic)
-- `sqrt(): Complex` (returns principal square root of this)
-- `Double.sqrt(): Complex` (replaces the standard lib function, 
+- `fun sqrt(): Complex` (returns principal square root of this)
+- `fun Double.sqrt(): Complex` (replaces the standard lib function, 
 works on negative numbers)
-- `pow(exponent: Complex): Complex` and
-- `pow(exponent: Double): Complex` (to take this to
+- `fun pow(exponent: Complex): Complex` and
+- `fun pow(exponent: Double): Complex` (to take this to
 any arbitrary power)
-- `reciprocal(): Complex` (returns 1 / this)
-- `equals(other: Any?): Boolean` (returns true
+- `fun reciprocal(): Complex` (returns 1 / this)
+- `fun equals(other: Any?): Boolean` (returns true
 if other is Complex and close to the receiver; or if other
 is a Number, the reciever isReal, and other is
 close to the receiver. Written
 in terms of close(other: Complex): Boolean)
-- `expITheta(theta: Double): Complex` (leaning on
+- `fun expITheta(theta: Double): Complex` (leaning on
 Euler's formula, returns cos(theta) + j * sin(theta))
 
 #### Conversions to other numeric types
@@ -114,71 +114,73 @@ Euler's formula, returns cos(theta) + j * sin(theta))
 These return the real part, if and only
 if the imaginary part is zero; otherwise,
 they throw an ArithmeticException
-- `toDouble(): Double`
-- `toFloat(): Float`
-- `toInt(): Int`
-- `toLong(): Long`
-- `toBigDecimal(): BigDecimal`
+- `fun toDouble(): Double`
+- `fun toFloat(): Float`
+- `fun toInt(): Int`
+- `fun toLong(): Long`
+- `fun toBigDecimal(): BigDecimal`
 
 
 #### The trigonometric functions and their inverses:
 
-- `sin(): Complex` (returns the sine)
-- `cos(): Complex` (cosine)
-- `tan(): Complex` (tangent)
-- `cot(): Complex` (cotangent == 1 / tangent)
-- `sec(): Complex` (secant == 1 / cosine)
-- `csc(): Complex` (cosecant == 1 / sine)
-- `asin(): Complex` (Arc sine)
-- `acos(): Complex` (Arc cosine)
-- `atan(): Complex` (Arc tangent)
-- `acot(): Complex` (Arc cotangent)
-- `asec(): Complex` (Arc secant)
-- `acsc(): Complex` (Arc cosecant)
+- `fun sin(): Complex` (circular sine)
+- `fun cos(): Complex` (circular cosine)
+- `fun tan(): Complex` (circular tangent)
+- `fun cot(): Complex` (circular cotangent == 1 / tangent)
+- `fun sec(): Complex` (circular secant == 1 / cosine)
+- `fun csc(): Complex` (circular cosecant == 1 / sine)
+- `fun asin(): Complex` (Arc circular sine)
+- `fun acos(): Complex` (Arc circular cosine)
+- `fun atan(): Complex` (Arc circular tangent)
+- `fun acot(): Complex` (Arc circular cotangent)
+- `fun asec(): Complex` (Arc circular secant)
+- `fun acsc(): Complex` (Arc circular cosecant)
 
 #### The hyperbolic functions and their inverses:
 
-- `cosh(): Complex` (hyperbolic cosine (exp(z) + exp(-z)) / 2)
-- `sinh(): Complex` (returns the sine (exp(z) - exp(-z)) / 2))
-- `tanh(): Complex` (tangent sinh / cosh)
-- `coth(): Complex` (cotangent == 1 / tanh)
-- `sech(): Complex` (secant == 1 / cosh)
-- `csch(): Complex` (cosecant == 1 / sinh)
-- `asinh(): Complex` (Arc sine)
-- `acosh(): Complex` (Arc cosine)
-- `atanh(): Complex` (Arc tangent)
-- `acoth(): Complex` (Arc cotangent)
-- `asech(): Complex` (Arc secant)
-- `acsch(): Complex` (Arc cosecant)
+- `fun cosh(): Complex` (hyperbolic cosine (exp(z) + exp(-z)) / 2)
+- `fun sinh(): Complex` (hyperbolic sine (exp(z) - exp(-z)) / 2))
+- `fun tanh(): Complex` (hyperbolic tangent sinh / cosh)
+- `fun coth(): Complex` (hyperbolic cotangent == 1 / tanh)
+- `fun sech(): Complex` (hyperbolic secant == 1 / cosh)
+- `fun csch(): Complex` (hyperbolic cosecant == 1 / sinh)
+- `fun asinh(): Complex` (Arc hyperbolic sine)
+- `fun acosh(): Complex` (Arc hyperbolic cosine)
+- `fun atanh(): Complex` (Arc hyperbolic tangent)
+- `fun acoth(): Complex` (Arc hyperbolic cotangent)
+- `fun asech(): Complex` (Arc hyperbolic secant)
+- `fun acsch(): Complex` (Arc hyperbolic cosecant)
 
 #### Polar
 
 There is a nested class, Polar, consisting of the
 radius (magnitude) and angle (arg) of a complex
 number. Polar defines one function:
-- `fromPolar(): Complex` (converts to rectangular
+- `fun fromPolar(): Complex` (converts to rectangular
 coordinates)
 
 #### Complex's companion object also defines two functions:
 
-- `Companion.fromPolar(polarCoordinates: Polar): Complex`
-- `Companion.fromPolar2(radius: Double, theta: Double): Complex`
+- `fun Companion.fromPolar(polarCoordinates: Polar): Complex`
+- `fun Companion.fromPolar2(radius: Double, theta: Double): Complex`
 Either of these will create a complex number in
 rectangular coordinates from the given values.
 
 ## Extension Functions
 ### on Double
 
-- `round(decimals: Int): Double` (returns the
+- `fun round(decimals: Int): Double` (returns the
 number rounded to the given number of places)
-- `sqr(): Double` (returns receiver squared)
-- `sqrt(): Complex` (returns the principal square
+- `fun sqr(): Double` (returns receiver squared)
+- `fun sqrt(): Complex` (returns the principal square
 root, even of a negative real.)
 
 ### on Number
 
-- `toComplex(): Complex` (returns the receiver as
+- `fun toComplex(): Complex` (returns the receiver as
 a complex number, with imaginary part 0)
-- `j(): Complex` (returns the receiver * sqrt(-1))
+- `fun j(): Complex` (returns the receiver * sqrt(-1))
+
+---
 
 Distributed under the MIT License.

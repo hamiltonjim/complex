@@ -361,8 +361,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
      */
     fun sec(): Complex {
         val cos = cos()
-        if (cos.isZero) return INFINITY
-        return cos.reciprocal()
+        return if (cos.isZero) INFINITY else cos.reciprocal()
     }
 
     /**
@@ -370,8 +369,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
      */
     fun csc(): Complex {
         val sin = sin()
-        if (sin.isZero) return INFINITY
-        return sin.reciprocal()
+        return if (sin.isZero) INFINITY else sin.reciprocal()
     }
 
     /**
@@ -379,8 +377,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
      */
     fun cot(): Complex {
         val sin = sin()
-        if (sin.isZero) return INFINITY
-        return cos() / sin
+        return if (sin.isZero) INFINITY else cos() / sin
     }
 
     // inverse trig functions

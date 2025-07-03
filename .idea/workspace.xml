@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45ec2ce2-c198-4997-9086-6ffa3f96efed" name="Changes" comment="Rewrote KDoc for inverse hyperbolic funcitons." />
+    <list default="true" id="45ec2ce2-c198-4997-9086-6ffa3f96efed" name="Changes" comment="Added missing right parenthesis in KDoc.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/xyz/jimh/complex/Complex.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/xyz/jimh/complex/Complex.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/xyz/jimh/complex/ComplexTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/xyz/jimh/complex/ComplexTest.kt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -144,7 +148,7 @@
       <workItem from="1749667698691" duration="7684000" />
       <workItem from="1750118820250" duration="3359000" />
       <workItem from="1750795690529" duration="597000" />
-      <workItem from="1750920628253" duration="1643000" />
+      <workItem from="1750920628253" duration="14949000" />
     </task>
     <task id="LOCAL-00001" summary="Formatting">
       <option name="closed" value="true" />
@@ -178,7 +182,23 @@
       <option name="project" value="LOCAL" />
       <updated>1750995457567</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Rewrote KDoc for inc and dec operators.">
+      <option name="closed" value="true" />
+      <created>1750995769879</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1750995769879</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Added missing right parenthesis in KDoc.">
+      <option name="closed" value="true" />
+      <created>1750995871029</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1750995871029</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -189,7 +209,9 @@
     <MESSAGE value="Cleaned up tests" />
     <MESSAGE value="Fixed typo" />
     <MESSAGE value="Rewrote KDoc for inverse hyperbolic funcitons." />
-    <option name="LAST_COMMIT_MESSAGE" value="Rewrote KDoc for inverse hyperbolic funcitons." />
+    <MESSAGE value="Rewrote KDoc for inc and dec operators." />
+    <MESSAGE value="Added missing right parenthesis in KDoc." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added missing right parenthesis in KDoc." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

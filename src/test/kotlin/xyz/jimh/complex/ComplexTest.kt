@@ -115,6 +115,7 @@ class ComplexTest {
         val difference = Complex(1, 2)
         assertAll(
             { assertEquals(difference, minuend - subtrahend) },
+            { assertEquals(-difference,  subtrahend - minuend) },
             { assertEquals(Complex.ZERO, minuend - minuend) },
         )
     }

@@ -57,7 +57,7 @@ fun close(other: Complex, epsilon: Double = EPSILON): Boolean {
 }
 ```
 which will return
-true if other is within "epsilon" of this. That is
+true if other is within "epsilon" of the receiver. That is
 defined as both the real and imaginary parts are
 within "epsilon" (defaults to 1.0e-10) of their
 counterparts. (Note that this is the adjective
@@ -88,19 +88,19 @@ Long, and BigDecimal.
 
 The following functions are defined:
 - `fun polar(): Polar` (returns radius and angle, as a Polar)
-- `fun abs(): Double` (returns the magnitude of this)
+- `fun abs(): Double` (returns the magnitude of the receiver)
 - `fun arg(): Double` (returns the angle in radians,
   counter-clockwise from the real axis)
-- `fun exp(): Complex` (returns e^this)
+- `fun exp(): Complex` (returns e^receiver)
 - `fun ln(): Complex` (returns the principal value of the natural logarithm--
 remember polar coordinates are periodic)
-- `fun sqrt(): Complex` (returns principal square root of this)
+- `fun sqrt(): Complex` (returns principal square root of the receiver)
 - `fun Double.sqrt(): Complex` (replaces the standard lib function, 
 works on negative numbers)
 - `fun pow(exponent: Complex): Complex` and
-- `fun pow(exponent: Double): Complex` (to take this to
+- `fun pow(exponent: Double): Complex` (to take the receiver to
 any arbitrary power)
-- `fun reciprocal(): Complex` (returns 1 / this)
+- `fun reciprocal(): Complex` (returns 1 / receiver)
 - `fun equals(other: Any?): Boolean` (returns true
 if other is Complex and close to the receiver; or if other
 is a Number, the reciever isReal, and other is
@@ -170,7 +170,7 @@ rectangular coordinates from the given values.
 ### on Double
 
 - `fun round(decimals: Int): Double` (returns the
-number rounded to the given number of places)
+receiver rounded to the given number of places)
 - `fun sqr(): Double` (returns receiver squared)
 - `fun sqrt(): Complex` (returns the principal square
 root, even of a negative real.)

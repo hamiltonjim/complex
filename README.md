@@ -1,6 +1,6 @@
 # Complex.kt
 ### Copyright © 2025 Jim Hamilton
-## A Kotlin class (and extension functions) to handle complex math.
+## A Kotlin class (and extension functions) to handle complex arithmetic.
 
 Usage: simply include Complex.kt in your project. 
 [KDoc](https://hamiltonjim.github.io/complex/index.html)

@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import xyz.jimh.complex.ComplexAssertions.assertEqualTo
 import xyz.jimh.complex.ComplexAssertions.assertNotEqualTo
+import xyz.jimh.complex.ComplexAssertions.assertNotEquals
 
 class ComplexTest {
 
@@ -481,9 +482,9 @@ class ComplexTest {
             { assertNotEqualTo(Complex.INFINITY, one) },
 
             // against NaN
-            { assertNotEquals(nan1, nan1) },
-            { assertNotEquals(nan1, one) },
-            { assertNotEquals(one, nan1) },
+            { assertNotEquals(nan1, nan1, Complex.EPSILON) },
+            { assertNotEquals(nan1, one, Complex.EPSILON) },
+            { assertNotEquals(one, nan1, Complex.EPSILON) },
 
             // using close
             { assertNotEqualTo(nan1, nan1) },

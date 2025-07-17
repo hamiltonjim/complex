@@ -80,12 +80,16 @@ data class Complex(val re: Double, val im: Double = 0.0) {
 
     /**
      * A complex is close to another if both parts of [other] are within [epsilon] of
-     * their counterparts in the receiver. Note: this is the adjective "close" as in "near to,"
+     * their counterparts in the receiver.
+     * Note: any two complex numbers that are both infinite are equal to each other,
+     * because infinity is a single point on the complex plane.
+     * Note: this is the adjective "close" as in "near to,"
      * not the verb "close" as in "shut the door."
      * @see equals()
      */
     fun close(other: Complex, epsilon: Double = EPSILON): Boolean {
-        return abs(re - other.re) < epsilon && abs(im - other.im) < epsilon
+        return if (isInfinite && other.isInfinite) true
+        else abs(re - other.re) < epsilon && abs(im - other.im) < epsilon
     }
 
     /**
@@ -427,7 +431,9 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     // hyperbolic functions
 
     /**
-     * Returns the hyperbolic cosine of the receiver
+     * Returns the hyperbolic cosine of the receiver.
+     *
+     * "The avalanche has already started. It is too late for the pebbles to vote."
      */
     fun cosh(): Complex = (exp() + (-this).exp()) / 2.0
 
@@ -525,10 +531,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
      *  sides are infinite (there is only a single infinity on the complex plane).
      *  */
     override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (other is Number) {
-            return isReal && re.close(other.toDouble())
-        }
+        if (this === other && !isNaN) return true
         if (javaClass != other?.javaClass) return false
 
         other as Complex
@@ -538,7 +541,23 @@ data class Complex(val re: Double, val im: Double = 0.0) {
         // On the other hand, there is only one infinity in the complex plane.
         if (isInfinite && other.isInfinite) return true
 
-        return this.close(other)
+        return re == other.re && im == other.im
+    }
+
+    /**
+     * Check whether the receiver is "close enough" to [other] (which might be
+     * either another [Complex] or a [Number] type). Written in terms of close,
+     * so we don't have to deal with approximations. Note: will return false if
+     * either side is NaN; will return true if both sides are infinite (there
+     * is only a single infinity on the complex plane).
+     */
+    fun equalTo(other: Any?): Boolean {
+        if (isNaN) return false     // a NaN is never equal to anything, including itself
+        if (javaClass == other?.javaClass) return close(other as Complex)
+        if (other is Number) {
+            return isReal && re.close(other.toDouble())
+        }
+        return false
     }
 
     /**
@@ -692,6 +711,7 @@ operator fun Number.div(other: Complex): Complex = Complex(this) / other
  * @see [Complex.close]
  */
 fun Double.close(other: Double, epsilon: Double = Complex.EPSILON): Boolean {
+    if (other.isNaN()) return false     // NaNs are unordered, therefore never close to anything
     return abs(other - this) < epsilon
 }
 
@@ -731,4 +751,16 @@ fun Double.fmt(char: Char = NUL): String {
  */
 fun expITheta(theta: Double): Complex {
     return Complex(cos(theta), sin(theta))
+}
+
+/**
+ * Counterpart of Complex.equalTo(Any?): Complex
+ * Compare "closeness"
+ */
+fun Number.equalTo(other: Any?): Boolean {
+    return if (other is Complex)
+        other.isReal && this.toDouble().close(other.re)
+    else if (other is Number)
+        toDouble().close(other.toDouble())
+    else false
 }

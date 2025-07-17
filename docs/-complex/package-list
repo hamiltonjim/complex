@@ -6,6 +6,7 @@ $dokka.location:xyz.jimh.complex//bigDecimalJSample/#/PointingToDeclaration/-co
 $dokka.location:xyz.jimh.complex//close/kotlin.Double#kotlin.Double#kotlin.Double/PointingToDeclaration/-complex/xyz.jimh.complex/close.html
 $dokka.location:xyz.jimh.complex//div/kotlin.Number#xyz.jimh.complex.Complex/PointingToDeclaration/-complex/xyz.jimh.complex/div.html
 $dokka.location:xyz.jimh.complex//doubleJSample/#/PointingToDeclaration/-complex/xyz.jimh.complex/double-j-sample.html
+$dokka.location:xyz.jimh.complex//equalTo/kotlin.Number#kotlin.Any?/PointingToDeclaration/-complex/xyz.jimh.complex/equal-to.html
 $dokka.location:xyz.jimh.complex//expITheta/#kotlin.Double/PointingToDeclaration/-complex/xyz.jimh.complex/exp-i-theta.html
 $dokka.location:xyz.jimh.complex//fmt/kotlin.Double#kotlin.Char/PointingToDeclaration/-complex/xyz.jimh.complex/fmt.html
 $dokka.location:xyz.jimh.complex//j/kotlin.Number#/PointingToDeclaration/-complex/xyz.jimh.complex/j.html
@@ -63,6 +64,7 @@ $dokka.location:xyz.jimh.complex/Complex/csch/#/PointingToDeclaration/-complex/
 $dokka.location:xyz.jimh.complex/Complex/dec/#/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/dec.html
 $dokka.location:xyz.jimh.complex/Complex/div/#kotlin.Number/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/div.html
 $dokka.location:xyz.jimh.complex/Complex/div/#xyz.jimh.complex.Complex/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/div.html
+$dokka.location:xyz.jimh.complex/Complex/equalTo/#kotlin.Any?/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/equal-to.html
 $dokka.location:xyz.jimh.complex/Complex/equals/#kotlin.Any?/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/equals.html
 $dokka.location:xyz.jimh.complex/Complex/exp/#/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/exp.html
 $dokka.location:xyz.jimh.complex/Complex/hashCode/#/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/hash-code.html

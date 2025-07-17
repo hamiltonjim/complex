@@ -4,11 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45ec2ce2-c198-4997-9086-6ffa3f96efed" name="Changes" comment="Optimize some operations" />
+    <list default="true" id="45ec2ce2-c198-4997-9086-6ffa3f96efed" name="Changes" comment="Updated README.md">
+      <change afterPath="$PROJECT_DIR$/docs/-complex/xyz.jimh.complex/-complex/equal-to.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/-complex/xyz.jimh.complex/equal-to.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/kotlin/xyz/jimh/complex/ComplexAssertions.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/-complex/package-list" beforeDir="false" afterPath="$PROJECT_DIR$/docs/-complex/package-list" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/-complex/xyz.jimh.complex/-complex/close.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/-complex/xyz.jimh.complex/-complex/close.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/-complex/xyz.jimh.complex/-complex/cosh.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/-complex/xyz.jimh.complex/-complex/cosh.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/-complex/xyz.jimh.complex/-complex/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/-complex/xyz.jimh.complex/-complex/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/-complex/xyz.jimh.complex/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/-complex/xyz.jimh.complex/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/navigation.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/navigation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/scripts/pages.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/scripts/pages.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/xyz/jimh/complex/Complex.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/xyz/jimh/complex/Complex.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/xyz/jimh/complex/ComplexTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/xyz/jimh/complex/ComplexTest.kt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin Object" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="PUSH_AUTO_UPDATE" value="true" />
@@ -26,6 +47,9 @@
     &quot;accountId&quot;: &quot;428da7d7-115f-4a6b-953f-ed7e20fffffe&quot;
   }
 }</component>
+  <component name="JavaCoverageOptionsProvider">
+    <option name="myTestTracking" value="true" />
+  </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
   </component>
@@ -56,10 +80,13 @@
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.language.Kotlin",
+    "settings.editor.selected.configurable": "coverage",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
   <component name="RunManager" selected="Maven.Complex [dokka:dokka]">
     <configuration name="All tests" type="JUnit" factoryName="JUnit">
       <module name="Complex" />
@@ -106,6 +133,21 @@
       <item itemvalue="Maven.Complex [dokka:dokka]" />
     </list>
   </component>
+  <component name="ScriptDefinitionSettings">
+    <option name="settings">
+      <list>
+        <ScriptDefinitionSetting>
+          <option name="definitionId" value="org.jetbrains.kotlin.mainKts.MainKtsScript" />
+        </ScriptDefinitionSetting>
+        <ScriptDefinitionSetting>
+          <option name="definitionId" value="kotlin.script.templates.standard.ScriptTemplateWithBindings" />
+        </ScriptDefinitionSetting>
+        <ScriptDefinitionSetting>
+          <option name="definitionId" value="ideBundledScriptDefinition" />
+        </ScriptDefinitionSetting>
+      </list>
+    </option>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -144,7 +186,7 @@
       <workItem from="1749667698691" duration="7684000" />
       <workItem from="1750118820250" duration="3359000" />
       <workItem from="1750795690529" duration="597000" />
-      <workItem from="1750920628253" duration="15534000" />
+      <workItem from="1750920628253" duration="42106000" />
     </task>
     <task id="LOCAL-00001" summary="Formatting">
       <option name="closed" value="true" />
@@ -210,7 +252,31 @@
       <option name="project" value="LOCAL" />
       <updated>1751517434943</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Updated README.md">
+      <option name="closed" value="true" />
+      <created>1751517938532</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1751517938532</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Updated README.md">
+      <option name="closed" value="true" />
+      <created>1751518137980</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1751518137980</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Updated README.md">
+      <option name="closed" value="true" />
+      <created>1751745337372</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1751745337372</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -224,13 +290,14 @@
     <MESSAGE value="Rewrote KDoc for inc and dec operators." />
     <MESSAGE value="Added missing right parenthesis in KDoc." />
     <MESSAGE value="Optimize some operations" />
-    <option name="LAST_COMMIT_MESSAGE" value="Optimize some operations" />
+    <MESSAGE value="Updated README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated README.md" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
     <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Complex$All_tests.ic" NAME="All tests Coverage Results" MODIFIED="1751516861930" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/Complex$All_tests.ic" NAME="All tests Coverage Results" MODIFIED="1752713562434" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true" />
   </component>
 </project>

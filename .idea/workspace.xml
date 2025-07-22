@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45ec2ce2-c198-4997-9086-6ffa3f96efed" name="Changes" comment="Rewrote hashCode() to conform to both equals() and rules for complex arithmetic.">
-      <change beforePath="$PROJECT_DIR$/docs/-complex/xyz.jimh.complex/-complex/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/-complex/xyz.jimh.complex/-complex/index.html" afterDir="false" />
+    <list default="true" id="45ec2ce2-c198-4997-9086-6ffa3f96efed" name="Changes" comment="Further fleshed out documentation.">
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/xyz/jimh/complex/Complex.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/xyz/jimh/complex/Complex.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -178,7 +177,7 @@
       <workItem from="1749667698691" duration="7684000" />
       <workItem from="1750118820250" duration="3359000" />
       <workItem from="1750795690529" duration="597000" />
-      <workItem from="1750920628253" duration="52994000" />
+      <workItem from="1750920628253" duration="53772000" />
     </task>
     <task id="LOCAL-00001" summary="Formatting">
       <option name="closed" value="true" />
@@ -292,7 +291,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753159212542</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Further fleshed out documentation.">
+      <option name="closed" value="true" />
+      <created>1753160600283</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1753160600283</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -310,7 +317,8 @@
     <MESSAGE value="Rewrote Complex.equals() to be symmetric in all cases. Added .equalTo() to handle the approximate cases the former .equals() handled. Rewrote tests to pass with the new functions." />
     <MESSAGE value="Rewrote Complex.equalTo(Any?) with a when, to simplify." />
     <MESSAGE value="Rewrote hashCode() to conform to both equals() and rules for complex arithmetic." />
-    <option name="LAST_COMMIT_MESSAGE" value="Rewrote hashCode() to conform to both equals() and rules for complex arithmetic." />
+    <MESSAGE value="Further fleshed out documentation." />
+    <option name="LAST_COMMIT_MESSAGE" value="Further fleshed out documentation." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

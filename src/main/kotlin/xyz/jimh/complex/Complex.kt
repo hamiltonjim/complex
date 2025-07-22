@@ -91,9 +91,12 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     /**
      * A complex is close to another if both parts of [other] are within [epsilon] of
      * their counterparts in the receiver.
-     * Note: any two complex numbers that are both infinite are equal to each other,
+     *
+     * Notes:
+     * 1. Any two complex numbers that are both infinite are equal to each other,
      * because infinity is a single point on the complex plane.
-     * Note: this is the adjective "close" as in "near to,"
+     *
+     * 2. This is the adjective "close" as in "near to,"
      * not the verb "close" as in "shut the door."
      * @see equals()
      */
@@ -565,9 +568,10 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     /**
      * Check whether the receiver is "close enough" to [other] (which might be
      * either another [Complex] or a [Number] type). Written in terms of close,
-     * so we don't have to deal with approximations. Note: will return false if
-     * either side is NaN; will return true if both sides are infinite (there
-     * is only a single infinity on the complex plane).
+     * so we don't have to deal with approximations.
+     *
+     * Note: will return false if either side is NaN; will return true if both
+     * sides are infinite (there is only a single infinity on the complex plane).
      */
     fun equalTo(other: Any?): Boolean {
         return when {

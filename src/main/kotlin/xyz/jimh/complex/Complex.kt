@@ -20,8 +20,18 @@ import kotlin.math.tanh
  * not i, because I'm an electrical engineer, and 'i' stands for current (Ohm's Law: V = IR).
  *
  * Note: this class does Not inherit from Number, even though it is a numeric
- * data type. That's because Number defines a lot of functions that don't make
- * sense for complex numbers, like toDouble() and toInt().
+ * data type. That's because complex numbers cannot really be ordered, as they exist in
+ * a plane rather than on a line.
+ *
+ * This class implements:
+ * 1. The four standard operations (as operators) for complex numbers,
+ * combining with other complex numbers and with descendents of Number;
+ * 1. Exponentiation (with either real or complex exponents), with a special
+ * case for square roots;
+ * 1. Trigonometric functions;
+ * 1. Hyperbolic functions;
+ * 1. Other transcendental functions such as e^z and ln z;
+ * 1. Conversion between polar and rectangular coordinates.
  *
  * @constructor takes values [re] for the real part and [im] for the imaginary part.
  * @property re The real part of the complex number

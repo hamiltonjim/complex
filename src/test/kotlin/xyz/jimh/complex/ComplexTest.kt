@@ -20,6 +20,7 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import xyz.jimh.complex.ComplexAssertions.assertEqualTo
+import xyz.jimh.complex.ComplexAssertions.assertEquals
 import xyz.jimh.complex.ComplexAssertions.assertNotEqualTo
 import xyz.jimh.complex.ComplexAssertions.assertNotEquals
 
@@ -396,20 +397,6 @@ class ComplexTest {
     }
 
     @Test
-    fun hash() {
-        val expect11 = -33554432
-        val expect10 = -1106247680
-        val expect01 = 1072693248
-        assertAll(
-            { assertEquals(expect11, Complex(1, 1).hashCode()) },
-            { assertEquals(expect10, Complex(1, 0).hashCode()) },
-            { assertEquals(expect01, Complex(0, 1).hashCode()) },
-        )
-
-
-    }
-
-    @Test
     fun polar() {
         assertAll(
             {
@@ -470,32 +457,52 @@ class ComplexTest {
             // next two for symmetric
             { assertEquals(one, two) },
             { assertEquals(two, one) },
+            { assertTrue { one.equals(one) } },
             // against null
             { assertNotEquals(one, null) },
             // against infinity
             { assertNotEquals(one, Complex.INFINITY) },
             { assertNotEquals(Complex.INFINITY, one) },
             { assertEquals(inf1, inf2) },
+            { assertTrue { inf1 == inf2 }},
+            { assertTrue { inf2 == inf1 }},
 
+            // against NaN
+            { assertNotEquals(nan1, nan1) },
+            { assertNotEquals(nan1, one) },
+            { assertNotEquals(one, nan1) },
+
+            { assertNotEquals(Complex.INFINITY, Complex(1.0, 1.0)) },
+            { assertNotEquals(Complex(1.0, 1.0), Complex.INFINITY) },
+            { assertNotEquals(Complex(Double.NaN), Complex(Double.NaN)) },
+            { assertNotEquals(Complex(1), Complex(Double.NaN)) },
+            { assertNotEquals(Complex(Double.NaN), Complex(1)) },
+
+            // using epsilon
+            { assertNotEquals(Complex.ONE, Complex(1.01), Complex.EPSILON) },
+            { assertEquals(Complex.ONE, Complex(1.000000000001), Complex.EPSILON) },
+        )
+    }
+
+    @Test
+    fun `test equalTo`() {
+        val one = Complex(1, 1)
+        val nan = Complex(Double.NaN)
+
+        assertAll(
             // using close
             { assertNotEqualTo(one, Complex.INFINITY) },
             { assertNotEqualTo(Complex.INFINITY, one) },
 
-            // against NaN
-            { assertNotEquals(nan1, nan1, Complex.EPSILON) },
-            { assertNotEquals(nan1, one, Complex.EPSILON) },
-            { assertNotEquals(one, nan1, Complex.EPSILON) },
-
-            // using close
-            { assertNotEqualTo(nan1, nan1) },
-            { assertNotEqualTo(nan1, one) },
-            { assertNotEqualTo(one, nan1) },
+            { assertNotEqualTo(nan, nan) },
+            { assertNotEqualTo(nan, one) },
+            { assertNotEqualTo(one, nan) },
 
             // some other combinations with equalTo
             { assertEqualTo(Complex.ONE, 1)},
             { assertEqualTo(1, Complex.ONE)},
             { assertNotEqualTo(one, null) },
-            { assertNotEqualTo(1.0, nan1)},
+            { assertNotEqualTo(1.0, nan)},
             { assertFalse(Complex.ONE.equalTo("foo"))},
 
             { assertEqualTo(1, 1.0)},
@@ -526,12 +533,23 @@ class ComplexTest {
             { assertTrue(Complex.ONE.equalTo(1.toShort())) },
             { assertFalse(Complex(1, 1).equalTo(1.0)) },
             { assertFalse(Complex.ONE.equalTo(1.1)) },
+        )
+    }
 
-            { assertNotEquals(Complex.INFINITY, Complex(1.0, 1.0)) },
-            { assertNotEquals(Complex(1.0, 1.0), Complex.INFINITY) },
-            { assertNotEquals(Complex(Double.NaN), Complex(Double.NaN)) },
-            { assertNotEquals(Complex(1), Complex(Double.NaN)) },
-            { assertNotEquals(Complex(Double.NaN), Complex(1)) },
+    @Test
+    fun `test hashCode`() {
+        val twoPlusThreeJayHash = 31 * 2.0.hashCode() + 3.0.hashCode()
+        val expect11 = -33554432
+        val expect10 = -1106247680
+        val expect01 = 1072693248
+        assertAll(
+            { assertEquals(expect11, Complex(1, 1).hashCode()) },
+            { assertEquals(expect10, Complex(1, 0).hashCode()) },
+            { assertEquals(expect01, Complex(0, 1).hashCode()) },
+            { assertEquals(Complex.INFINITY.hashCode(),
+                Complex(0, Double.NEGATIVE_INFINITY).hashCode()) },
+            { assertEquals(Double.NaN.hashCode(), Complex(Double.NaN).hashCode()) },
+            { assertEquals(twoPlusThreeJayHash, Complex(2, 3).hashCode()) },
         )
     }
 

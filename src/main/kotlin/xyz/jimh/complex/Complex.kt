@@ -526,18 +526,26 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     }
 
     /**
-     *  equals in terms of [close], so we don't have to deal with approximations.
-     *  Note: will return false if either side is NaN; will return true if both
-     *  sides are infinite (there is only a single infinity on the complex plane).
+     *  [equals] does not use the default implementation, because there are special
+     *  rules for Complex numbers:
+     *  1. If either [re] or [im] is NaN, the complex value is NaN
+     *  2. If either [re] or [im] is (positive or negative) infinity, the complex
+     *  value is [INFINITY] (and all complex infinities are equal to each other).
+     *
+     *  Note: [equals] will return false if either side is NaN, even if a
+     *  Complex is being compared with itself. To test whether two references
+     *  have the same referent, use the === operator.
      *  */
     override fun equals(other: Any?): Boolean {
-        if (this === other && !isNaN) return true
+        // NaNs never equal anything, including other NaNs or themselves.
+        if (isNaN) return false
+        if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
         other as Complex
 
         // NaNs never equal anything, including other NaNs or themselves.
-        if (isNaN || other.isNaN) return false
+        if (other.isNaN) return false
         // On the other hand, there is only one infinity in the complex plane.
         if (isInfinite && other.isInfinite) return true
 
@@ -552,19 +560,24 @@ data class Complex(val re: Double, val im: Double = 0.0) {
      * is only a single infinity on the complex plane).
      */
     fun equalTo(other: Any?): Boolean {
-        if (isNaN) return false     // a NaN is never equal to anything, including itself
-        if (javaClass == other?.javaClass) return close(other as Complex)
-        if (other is Number) {
-            return isReal && re.close(other.toDouble())
+        return when {
+            isNaN -> return false     // a NaN is never equal to anything, including itself
+            other is Complex -> close(other)
+            isReal && other is Number -> re.close(other.toDouble())
+            else -> false   // this is not a pure real, or other is not Number
         }
-        return false
     }
 
     /**
-     * A complex hashCode is just the hash of each part.
+     *
      */
-    override fun hashCode(): Int = 31 * re.hashCode() + im.hashCode()
-
+    override fun hashCode(): Int {
+        return when {
+            isNaN -> Double.NaN.hashCode()
+            isInfinite -> Double.POSITIVE_INFINITY.hashCode ()
+            else -> 31 * re.hashCode() + im.hashCode()
+        }
+    }
     companion object {
         /** how close is "close enough"? */
         const val EPSILON = 1.0e-10

@@ -4,19 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45ec2ce2-c198-4997-9086-6ffa3f96efed" name="Changes" comment="Updated README.md">
-      <change afterPath="$PROJECT_DIR$/docs/-complex/xyz.jimh.complex/-complex/equal-to.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/-complex/xyz.jimh.complex/equal-to.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/kotlin/xyz/jimh/complex/ComplexAssertions.kt" afterDir="false" />
+    <list default="true" id="45ec2ce2-c198-4997-9086-6ffa3f96efed" name="Changes" comment="Rewrote Complex.equalTo(Any?) with a when, to simplify.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/-complex/package-list" beforeDir="false" afterPath="$PROJECT_DIR$/docs/-complex/package-list" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/-complex/xyz.jimh.complex/-complex/close.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/-complex/xyz.jimh.complex/-complex/close.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/-complex/xyz.jimh.complex/-complex/cosh.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/-complex/xyz.jimh.complex/-complex/cosh.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/-complex/xyz.jimh.complex/-complex/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/-complex/xyz.jimh.complex/-complex/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/-complex/xyz.jimh.complex/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/-complex/xyz.jimh.complex/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/navigation.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/navigation.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/scripts/pages.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/scripts/pages.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/xyz/jimh/complex/Complex.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/xyz/jimh/complex/Complex.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/xyz/jimh/complex/ComplexAssertions.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/xyz/jimh/complex/ComplexAssertions.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/kotlin/xyz/jimh/complex/ComplexTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/xyz/jimh/complex/ComplexTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -50,6 +41,9 @@
   <component name="JavaCoverageOptionsProvider">
     <option name="myTestTracking" value="true" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
   </component>
@@ -63,10 +57,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "JUnit.All tests.executor": "Coverage",
+    "JUnit.All tests.executor": "Run",
     "JUnit.ComplexTest.executor": "Run",
     "Kotlin.MainKt.executor": "Run",
-    "Maven.Complex [dokka:dokka].executor": "Run",
+    "Maven.Complex [dokka:dokka].executor": "Profiler#1",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -87,7 +81,7 @@
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
-  <component name="RunManager" selected="Maven.Complex [dokka:dokka]">
+  <component name="RunManager" selected="JUnit.All tests">
     <configuration name="All tests" type="JUnit" factoryName="JUnit">
       <module name="Complex" />
       <option name="PACKAGE_NAME" value="" />
@@ -186,7 +180,7 @@
       <workItem from="1749667698691" duration="7684000" />
       <workItem from="1750118820250" duration="3359000" />
       <workItem from="1750795690529" duration="597000" />
-      <workItem from="1750920628253" duration="42106000" />
+      <workItem from="1750920628253" duration="51257000" />
     </task>
     <task id="LOCAL-00001" summary="Formatting">
       <option name="closed" value="true" />
@@ -276,7 +270,23 @@
       <option name="project" value="LOCAL" />
       <updated>1751745337372</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Rewrote Complex.equals() to be symmetric in all cases. Added .equalTo() to handle the approximate cases the former .equals() handled. Rewrote tests to pass with the new functions.">
+      <option name="closed" value="true" />
+      <created>1752714351398</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1752714351398</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Rewrote Complex.equals() to be symmetric in all cases. Added .equalTo() to handle the approximate cases the former .equals() handled. Rewrote tests to pass with the new functions.">
+      <option name="closed" value="true" />
+      <created>1752714497325</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1752714497325</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -291,13 +301,29 @@
     <MESSAGE value="Added missing right parenthesis in KDoc." />
     <MESSAGE value="Optimize some operations" />
     <MESSAGE value="Updated README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated README.md" />
+    <MESSAGE value="Rewrote Complex.equals() to be symmetric in all cases. Added .equalTo() to handle the approximate cases the former .equals() handled. Rewrote tests to pass with the new functions." />
+    <MESSAGE value="Rewrote Complex.equalTo(Any?) with a when, to simplify." />
+    <option name="LAST_COMMIT_MESSAGE" value="Rewrote Complex.equalTo(Any?) with a when, to simplify." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/test/kotlin/xyz/jimh/complex/ComplexTest.kt</url>
+          <line>555</line>
+          <properties>
+            <option name="lambda-ordinal" value="0" />
+          </properties>
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
     <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Complex$All_tests.ic" NAME="All tests Coverage Results" MODIFIED="1752713562434" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/Complex$All_tests.ic" NAME="All tests Coverage Results" MODIFIED="1752796645455" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true" />
   </component>
 </project>

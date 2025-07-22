@@ -9,16 +9,18 @@ import org.junit.jupiter.api.Assertions.assertTrue
  * Assertions for unit testing.
  */
 object ComplexAssertions {
-    private const val EPSILON = 1.0e-10
+    private const val EPSILON = Complex.EPSILON
 
     fun assertEquals(expected: Complex, actual: Complex, epsilon: Double = EPSILON) {
-        Assertions.assertAll(
-            { assertEquals(expected.re, actual.re, epsilon) },
-            { assertEquals(expected.im, actual.im, epsilon) },
-        )
+        if (expected.isInfinite) assertTrue { actual.isInfinite }
+        else
+            Assertions.assertAll(
+                { assertEquals(expected.re, actual.re, epsilon) },
+                { assertEquals(expected.im, actual.im, epsilon) },
+            )
     }
 
-    fun assertNotEquals(expected: Complex, actual: Complex, epsilon: Double = EPSILON) {
+    fun assertNotEquals(expected: Complex, actual: Complex, epsilon: Double) {
         assertFalse { abs(expected.re - actual.re) < epsilon && abs(expected.im - actual.im) < epsilon }
     }
 

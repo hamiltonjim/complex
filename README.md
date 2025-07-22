@@ -102,10 +102,14 @@ works on negative numbers)
 any arbitrary power)
 - `fun reciprocal(): Complex` (returns 1 / receiver)
 - `fun equals(other: Any?): Boolean` (returns true
-if other is Complex and close to the receiver; or if other
-is a Number, the reciever isReal, and other is
-close to the receiver. Written
-in terms of close(other: Complex): Boolean)
+if other is Complex and equal to the receiver); conforms to the JVM
+concept of equals() and hashCode()
+- `fun equalTo(other: Any?): Boolean` (returns true if other
+is a Complex and both re and im are within EPSILON of their
+counterparts, or if other is a Number, the reciever isReal, and
+other is close to the receiver. Written in terms of
+`fun close(other: Complex): Boolean` and
+`fun Double.close(other: Double): Boolean`)
 - `fun expITheta(theta: Double): Complex` (leaning on
 Euler's formula, returns cos(theta) + j * sin(theta))
 

@@ -222,7 +222,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
      * Complex division: returns the receiver / [other]
      */
     operator fun div(other: Complex): Complex {
-        val denominator = other.re * other.re + other.im * other.im
+        val denominator = other.re.sqr() + other.im.sqr()
         val real = (re * other.re + im * other.im) / denominator
         val imag = (im * other.re - re * other.im) / denominator
         return Complex(real, imag)

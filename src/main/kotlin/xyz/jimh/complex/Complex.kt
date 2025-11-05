@@ -328,7 +328,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     fun abs(): Double = sqrt(re.sqr() + im.sqr())
 
     /**
-     * Returns the angle of the receiver.
+     * Returns the angle of the receiver, in radians.
      * @see polar
      */
     fun arg(): Double = atan2(im, re)
@@ -339,7 +339,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     private fun sqr(): Complex = this * this
 
     /**
-     * Returns 1 / the receiver
+     * Returns 1 divided by the receiver
      */
     fun reciprocal(): Complex {
         return if (isZero)
@@ -400,7 +400,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     // inverse trig functions
 
     /**
-     * Returns the (principal) arc sine of the receiver
+     * Returns the (principal) circular arc sine of the receiver
      */
     fun asin(): Complex {
         // acos(z) == ln(z + sqrt(z^2 - 1)) / i
@@ -408,26 +408,26 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     }
 
     /**
-     * Returns the (principal) arc cosine of the receiver
+     * Returns the (principal) circular arc cosine of the receiver
      */
     fun acos(): Complex = PI / 2.0 - asin()
 
     /**
-     * Returns the (principal) arc tangent of the receiver
+     * Returns the (principal) circular arc tangent of the receiver
      */
     fun atan(): Complex {
         return ((J - this) / (J + this)).ln() * -J / 2.0
     }
 
     /**
-     * Returns the (principal) arc cotangent of the receiver
+     * Returns the (principal) circular arc cotangent of the receiver
      */
     fun acot(): Complex {
         return ((this + J) / (this - J)).ln() * -J / 2.0
     }
 
     /**
-     * Returns the (principal) arc cosecant of the receiver
+     * Returns the (principal) circular arc cosecant of the receiver
      */
     fun acsc(): Complex {
         return if (isZero)
@@ -437,7 +437,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     }
 
     /**
-     * Returns the (principal) arc secant of the receiver
+     * Returns the (principal) circular arc secant of the receiver
      */
     fun asec(): Complex = PI / 2.0 - acsc()
 

@@ -4,6 +4,7 @@ $dokka.location:xyz.jimh.complex////PointingToDeclaration/-complex/xyz.jimh.com
 $dokka.location:xyz.jimh.complex//NUL/#/PointingToDeclaration/-complex/xyz.jimh.complex/-n-u-l.html
 $dokka.location:xyz.jimh.complex//bigDecimalJSample/#/PointingToDeclaration/-complex/xyz.jimh.complex/big-decimal-j-sample.html
 $dokka.location:xyz.jimh.complex//close/kotlin.Double#kotlin.Double#kotlin.Double/PointingToDeclaration/-complex/xyz.jimh.complex/close.html
+$dokka.location:xyz.jimh.complex//closeF/kotlin.Float#kotlin.Float#kotlin.Float/PointingToDeclaration/-complex/xyz.jimh.complex/close-f.html
 $dokka.location:xyz.jimh.complex//div/kotlin.Number#xyz.jimh.complex.Complex/PointingToDeclaration/-complex/xyz.jimh.complex/div.html
 $dokka.location:xyz.jimh.complex//doubleJSample/#/PointingToDeclaration/-complex/xyz.jimh.complex/double-j-sample.html
 $dokka.location:xyz.jimh.complex//equalTo/kotlin.Number#kotlin.Any?/PointingToDeclaration/-complex/xyz.jimh.complex/equal-to.html
@@ -55,6 +56,7 @@ $dokka.location:xyz.jimh.complex/Complex/asinh/#/PointingToDeclaration/-complex
 $dokka.location:xyz.jimh.complex/Complex/atan/#/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/atan.html
 $dokka.location:xyz.jimh.complex/Complex/atanh/#/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/atanh.html
 $dokka.location:xyz.jimh.complex/Complex/close/#xyz.jimh.complex.Complex#kotlin.Double/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/close.html
+$dokka.location:xyz.jimh.complex/Complex/closeF/#xyz.jimh.complex.Complex#kotlin.Float/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/close-f.html
 $dokka.location:xyz.jimh.complex/Complex/cos/#/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/cos.html
 $dokka.location:xyz.jimh.complex/Complex/cosh/#/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/cosh.html
 $dokka.location:xyz.jimh.complex/Complex/cot/#/PointingToDeclaration/-complex/xyz.jimh.complex/-complex/cot.html

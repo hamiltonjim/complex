@@ -14,9 +14,6 @@ import kotlin.math.sinh
 import kotlin.math.sqrt
 import kotlin.math.tan
 import kotlin.math.tanh
-import xyz.jimh.complex.Complex.Companion.INFINITY
-import xyz.jimh.complex.Complex.Companion.fromPolar
-import xyz.jimh.complex.Complex.Companion.fromPolar2
 
 /**
  * Class representing a complex number ([re] + [im]j), where j == sqrt(-1). Yes, j,

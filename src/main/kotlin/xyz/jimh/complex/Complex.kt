@@ -14,6 +14,9 @@ import kotlin.math.sinh
 import kotlin.math.sqrt
 import kotlin.math.tan
 import kotlin.math.tanh
+import xyz.jimh.complex.Complex.Companion.INFINITY
+import xyz.jimh.complex.Complex.Companion.fromPolar
+import xyz.jimh.complex.Complex.Companion.fromPolar2
 
 /**
  * Class representing a complex number ([re] + [im]j), where j == sqrt(-1). Yes, j,
@@ -39,20 +42,13 @@ import kotlin.math.tanh
  * @author Jim Hamilton
  */
 data class Complex(val re: Double, val im: Double = 0.0) {
-    /**
-     * Secondary constructor, where the real and/or imaginary parts are
-     * from a type other than Double. We use Number, which is the super
-     * interface of all numeric types (other than Complex).
-     */
-    constructor(re: Number, im: Number = 0.0): this(re.toDouble(), im.toDouble())
-
     /** A complex is a NaN if either part is NaN */
     val isNaN = re.isNaN() || im.isNaN()
+
     /** A complex is infinite if either part is infinite (and it's not a NaN) */
     val isInfinite = !isNaN && (re.isInfinite() || im.isInfinite())
     /** A complex is zero if BOTH parts are (close to) zero */
     val isZero = abs(re) <= EPSILON / 1000 && abs(im) <= EPSILON / 1000
-
     /**
      * A complex number is real if its imaginary part is (close to) zero
      */
@@ -62,6 +58,13 @@ data class Complex(val re: Double, val im: Double = 0.0) {
      * A complex number is imaginary if its real part is (close to) zero
      */
     val isImaginary = re.close(0.0, EPSILON / 1000.0)
+
+    /**
+     * Secondary constructor, where the real and/or imaginary parts are
+     * from a type other than Double. We use Number, which is the super
+     * interface of all numeric types (other than Complex).
+     */
+    constructor(re: Number, im: Number = 0.0): this(re.toDouble(), im.toDouble())
 
     /**
      * Data class for polar coordinates ([rho], [theta])
@@ -98,11 +101,30 @@ data class Complex(val re: Double, val im: Double = 0.0) {
      *
      * 2. This is the adjective "close" as in "near to,"
      * not the verb "close" as in "shut the door."
-     * @see equals()
+     * @see equals
+     * @see closeF
      */
     fun close(other: Complex, epsilon: Double = EPSILON): Boolean {
-        return if (isInfinite && other.isInfinite) true
-        else abs(re - other.re) < epsilon && abs(im - other.im) < epsilon
+        return when {
+            isNaN || other.isNaN -> false
+            isInfinite && other.isInfinite -> true
+            else -> abs(re - other.re) < epsilon && abs(im - other.im) < epsilon
+        }
+    }
+
+    /**
+     * A complex is close to another if both parts of [other] are within [epsilon] of
+     * their counterparts in the receiver.
+     * This version takes a Float as [epsilon].
+     * @see equals
+     * @see close
+     */
+    fun closeF(other: Complex, epsilon: Float): Boolean {
+        return when {
+            isNaN || other.isNaN -> false
+            isInfinite && other.isInfinite -> true
+            else -> abs(re - other.re) < epsilon && abs(im - other.im) < epsilon
+        }
     }
 
     /**
@@ -596,7 +618,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
         /** how close is "close enough"? */
         const val EPSILON = 1.0e-10
         /** a "close enough" when one side was made with Float */
-        const val EPSILON_FLOAT = 1.0e-6
+        const val EPSILON_FLOAT = 1.0e-6F
 
         /** symbol for sqrt(-1) [hey, I'm an electrical engineer, so 'i' is current] */
         const val J_CHAR = 'j'
@@ -735,9 +757,20 @@ operator fun Number.div(other: Complex): Complex = Complex(this) / other
 
 /**
  * Just like Complex.close; returns true if a Double is within epsilon of another.
- * @see [Complex.close]
+ * @see Complex.close
+ * @see closeF
  */
 fun Double.close(other: Double, epsilon: Double = Complex.EPSILON): Boolean {
+    if (other.isNaN()) return false     // NaNs are unordered, therefore never close to anything
+    return abs(other - this) < epsilon
+}
+
+/**
+ * Just like Complex.closeF; returns true if a Float is within epsilon of another.
+ * @see Complex.closeF
+ * @see close
+ */
+fun Float.closeF(other: Float, epsilon: Float = Complex.EPSILON_FLOAT): Boolean {
     if (other.isNaN()) return false     // NaNs are unordered, therefore never close to anything
     return abs(other - this) < epsilon
 }
@@ -785,9 +818,9 @@ fun expITheta(theta: Double): Complex {
  * Compare "closeness"
  */
 fun Number.equalTo(other: Any?): Boolean {
-    return if (other is Complex)
-        other.isReal && this.toDouble().close(other.re)
-    else if (other is Number)
-        toDouble().close(other.toDouble())
-    else false
+    return when (other) {
+        is Complex -> other.isReal && toDouble().close(other.re)
+        is Number -> toDouble().close(other.toDouble())
+        else -> false
+    }
 }

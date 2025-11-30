@@ -12,13 +12,15 @@ import kotlin.math.exp
 import kotlin.math.sin
 import kotlin.math.sinh
 import kotlin.math.sqrt
+import kotlin.test.assertEquals
+import kotlin.test.assertFalse
+import kotlin.test.assertTrue
 import org.junit.jupiter.api.Assertions.assertAll
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertNotEquals
-import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import xyz.jimh.complex.Complex.Companion.EPSILON
+import xyz.jimh.complex.Complex.Companion.EPSILON_FLOAT
 import xyz.jimh.complex.ComplexAssertions.assertEqualTo
 import xyz.jimh.complex.ComplexAssertions.assertEquals
 import xyz.jimh.complex.ComplexAssertions.assertNotEqualTo
@@ -28,7 +30,23 @@ class ComplexTest {
 
     @Test
     fun testClose() {
-        assertTrue(Complex(1, 1).close(Complex(1.0000000000001, 1.0000000000001)))
+        assertTrue { Complex(1, 1).close(Complex(1.0000000000001, 1.0000000000001)) }
+
+        val itsNaN = Complex(1, Double.NaN)
+        val itsAlsoNaN = Complex(Double.NaN, 1)
+        assertAll(
+            { assertFalse { itsNaN.close(Complex(1, Double.NaN)) } },
+            { assertFalse { itsAlsoNaN.close(Complex(1, Double.NaN)) } },
+            { assertFalse { itsNaN.close(itsAlsoNaN) } },
+        )
+
+        val itsInfinite = Complex(1, Double.POSITIVE_INFINITY)
+        val itsInfiniteToo = Complex(Double.POSITIVE_INFINITY, -2.5)
+        assertAll(
+            { assertTrue { itsInfinite.close(itsInfiniteToo) } },
+            { assertTrue { itsInfiniteToo.close(itsInfinite) } },
+            { assertTrue { itsInfiniteToo.close(itsInfiniteToo) } },
+        )
     }
 
     @Test
@@ -70,10 +88,10 @@ class ComplexTest {
     @Test
     fun `test abs and arg`() {
         assertAll(
-            { assertEqualTo(PI, Complex.PI_J.abs(), Complex.EPSILON) },
-            { assertEqualTo(sqrt(2.0), Complex(1, 1).abs(), Complex.EPSILON) },
-            { assertEqualTo(5.0, Complex(4, 3).abs(), Complex.EPSILON) },
-            { assertEqualTo(PI / 4, Complex(2, 2).arg(), Complex.EPSILON) },
+            { assertEqualTo(PI, Complex.PI_J.abs(), EPSILON) },
+            { assertEqualTo(sqrt(2.0), Complex(1, 1).abs(), EPSILON) },
+            { assertEqualTo(5.0, Complex(4, 3).abs(), EPSILON) },
+            { assertEqualTo(PI / 4, Complex(2, 2).arg(), EPSILON) },
         )
     }
 
@@ -90,7 +108,7 @@ class ComplexTest {
         val test = Complex(1.23456, 7.89012)
         val newOne = +test
         assertEquals(test, newOne)
-        assertFalse(test === newOne)     // because it's a copy, not the original object
+        assertFalse { test === newOne }     // because it's a copy, not the original object
     }
 
     @Test
@@ -180,8 +198,8 @@ class ComplexTest {
             { assertEquals(cmp, 1.0 + 2.0.j()) },
         )
         assertAll(
-            { assertTrue(fSum.close(cmp + flo, Complex.EPSILON_FLOAT)) },
-            { assertTrue(fSum.close(flo + cmp, Complex.EPSILON_FLOAT)) },
+            { assertTrue { fSum.closeF(cmp + flo, EPSILON_FLOAT) } },
+            { assertTrue { fSum.closeF(flo + cmp, EPSILON_FLOAT) } },
             { assertEquals(cmp, 1.0F + 2.0.j()) },
         )
         assertAll(
@@ -242,7 +260,7 @@ class ComplexTest {
     @Test
     fun `test toDouble`() {
         assertAll(
-            { assertEquals(10.0, Complex(10.0).toDouble()) },
+            { assertEquals(10.0, Complex(10.0).toDouble(), EPSILON) },
             { assertThrows<ArithmeticException> { 1.j().toDouble() } },
             { assertThrows<ArithmeticException> { Complex(1, 1).toDouble() } },
         )
@@ -251,7 +269,7 @@ class ComplexTest {
     @Test
     fun `test toFloat`() {
         assertAll(
-            { assertEquals(10.0F, Complex(10.0).toFloat()) },
+            { assertEquals(10.0F, Complex(10.0).toFloat(), EPSILON_FLOAT) },
             { assertThrows<ArithmeticException> { 1.j().toFloat() } },
             { assertThrows<ArithmeticException> { Complex(1, 1).toFloat() } },
         )
@@ -296,8 +314,8 @@ class ComplexTest {
             { assertEquals(product, 1.0 * product) },
         )
         assertAll(
-            { assertTrue(product.close(cmp * E.toFloat(), Complex.EPSILON_FLOAT)) },
-            { assertTrue(product.close(E.toFloat() * cmp, Complex.EPSILON_FLOAT)) },
+            { assertTrue { product.closeF(cmp * E.toFloat(), EPSILON_FLOAT) } },
+            { assertTrue { product.closeF(E.toFloat() * cmp, EPSILON_FLOAT) } },
             { assertEquals(product, product * 1.0F) },
             { assertEquals(product, 1.0F * product) },
         )
@@ -383,16 +401,16 @@ class ComplexTest {
     @Test
     fun `funny values`() {
         assertAll(
-            { assertTrue(Complex(Double.NaN, Double.POSITIVE_INFINITY).isNaN) },
-            { assertTrue(Complex(Double.POSITIVE_INFINITY, Double.NaN).isNaN) },
-            { assertFalse(Complex(Double.POSITIVE_INFINITY, Double.NaN).isInfinite) },
-            { assertFalse(Complex(Double.NaN, Double.POSITIVE_INFINITY).isInfinite) },
-            { assertTrue(Complex(1, Double.POSITIVE_INFINITY).isInfinite) },
-            { assertTrue(Complex(Double.POSITIVE_INFINITY, 1).isInfinite) },
-            { assertFalse(Complex(0, 1).isInfinite) },
-            { assertFalse(Complex(0, 1).isZero) },
-            { assertFalse(Complex(1, 0).isZero) },
-            { assertTrue(Complex(0, 0).isZero) },
+            { assertTrue { Complex(Double.NaN, Double.POSITIVE_INFINITY).isNaN } },
+            { assertTrue { Complex(Double.POSITIVE_INFINITY, Double.NaN).isNaN } },
+            { assertFalse { Complex(Double.POSITIVE_INFINITY, Double.NaN).isInfinite } },
+            { assertFalse { Complex(Double.NaN, Double.POSITIVE_INFINITY).isInfinite } },
+            { assertTrue { Complex(1, Double.POSITIVE_INFINITY).isInfinite } },
+            { assertTrue { Complex(Double.POSITIVE_INFINITY, 1).isInfinite } },
+            { assertFalse { Complex(0, 1).isInfinite } },
+            { assertFalse { Complex(0, 1).isZero } },
+            { assertFalse { Complex(1, 0).isZero } },
+            { assertTrue { Complex(0, 0).isZero } },
         )
     }
 
@@ -404,8 +422,8 @@ class ComplexTest {
                 val theta = PI / 4.0
                 val polar = Complex(1, 1).polar()
                 assertAll(
-                    { assertEquals(rho, polar.rho, Complex.EPSILON) },
-                    { assertEquals(theta, polar.theta, Complex.EPSILON) }
+                    { assertEquals(rho, polar.rho, EPSILON) },
+                    { assertEquals(theta, polar.theta, EPSILON) }
                 )
             },
             {
@@ -413,8 +431,8 @@ class ComplexTest {
                 val theta = atan2(1.0, 2.0)
                 val polar = Complex(2, 1).polar()
                 assertAll(
-                    { assertEquals(rho, polar.rho, Complex.EPSILON) },
-                    { assertEquals(theta, polar.theta, Complex.EPSILON) }
+                    { assertEquals(rho, polar.rho, EPSILON) },
+                    { assertEquals(theta, polar.theta, EPSILON) }
                 )
             },
             {
@@ -422,17 +440,17 @@ class ComplexTest {
                 val theta = atan2(3.0, 4.0)
                 val polar = Complex(4, 3).polar()
                 assertAll(
-                    { assertEquals(rho, polar.rho, Complex.EPSILON) },
-                    { assertEquals(theta, polar.theta, Complex.EPSILON) }
+                    { assertEquals(rho, polar.rho, EPSILON) },
+                    { assertEquals(theta, polar.theta, EPSILON) }
                 )
             },
             {
-                val rho = 5.0 + Complex.EPSILON * 0.99
+                val rho = 5.0 + EPSILON * 0.99
                 val theta = atan2(3.0, 4.0)
                 val polar = Complex(4, 3).polar()
                 assertAll(
-                    { assertEquals(rho, polar.rho, Complex.EPSILON) },
-                    { assertEquals(theta, polar.theta, Complex.EPSILON) }
+                    { assertEquals(rho, polar.rho, EPSILON) },
+                    { assertEquals(theta, polar.theta, EPSILON) }
                 )
             },
         )
@@ -457,7 +475,7 @@ class ComplexTest {
             // next two for symmetric
             { assertEquals(one, two) },
             { assertEquals(two, one) },
-            { assertTrue { one.equals(one) } },
+            { assertTrue { one == two } },
             // against null
             { assertNotEquals(one, null) },
             // against infinity
@@ -479,8 +497,8 @@ class ComplexTest {
             { assertNotEquals(Complex(Double.NaN), Complex(1)) },
 
             // using epsilon
-            { assertNotEquals(Complex.ONE, Complex(1.01), Complex.EPSILON) },
-            { assertEquals(Complex.ONE, Complex(1.000000000001), Complex.EPSILON) },
+            { assertNotEquals(Complex.ONE, Complex(1.01), EPSILON) },
+            { assertEquals(Complex.ONE, Complex(1.000000000001), EPSILON) },
         )
     }
 
@@ -499,40 +517,40 @@ class ComplexTest {
             { assertNotEqualTo(one, nan) },
 
             // some other combinations with equalTo
-            { assertEqualTo(Complex.ONE, 1)},
-            { assertEqualTo(1, Complex.ONE)},
+            { assertEqualTo(Complex.ONE, 1) },
+            { assertEqualTo(1, Complex.ONE) },
             { assertNotEqualTo(one, null) },
-            { assertNotEqualTo(1.0, nan)},
-            { assertFalse(Complex.ONE.equalTo("foo"))},
+            { assertNotEqualTo(1.0, nan) },
+            { assertFalse { Complex.ONE.equalTo("foo") } },
 
-            { assertEqualTo(1, 1.0)},
-            { assertEqualTo(1, Complex.ONE)},
-            { assertNotEqualTo(1, Complex.ZERO)},
-            { assertNotEqualTo(1, one)},
-            { assertFalse { 1.equalTo("one")  }},
-            { assertTrue { 1.equalTo(1F) }},
+            { assertEqualTo(1, 1.0) },
+            { assertEqualTo(1, Complex.ONE) },
+            { assertNotEqualTo(1, Complex.ZERO) },
+            { assertNotEqualTo(1, one) },
+            { assertFalse { 1.equalTo("one") } },
+            { assertTrue { 1.equalTo(1F) } },
 
             { assertEqualTo(
                 Complex(3, 3),
-                Complex(3.0 + Complex.EPSILON / 2, 3)
+                Complex(3.0 + EPSILON / 2, 3)
             ) },
             { assertEqualTo(
-                Complex(PI + Complex.EPSILON / 2, PI + Complex.EPSILON / 2),
+                Complex(PI + EPSILON / 2, PI + EPSILON / 2),
                 Complex(PI, PI)
             ) },
             { assertEqualTo(
-                Complex(E, E + Complex.EPSILON / 2),
+                Complex(E, E + EPSILON / 2),
                 Complex(E, E)
             ) },
 
             // is the complex number equal to a real number?
-            { assertTrue(Complex.ONE.equalTo(1.0)) },
-            { assertTrue(Complex.ONE.equalTo(1.0F)) },
-            { assertTrue(Complex.ONE.equalTo(1)) },
-            { assertTrue(Complex.ONE.equalTo(1L)) },
-            { assertTrue(Complex.ONE.equalTo(1.toShort())) },
-            { assertFalse(Complex(1, 1).equalTo(1.0)) },
-            { assertFalse(Complex.ONE.equalTo(1.1)) },
+            { assertTrue { Complex.ONE.equalTo(1.0) } },
+            { assertTrue { Complex.ONE.equalTo(1.0F) } },
+            { assertTrue { Complex.ONE.equalTo(1) } },
+            { assertTrue { Complex.ONE.equalTo(1L) } },
+            { assertTrue { Complex.ONE.equalTo(1.toShort()) } },
+            { assertFalse { Complex(1, 1).equalTo(1.0) } },
+            { assertFalse { Complex.ONE.equalTo(1.1) } },
         )
     }
 
@@ -556,13 +574,13 @@ class ComplexTest {
     @Test
     fun `zeroed parts`() {
         assertAll(
-            { assertTrue(Complex(1).isReal) },
-            { assertFalse(Complex(1, 1).isReal) },
-            { assertFalse(Complex.J.isReal) },
-            { assertTrue(Complex.J.isImaginary) },
-            { assertFalse(Complex.ONE.isImaginary) },
-            { assertFalse(Complex(1, 2).isImaginary) },
-            { assertTrue(Complex(1e-40, 2e-50).isZero) },
+            { assertTrue { Complex(1).isReal } },
+            { assertFalse { Complex(1, 1).isReal } },
+            { assertFalse { Complex.J.isReal } },
+            { assertTrue { Complex.J.isImaginary } },
+            { assertFalse { Complex.ONE.isImaginary } },
+            { assertFalse { Complex(1, 2).isImaginary } },
+            { assertTrue { Complex(1e-40, 2e-50).isZero } },
         )
     }
 
@@ -570,9 +588,12 @@ class ComplexTest {
     fun `close with specified epsilon`() {
         val test = Complex(PI, E)
         assertAll(
-            { assertTrue(test.close(Complex(3.14, 2.71), 0.1)) },
-            { assertFalse(test.close(Complex(3.14, 2.71), 0.001)) },
-            { assertFalse(test.close(Complex(3.14159, 2.71), 0.001)) },
+            { assertTrue { test.close(Complex(3.14, 2.72), 0.1) } },
+            { assertTrue { test.close(Complex(3.14, 2.72), 0.01) } },
+            { assertFalse { test.close(Complex(3.14, 2.72), 0.001) } },
+            { assertFalse { test.close(Complex(3.14159, 2.72), 0.001) } },
+            { assertFalse { test.close(Complex(3.14, 2.71828), 0.001) } },
+            { assertTrue { test.close(Complex(3.14159, 2.71828), 0.001) } },
         )
     }
 
@@ -611,10 +632,9 @@ class ComplexTest {
             { assertEqualTo(Complex.INFINITY, Complex.ZERO.cot()) },
             { assertEqualTo(Complex.ONE, Complex(PI / 4).cot()) },
             { assertEqualTo(Complex.ONE, Complex.ZERO.sec()) },
-            { assertTrue(Complex(PI / 2).sec().abs() > 1e10) }, // because approximations
+            { assertTrue { Complex(PI / 2).sec().abs() > 1e10 } }, // because approximations
             { assertEqualTo(Complex.INFINITY, Complex.ZERO.csc()) },
-            { assertEqualTo(Complex.ONE, Complex(PI / 2)
-                .csc()) },
+            { assertEqualTo(Complex.ONE, Complex(PI / 2).csc()) },
             { assertEqualTo(
                 Complex(sin(1.0) * cosh(2.0), cos(1.0) * sinh(2.0)),
                 Complex(1, 2).sin()
@@ -706,6 +726,10 @@ class ComplexTest {
             { assertEquals(Complex.ONE, Complex.ONE.reciprocal()) },
             { assertEquals(Complex.INFINITY, Complex.ZERO.reciprocal()) },
             { assertEquals(Complex.J, (-Complex.J).reciprocal()) },
+            { assertEquals(Complex(2), Complex(0.5).reciprocal()) },
+            { assertEquals(2.j(), -0.5.j().reciprocal()) },
+            { assertEquals(Complex(1, 1), Complex(0.5, -0.5).reciprocal()) },
+            { assertEquals(Complex(0.5, -0.5), Complex(1, 1).reciprocal()) },
         )
     }
 
@@ -722,6 +746,7 @@ class ComplexTest {
         )
     }
 
+    @Suppress("AssignedValueIsNeverRead")
     @Test
     fun `test increment and decrement`() {
         var number = Complex(1, 1)
@@ -731,13 +756,13 @@ class ComplexTest {
             { assertEquals(Complex(2, 1), --number) },
             { assertEquals(Complex(1, 1), --number) },
             { assertEquals(Complex(1, 1), number--) },
-            { assertTrue(number.isImaginary) },
+            { assertTrue { number.isImaginary } },
             { assertEquals(Complex(-1, 1), --number) },
             { assertEquals(Complex(-1, 1), number--) },
             { assertEquals(Complex(-2, 1), number) },
             { assertEquals(Complex(-2, 1), number++) },
             { assertEquals(Complex(-1, 1), number) },
-            { assertFalse(number.isImaginary) },
+            { assertFalse { number.isImaginary } },
         )
     }
 

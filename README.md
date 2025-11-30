@@ -15,12 +15,15 @@ the real and imaginary parts, respectively.
 Both parts are Double, but you may construct a 
 Complex with either or both parts as any type 
 that descends from Number. For example:
+
 ```kotlin
     val withInts = Complex(1, 4)
-    val withLongs = Complex(3L, 1L)
-    val withOneInt = Complex(3.1, 4)
-    val withOneIntOneFloat = Complex(3, 4F)
+val withLongs = Complex(3L, 1L)
+val withOneInt = Complex(3.1, 4)
+val withOneIntOneFloat = Complex(3, 4F)
+val fromAtomic = Complex(AtomicInteger(1), 4.3)
 ```
+(Yes, AtomicInteger really descends from Number.)
 
 To create a pure real number as Complex (that is,
 with zero for the imaginary part), just pass the
@@ -43,7 +46,7 @@ for J:
 val J = 1.j()
 val J_CHAR = 'j'
 ```
-The latter is used by `toString()` to display a
+The latter is used by `Complex.toString()` to display a
 complex number as "3 + 4j" for example.)
 
 If you want to modify J, or Double.j(), please do it 
@@ -68,6 +71,9 @@ Floating Point](https://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html)
 
 There is also an extension function Double.close()
 that does the same test.
+
+`Complex.closeF` and `Float.closeF` do the same thing, but take a Float for epsilon, and use Float 
+values for comparisons.
 
 A Complex has the following properties:
 ```kotlin

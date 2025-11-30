@@ -7,6 +7,8 @@ fun main() {
     val real = -1.0
     val complex = real.sqrt()
 
+    println("1/(1 + j) is ${Complex(1, 1).reciprocal()}")
+
     println("sqrt(-1) is $complex")
 
     println("sqrt(j) is ${complex.sqrt()}   -sqrt(j) is ${(-complex).sqrt()}")

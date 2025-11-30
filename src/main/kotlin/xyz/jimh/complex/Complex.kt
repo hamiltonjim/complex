@@ -120,8 +120,11 @@ data class Complex(val re: Double, val im: Double = 0.0) {
      * @see close
      */
     fun closeF(other: Complex, epsilon: Float): Boolean {
-        return if (isInfinite && other.isInfinite) true
-        else abs(re - other.re) < epsilon && abs(im - other.im) < epsilon
+        return when {
+            isNaN || other.isNaN -> false
+            isInfinite && other.isInfinite -> true
+            else -> abs(re - other.re) < epsilon && abs(im - other.im) < epsilon
+        }
     }
 
     /**

@@ -527,7 +527,7 @@ class ComplexTest {
             { assertEqualTo(1, Complex.ONE) },
             { assertNotEqualTo(1, Complex.ZERO) },
             { assertNotEqualTo(1, one) },
-            { assertFalse { 1.equalTo("one")  } },
+            { assertFalse { 1.equalTo("one") } },
             { assertTrue { 1.equalTo(1F) } },
 
             { assertEqualTo(

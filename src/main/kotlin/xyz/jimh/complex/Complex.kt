@@ -14,6 +14,9 @@ import kotlin.math.sinh
 import kotlin.math.sqrt
 import kotlin.math.tan
 import kotlin.math.tanh
+import xyz.jimh.complex.Complex.Companion.INFINITY
+import xyz.jimh.complex.Complex.Companion.fromPolar
+import xyz.jimh.complex.Complex.Companion.fromPolar2
 
 /**
  * Class representing a complex number ([re] + [im]j), where j == sqrt(-1). Yes, j,
@@ -102,8 +105,11 @@ data class Complex(val re: Double, val im: Double = 0.0) {
      * @see closeF
      */
     fun close(other: Complex, epsilon: Double = EPSILON): Boolean {
-        return if (isInfinite && other.isInfinite) true
-        else abs(re - other.re) < epsilon && abs(im - other.im) < epsilon
+        return when {
+            isNaN || other.isNaN -> false
+            isInfinite && other.isInfinite -> true
+            else -> abs(re - other.re) < epsilon && abs(im - other.im) < epsilon
+        }
     }
 
     /**

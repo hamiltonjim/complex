@@ -97,7 +97,7 @@ The following functions are defined:
 - `fun abs(): Double` (returns the magnitude of the receiver)
 - `fun arg(): Double` (returns the angle in radians,
   counter-clockwise from the real axis)
-- `fun exp(): Complex` (returns e^receiver)
+- `fun exp(): Complex` (returns e<sup>receiver</sup>)
 - `fun ln(): Complex` (returns the principal value of the natural logarithm--
 remember polar coordinates are periodic)
 - `fun sqrt(): Complex` (returns principal square root of the receiver)

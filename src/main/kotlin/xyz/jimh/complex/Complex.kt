@@ -30,7 +30,7 @@ import kotlin.math.tanh
  * case for square roots;
  * 1. Trigonometric functions;
  * 1. Hyperbolic functions;
- * 1. Other transcendental functions such as e^z and ln z;
+ * 1. Other transcendental functions such as e<sup>z</sup> and ln z;
  * 1. Conversion between polar and rectangular coordinates.
  *
  * @constructor takes values [re] for the real part and [im] for the imaginary part.

@@ -340,7 +340,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     fun polar(): Polar = Polar(abs(), arg())
 
     /**
-     * Returns the magnitude of the receiver (re^2 + im^2)^0.5.
+     * Returns the magnitude of the receiver (re<sup>2</sup> + im<sup>2</sup>)<sup>½</sup>.
      * @see polar
      */
     fun abs(): Double = sqrt(re.sqr() + im.sqr())

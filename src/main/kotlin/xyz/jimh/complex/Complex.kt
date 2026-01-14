@@ -298,9 +298,8 @@ data class Complex(val re: Double, val im: Double = 0.0) {
         val polar = polar()
         return ln(polar.rho) + polar.theta.j()
     }
-
     /**
-     * e to the power of the receiver (inverse of [ln])
+     * e<sup>this</sup> (inverse of [ln])
      */
     fun exp(): Complex {
         // e^(a + bj) == (e^a)(e^bj)
@@ -317,7 +316,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     }
 
     /**
-     * z^[exponent], where [exponent] is a real. Could have been done in
+     * z<sup>[exponent]</sup>, where [exponent] is a real. Could have been done in
      * terms of z^w, where w's imaginary part is zero, but this is an
      * optimization.
      */

@@ -307,7 +307,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     }
 
     /**
-     * Complex power [exponent] of the receiver
+     * receiver<sup>[exponent]</sup>, where [exponent] is a Complex
      */
     infix fun pow(exponent: Complex): Complex {
         // z^w == e^(w log z)

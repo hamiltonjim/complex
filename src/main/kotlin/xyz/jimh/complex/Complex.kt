@@ -317,7 +317,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
 
     /**
      * z<sup>[exponent]</sup>, where [exponent] is a real. Could have been done in
-     * terms of z^w, where w's imaginary part is zero, but this is an
+     * terms of z<sup>w</sup>, where w's imaginary part is zero, but this is an
      * optimization.
      */
     infix fun pow(exponent: Number): Complex {

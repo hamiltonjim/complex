@@ -610,6 +610,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
             else -> 31 * re.hashCode() + im.hashCode()
         }
     }
+    
     companion object {
         /** how close is "close enough"? */
         const val EPSILON = 1.0e-10

@@ -807,9 +807,16 @@ fun Double.fmt(char: Char = NUL): String {
  * <br>
  * Thanks to Leonhard Euler for discovering this property: e<sup>jθ</sup> = cos θ + j sin θ
  */
-fun expITheta(theta: Double): Complex {
+fun expJTheta(theta: Double): Complex {
     return Complex(cos(theta), sin(theta))
 }
+
+/**
+ * Turns the (radian) angle [theta] into the complex number at that angle, with unit magnitude. Same as [expJTheta].
+ * <br>
+ * Thanks to Leonhard Euler for discovering this property: e<sup>jθ</sup> = cos θ + j sin θ
+ */
+inline fun expITheta(theta: Double): Complex = expJTheta(theta)
 
 /**
  * Counterpart of Complex.equalTo(Any?): Complex

@@ -18,10 +18,10 @@ that descends from Number. For example:
 
 ```kotlin
     val withInts = Complex(1, 4)
-val withLongs = Complex(3L, 1L)
-val withOneInt = Complex(3.1, 4)
-val withOneIntOneFloat = Complex(3, 4F)
-val fromAtomic = Complex(AtomicInteger(1), 4.3)
+    val withLongs = Complex(3L, 1L)
+    val withOneInt = Complex(3.1, 4)
+    val withOneIntOneFloat = Complex(3, 4F)
+    val fromAtomic = Complex(AtomicInteger(1), 4.3)
 ```
 (Yes, AtomicInteger really descends from Number.)
 
@@ -34,7 +34,7 @@ real part, such as with
 You can create a pure imaginary with the extension
 function 
 ```kotlin
-fun Number.j(): Complex = Complex(0.0, this)
+    fun Number.j(): Complex = Complex(0.0, this)
 
 ```
 (Aside: I used j instead of i because my degree is
@@ -43,8 +43,8 @@ as in "V = IR" (Ohm's Law). If you want to use I, you have the
 source code. The companion object has definitions 
 for J:
 ```kotlin
-val J = 1.j()
-val J_CHAR = 'j'
+    val J = 1.j()
+    val J_CHAR = 'j'
 ```
 The latter is used by `Complex.toString()` to display a
 complex number as "3 + 4j" for example.)

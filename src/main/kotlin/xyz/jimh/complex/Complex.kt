@@ -814,7 +814,9 @@ fun expJTheta(theta: Double): Complex {
 /**
  * Turns the (radian) angle [theta] into the complex number at that angle, with unit magnitude. Same as [expJTheta].
  * <br>
- * Thanks to Leonhard Euler for discovering this property: e<sup>jθ</sup> = cos θ + j sin θ
+ * Thanks to Leonhard Euler for discovering this property: e<sup>iθ</sup> = cos θ + i sin θ
+ * <br>
+ * (This is my only surrender to &radic;-1 == i)
  */
 fun expITheta(theta: Double): Complex = expJTheta(theta)
 

@@ -816,7 +816,7 @@ fun expJTheta(theta: Double): Complex {
  * <br>
  * Thanks to Leonhard Euler for discovering this property: e<sup>jθ</sup> = cos θ + j sin θ
  */
-inline fun expITheta(theta: Double): Complex = expJTheta(theta)
+fun expITheta(theta: Double): Complex = expJTheta(theta)
 
 /**
  * Counterpart of Complex.equalTo(Any?): Complex

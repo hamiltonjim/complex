@@ -116,11 +116,11 @@ data class Complex(val re: Double, val im: Double = 0.0) {
      * @see equals
      * @see close
      */
-    fun closeF(other: Complex, epsilon: Float): Boolean {
+    fun closeF(other: Complex, epsilon: Float = EPSILON_FLOAT): Boolean {
         return when {
             isNaN || other.isNaN -> false
             isInfinite && other.isInfinite -> true
-            else -> abs(re - other.re) < epsilon && abs(im - other.im) < epsilon
+            else -> re.toFloat().closeF(other.re.toFloat(), epsilon) && im.toFloat().closeF(other.im.toFloat(), epsilon)
         }
     }
 
@@ -303,7 +303,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
      */
     fun exp(): Complex {
         // e^(a + bj) == (e^a)(e^bj)
-        return exp(re) * expITheta(im)
+        return exp(re) * expJTheta(im)
     }
 
     /**
@@ -325,7 +325,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
         val realExponent = exponent.toDouble()
         val realRealPart = polar.rho.pow(realExponent)
         val exponentOfE = realExponent * polar.theta
-        val eToTheExponent = expITheta(exponentOfE)
+        val eToTheExponent = expJTheta(exponentOfE)
         return realRealPart * eToTheExponent
     }
 
@@ -593,7 +593,7 @@ data class Complex(val re: Double, val im: Double = 0.0) {
      */
     fun equalTo(other: Any?): Boolean {
         return when {
-            isNaN -> return false     // a NaN is never equal to anything, including itself
+            isNaN -> false     // a NaN is never equal to anything, including itself
             other is Complex -> close(other)
             isReal && other is Number -> re.close(other.toDouble())
             else -> false   // this is not a pure real, or other is not Number

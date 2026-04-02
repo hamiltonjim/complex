@@ -30,14 +30,27 @@ class ComplexTest {
 
     @Test
     fun testClose() {
-        assertTrue { Complex(1, 1).close(Complex(1.0000000000001, 1.0000000000001)) }
+        val one = Complex(1, 1)
+        val another = Complex(1.0000000000001, 1.0000000000001)
+        assertTrue { one.close(another) }
+        assertTrue { one.closeF(another) }
 
         val itsNaN = Complex(1, Double.NaN)
         val itsAlsoNaN = Complex(Double.NaN, 1)
         assertAll(
             { assertFalse { itsNaN.close(Complex(1, Double.NaN)) } },
+            { assertFalse { itsNaN.close(one) } },
             { assertFalse { itsAlsoNaN.close(Complex(1, Double.NaN)) } },
+            { assertFalse { one.close(Complex(1, Double.NaN)) } },
             { assertFalse { itsNaN.close(itsAlsoNaN) } },
+            { assertFalse { itsNaN.closeF(Complex(1, Double.NaN)) } },
+            { assertFalse { itsNaN.closeF(one) } },
+            { assertFalse { itsAlsoNaN.closeF(Complex(1, Double.NaN)) } },
+            { assertFalse { one.closeF(Complex(1, Double.NaN)) } },
+            { assertFalse { itsNaN.closeF(itsAlsoNaN) } },
+            { assertFalse { 1F.closeF(Float.NaN) } },
+            { assertFalse { Float.NaN.closeF(Float.NaN) } },
+            { assertFalse { Float.NaN.closeF(1F) } },
         )
 
         val itsInfinite = Complex(1, Double.POSITIVE_INFINITY)
@@ -46,6 +59,11 @@ class ComplexTest {
             { assertTrue { itsInfinite.close(itsInfiniteToo) } },
             { assertTrue { itsInfiniteToo.close(itsInfinite) } },
             { assertTrue { itsInfiniteToo.close(itsInfiniteToo) } },
+            { assertTrue { itsInfinite.closeF(itsInfiniteToo) } },
+            { assertFalse { one.closeF(itsInfiniteToo) } },
+            { assertFalse { itsInfinite.closeF(one) } },
+            { assertTrue { itsInfiniteToo.closeF(itsInfinite) } },
+            { assertTrue { itsInfiniteToo.closeF(itsInfiniteToo) } },
         )
     }
 
@@ -82,6 +100,7 @@ class ComplexTest {
             { assertEqualTo(Complex(-1.0), Complex.PI_J.exp()) },
             { assertEqualTo(Complex(0.0, 1.0), (Complex.PI_J / 2.0).exp()) },
             { assertEqualTo(Complex(0.0, -1.0), (Complex.PI_J * 1.5).exp()) },
+            { assertEquals(expJTheta(1.0), expITheta(1.0)) },
         )
     }
 
@@ -465,6 +484,7 @@ class ComplexTest {
         val inf2 = Complex(1, Double.NEGATIVE_INFINITY)
 
         val nan1 = Complex(Double.NaN)
+        var three = one
 
         assertAll(
             // reflexive
@@ -472,6 +492,8 @@ class ComplexTest {
                 val only = Complex(1, 1)
                 assertEquals(only, only)
             },
+            { assertTrue { one == three }},
+            { three = two },
             // next two for symmetric
             { assertEquals(one, two) },
             { assertEquals(two, one) },
@@ -594,6 +616,8 @@ class ComplexTest {
             { assertFalse { test.close(Complex(3.14159, 2.72), 0.001) } },
             { assertFalse { test.close(Complex(3.14, 2.71828), 0.001) } },
             { assertTrue { test.close(Complex(3.14159, 2.71828), 0.001) } },
+            { assertTrue { test.closeF(Complex(3.14159, 2.71818), 0.001F) } },
+            { assertFalse { test.closeF(Complex(3.14159, 2.72), 0.001F) } },
         )
     }
 
@@ -746,7 +770,6 @@ class ComplexTest {
         )
     }
 
-    @Suppress("AssignedValueIsNeverRead")
     @Test
     fun `test increment and decrement`() {
         var number = Complex(1, 1)

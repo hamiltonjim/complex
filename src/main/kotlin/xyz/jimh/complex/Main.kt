@@ -41,7 +41,7 @@ fun main() {
     println(Complex(Double.POSITIVE_INFINITY))
     println(Complex(3) / Complex(9, 6))
     println(Complex(E) pow Complex(0, PI))
-    println(expITheta(PI))
+    println(expJTheta(PI))
     println(Complex(0, PI).exp())
 
     println("---trig & hyp functions---")

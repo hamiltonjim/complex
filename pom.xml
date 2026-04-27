@@ -145,16 +145,16 @@
                 <version>2.2.0</version>
                 <configuration>
                     <outputDir>${project.basedir}/docs</outputDir>
-<!--                    <dokkaPlugins>-->
-<!--                        <plugin>-->
-<!--                            <groupId>org.jetbrains.dokka</groupId>-->
-<!--                            <artifactId>mathjax-plugin</artifactId>-->
-<!--                            <version>2.2.0</version>-->
-<!--                        </plugin>-->
-<!--                    </dokkaPlugins>-->
+                    <dokkaPlugins>
+                        <plugin>
+                            <groupId>org.jetbrains.dokka</groupId>
+                            <artifactId>mathjax-plugin</artifactId>
+                            <version>2.2.0</version>
+                        </plugin>
+                    </dokkaPlugins>
                     <pluginsConfiguration>
                         <org.jetbrains.dokka.base.DokkaBase>
-                            <footerMessage>(c) Jim Hamilton 2025-2026. All rights reserved.</footerMessage>
+                            <footerMessage>© 2025-2026 Jim Hamilton. All rights reserved.</footerMessage>
                         </org.jetbrains.dokka.base.DokkaBase>
                     </pluginsConfiguration>
                 </configuration>

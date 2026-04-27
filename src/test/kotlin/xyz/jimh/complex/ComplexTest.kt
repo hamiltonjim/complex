@@ -2,6 +2,7 @@ package xyz.jimh.complex
 
 import java.math.BigDecimal
 import java.util.concurrent.atomic.AtomicInteger
+import java.util.concurrent.atomic.AtomicLong
 import kotlin.math.E
 import kotlin.math.PI
 import kotlin.math.atan
@@ -9,6 +10,7 @@ import kotlin.math.atan2
 import kotlin.math.cos
 import kotlin.math.cosh
 import kotlin.math.exp
+import kotlin.math.ln
 import kotlin.math.sin
 import kotlin.math.sinh
 import kotlin.math.sqrt
@@ -123,7 +125,7 @@ class ComplexTest {
     }
 
     @Test
-    operator fun unaryPlus() {
+    fun unaryPlus() {
         val test = Complex(1.23456, 7.89012)
         val newOne = +test
         assertEquals(test, newOne)
@@ -131,7 +133,7 @@ class ComplexTest {
     }
 
     @Test
-    operator fun unaryMinus() {
+    fun unaryMinus() {
         val test = Complex(-1.23456, 7.89012)
         val negative = Complex(1.23456, -7.89012)
         assertEquals(negative, -test)
@@ -173,7 +175,6 @@ class ComplexTest {
             { assertEquals(Complex(-10, -5), product * Complex.J) },
             { assertEquals(Complex(10, 5), product * -Complex.J) },
         )
-        assertEquals(product, factor1 * factor2)
     }
 
     @Test
@@ -215,18 +216,12 @@ class ComplexTest {
             { assertEquals(sum, cmp + dub) },
             { assertEquals(sum, dub + cmp) },
             { assertEquals(cmp, 1.0 + 2.0.j()) },
-        )
-        assertAll(
             { assertTrue { fSum.closeF(cmp + flo, EPSILON_FLOAT) } },
             { assertTrue { fSum.closeF(flo + cmp, EPSILON_FLOAT) } },
             { assertEquals(cmp, 1.0F + 2.0.j()) },
-        )
-        assertAll(
             { assertEquals(iSum, cmp + 3) },
             { assertEquals(iSum, 3 + cmp) },
             { assertEquals(cmp, 1 + 2.0.j()) },
-        )
-        assertAll(
             { assertEquals(iSum, cmp + 3L) },
             { assertEquals(iSum, 3L + cmp) },
             { assertEquals(cmp, 1L + 2.0.j()) },
@@ -253,6 +248,16 @@ class ComplexTest {
         assertAll(
             { assertEquals(diff, cmp - 1L) },
             { assertEquals(minusDiff, 1L - cmp) },
+        )
+        val atomic1 = AtomicInteger(1)
+        assertAll(
+            { assertEquals(diff, cmp - atomic1) },
+            { assertEquals(minusDiff, atomic1 - cmp) },
+        )
+        val atomic1L = AtomicLong(1L)
+        assertAll(
+            { assertEquals(diff, cmp - atomic1L) },
+            { assertEquals(minusDiff, atomic1L - cmp) },
         )
     }
 
@@ -354,7 +359,7 @@ class ComplexTest {
 
     @Test
     fun `test complex divided by double and vice versa`() {
-        // (9 + 6j) / 3, calculated by hand
+        // 3 / (9 + 6j), calculated by hand
         val cmp = Complex(0.23076923076923078, -0.15384615384615385)
         assertAll(
             { assertEquals(Complex.ONE, Complex(5) / 5.0) },
@@ -414,6 +419,9 @@ class ComplexTest {
             { assertEqualTo(Complex.ZERO, Complex.ONE.ln()) },
             { assertEqualTo(Complex(0, -PI), (-Complex.ONE).ln()) },
             { assertEqualTo(Complex.INFINITY, Complex.ZERO.ln()) },
+            { assertEqualTo(Complex(ln(2.0)), Complex(2).ln()) },
+            { assertEqualTo(Complex(ln(sqrt(4.0 + PI.sqr())), atan2(PI, 2.0)),
+                Complex(2, PI).ln()) },
         )
     }
 
@@ -422,14 +430,28 @@ class ComplexTest {
         assertAll(
             { assertTrue { Complex(Double.NaN, Double.POSITIVE_INFINITY).isNaN } },
             { assertTrue { Complex(Double.POSITIVE_INFINITY, Double.NaN).isNaN } },
+
             { assertFalse { Complex(Double.POSITIVE_INFINITY, Double.NaN).isInfinite } },
             { assertFalse { Complex(Double.NaN, Double.POSITIVE_INFINITY).isInfinite } },
+
             { assertTrue { Complex(1, Double.POSITIVE_INFINITY).isInfinite } },
             { assertTrue { Complex(Double.POSITIVE_INFINITY, 1).isInfinite } },
             { assertFalse { Complex(0, 1).isInfinite } },
+
             { assertFalse { Complex(0, 1).isZero } },
             { assertFalse { Complex(1, 0).isZero } },
+
             { assertTrue { Complex(0, 0).isZero } },
+            { assertTrue { Complex(0, 0).isReal } },
+            { assertTrue { Complex(0, 0).isImaginary } },
+
+            { assertFalse { Complex(1, 0).isZero } },
+            { assertTrue { Complex(1, 0).isReal } },
+            { assertFalse { Complex(1, 0).isImaginary } },
+
+            { assertFalse { Complex(0, 1).isZero } },
+            { assertFalse { Complex(0, 1).isReal } },
+            { assertTrue { Complex(0, 1).isImaginary } },
         )
     }
 
@@ -483,7 +505,7 @@ class ComplexTest {
         val inf1 = Complex(Double.POSITIVE_INFINITY, 1)
         val inf2 = Complex(1, Double.NEGATIVE_INFINITY)
 
-        val nan1 = Complex(Double.NaN)
+        val nan1 = Complex(0, Double.NaN)
         var three = one
 
         assertAll(
@@ -493,7 +515,7 @@ class ComplexTest {
                 assertEquals(only, only)
             },
             { assertTrue { one == three }},
-            { three = two },
+            { three = two },    // just to make sure three needs to be a var
             // next two for symmetric
             { assertEquals(one, two) },
             { assertEquals(two, one) },
@@ -509,6 +531,8 @@ class ComplexTest {
 
             // against NaN
             { assertNotEquals(nan1, nan1) },
+            { assertNotEquals(Complex.NaN, nan1) },
+            { assertNotEquals(Complex.NaN, Complex.NaN) },
             { assertNotEquals(nan1, one) },
             { assertNotEquals(one, nan1) },
 
@@ -594,7 +618,7 @@ class ComplexTest {
     }
 
     @Test
-    fun `zeroed parts`() {
+    fun `zeroed, or close to zeroed, parts`() {
         assertAll(
             { assertTrue { Complex(1).isReal } },
             { assertFalse { Complex(1, 1).isReal } },
@@ -636,6 +660,7 @@ class ComplexTest {
             { assertEquals("Infinity", Complex.INFINITY.toString()) },
             { assertEquals("j", Complex(0, 1.0).toString()) },
             { assertEquals("-j", Complex(0, -1.0).toString()) },
+            { assertEquals("1 - j", Complex(1.0, -1.0).toString()) },
             { assertEquals("-2j", Complex(0, -2.0).toString()) },
             { assertEquals("-2", Complex(-2.0, 0).toString()) },
             { assertEquals("-2 - j", Complex(-2.0, -1).toString()) },

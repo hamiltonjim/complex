@@ -153,7 +153,9 @@
 <!--                        </plugin>-->
 <!--                    </dokkaPlugins>-->
                     <pluginsConfiguration>
-                        <footerMessage>(c) Jim Hamilton 2025-2026. All rights reserved.</footerMessage>
+                        <org.jetbrains.dokka.base.DokkaBase>
+                            <footerMessage>(c) Jim Hamilton 2025-2026. All rights reserved.</footerMessage>
+                        </org.jetbrains.dokka.base.DokkaBase>
                     </pluginsConfiguration>
                 </configuration>
                 <executions>

@@ -13,9 +13,9 @@
         <kotlin.code.style>official</kotlin.code.style>
         <kotlin.compiler.jvmTarget>22</kotlin.compiler.jvmTarget>
         <java.version>22</java.version>
-        <kotlin.version>2.1.21</kotlin.version>
-        <mockk.version>1.13.2</mockk.version>
-        <junit-jupiter.version>5.12.1</junit-jupiter.version>
+        <kotlin.version>2.3.10</kotlin.version>
+        <mockk.version>1.14.9</mockk.version>
+        <junit-jupiter.version>6.0.2</junit-jupiter.version>
     </properties>
 
     <dependencies>
@@ -142,9 +142,19 @@
             <plugin>
                 <groupId>org.jetbrains.dokka</groupId>
                 <artifactId>dokka-maven-plugin</artifactId>
-                <version>2.0.0</version>
+                <version>2.2.0</version>
                 <configuration>
                     <outputDir>${project.basedir}/docs</outputDir>
+                    <dokkaPlugins>
+                        <plugin>
+                            <groupId>org.jetbrains.dokka</groupId>
+                            <artifactId>mathjax-plugin</artifactId>
+                            <version>2.2.0</version>
+                        </plugin>
+                    </dokkaPlugins>
+                    <pluginsConfiguration>
+                        <footerMessage>(c) Jim Hamilton 2025-2026. All rights reserved.</footerMessage>
+                    </pluginsConfiguration>
                 </configuration>
                 <executions>
                     <execution>

@@ -617,9 +617,13 @@ data class Complex(val re: Double, val im: Double = 0.0) {
         /** a "close enough" when one side was made with Float */
         const val EPSILON_FLOAT = 1.0e-6F
 
-        /** symbol for sqrt(-1) [hey, I'm an electrical engineer, so 'i' is current] */
+        /**
+         *  symbol for sqrt(-1);
+         *  hey, I'm an electrical engineer, so 'i' is current
+         *  */
         const val J_CHAR = 'j'
-        /** See extension [Number.j]. */
+
+        /** The value of sqrt(-1). See extension [Number.j]. */
         val J = 1.j()
 
         // useful constants

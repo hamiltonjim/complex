@@ -137,8 +137,8 @@ data class Complex(val re: Double, val im: Double = 0.0) {
         return when {
             isNaN -> Double.NaN.toString()
             isInfinite -> Double.POSITIVE_INFINITY.toString()
-            im.close(0.0) -> re.fmt()
-            re.close(0.0) -> im.fmt(J_CHAR)
+            isReal -> re.fmt()
+            isImaginary -> im.fmt(J_CHAR)
             im < 0.0 -> "${re.fmt()} - ${(-im).fmt(J_CHAR)}"
             else -> "${re.fmt()} + ${im.fmt(J_CHAR)}"
         }

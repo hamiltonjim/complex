@@ -667,6 +667,8 @@ class ComplexTest {
             { assertEquals("-2 + j", Complex(-2.0, 1).toString()) },
             { assertEquals("-1 + 2j", Complex(-1.0, 2).toString()) },
             { assertEquals("-1.5 + 1.5j", Complex(-1.5, 1.5).toString()) },
+            { assertEquals("1.5 + 1.5j", Complex(1.5, 1.5).toString()) },
+            { assertEquals("0.5 + 0.5j", Complex(0.5, 0.5).toString()) },
             { assertEquals("0", Complex.ZERO.toString()) },
         )
     }

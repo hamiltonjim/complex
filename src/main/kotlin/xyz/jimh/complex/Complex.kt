@@ -650,6 +650,10 @@ data class Complex(val re: Double, val im: Double = 0.0) {
          * see [here](https://math.stackexchange.com/questions/420557/whats-the-difference-between-complex-infinity-and-undefined#:~:text=%22Undefined%22%20is%20something%20that%20one,is%20itself%20a%20mathematical%20object.)
          */
         val INFINITY = Complex(Double.POSITIVE_INFINITY)
+
+        /**
+         * Not a Number
+         */
         val NaN = Complex(Double.NaN)
 
         /**

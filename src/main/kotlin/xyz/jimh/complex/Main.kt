@@ -1,3 +1,6 @@
+/*
+ * Copyright © 2025 Jim Hamilton
+ */
 package xyz.jimh.complex
 
 import kotlin.math.E

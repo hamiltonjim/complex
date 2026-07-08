@@ -1,3 +1,6 @@
+/*
+ * Copyright © 2025 Jim Hamilton
+ */
 package xyz.jimh.complex
 
 import java.math.BigDecimal
@@ -192,7 +195,8 @@ data class Complex(val re: Double, val im: Double = 0.0) {
     // Operator overloads
 
     /**
-     * +foo == foo:  just returns (a copy of) itself
+     * +foo == foo:  just returns (a copy of) itself.
+     * That means, of course, that +foo !== foo
      */
     operator fun unaryPlus() = this.copy()
 

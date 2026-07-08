@@ -132,7 +132,7 @@ class ComplexTest {
         val test = Complex(1.23456, 7.89012)
         val newOne = +test
         assertEquals(test, newOne)
-        assertFalse { test === newOne }     // because it's a copy, not the original object
+        assertTrue { test !== newOne }     // because it's a copy, not the original object
     }
 
     @Test
@@ -518,7 +518,7 @@ class ComplexTest {
                 assertEquals(only, only)
             },
             { assertTrue { one == three }},
-            { three = two },    // just to make sure three needs to be a var
+            { three = two },    // just to make sure, three needs to be a var
             // next two for symmetric
             { assertEquals(one, two) },
             { assertEquals(two, one) },
@@ -779,6 +779,8 @@ class ComplexTest {
         assertAll(
             { assertEquals(Complex.ONE, Complex.ONE.reciprocal()) },
             { assertEquals(Complex.INFINITY, Complex.ZERO.reciprocal()) },
+            { assertEquals(Complex.ZERO, Complex.INFINITY.reciprocal()) },
+            { assertTrue { Complex.NaN.reciprocal().isNaN } },
             { assertEquals(Complex.J, (-Complex.J).reciprocal()) },
             { assertEquals(Complex(2), Complex(0.5).reciprocal()) },
             { assertEquals(2.j(), -0.5.j().reciprocal()) },
@@ -821,7 +823,7 @@ class ComplexTest {
 
     /**
      * Not really testing anything, main() is just some ad hoc tests; but
-     * will confirm that main runs and returns Unit.
+     * will confirm that the main runs and returns Unit.
      */
     @Test
     fun `completion test main`() {

@@ -65,6 +65,9 @@ fun main() {
     println(Complex.ZERO.acsc())
     println(Complex.ZERO.asec())
 
+    println("1/0 == " + Complex.ZERO.reciprocal())
+    println("1/∞ == " + Complex.INFINITY.reciprocal())
+
     println((Complex.PI_C / 2.0).cos())
 
     val cmplex = Complex(-4, 4)

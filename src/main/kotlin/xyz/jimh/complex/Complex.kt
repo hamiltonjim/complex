@@ -136,6 +136,14 @@ data class Complex(val re: Double, val im: Double = 0.0) {
         return Complex(re.round(decimals), im.round(decimals))
     }
 
+    /**
+     * Return a string representation of this Complex number.
+     * If the imaginary part is (close to) zero, return the real part.
+     * If the real part is (close to) zero, return the imaginary part.
+     * Otherwise, return the real part followed by a plus or minus sign,
+     * followed by the imaginary part.
+     * If the complex number is infinite, return "Infinity"; if not a number, return "NaN".
+     */
     override fun toString(): String {
         return when {
             isNaN -> Double.NaN.toString()
@@ -364,10 +372,12 @@ data class Complex(val re: Double, val im: Double = 0.0) {
      * Returns 1 divided by the receiver
      */
     fun reciprocal(): Complex {
-        return if (isZero)
-            INFINITY
-        else
-            1.0 / this
+        return when {
+            isZero -> INFINITY
+            isInfinite -> ZERO
+            isNaN -> NaN
+            else -> 1.0 / this
+        }
     }
 
     // Trigonometric functions

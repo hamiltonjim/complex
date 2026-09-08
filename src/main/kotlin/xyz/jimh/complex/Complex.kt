@@ -760,7 +760,7 @@ operator fun Number.plus(other: Complex): Complex = Complex(toDouble() + other.r
 /**
  * Expands the receiver to [Complex] and subtracts [other] from it.
  */
-operator fun Number.minus(other: Complex): Complex = Complex(toDouble() - other.re, other.im)
+operator fun Number.minus(other: Complex): Complex = Complex(toDouble() - other.re, -other.im)
 
 /**
  * Expands the receiver to [Complex] and multiplies it by [other]

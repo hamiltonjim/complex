@@ -235,7 +235,7 @@ class ComplexTest {
     fun `test complex minus double and vice versa`() {
         val cmp = Complex(2, 1)
         val diff = Complex(1, 1)
-        val minusDiff = Complex(-1, 1)
+        val minusDiff = Complex(-1, -1)
         assertAll(
             { assertEquals(diff, cmp - 1.0) },
             { assertEquals(minusDiff, 1.0 - cmp) },

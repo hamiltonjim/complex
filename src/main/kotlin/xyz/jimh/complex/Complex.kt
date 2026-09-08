@@ -795,6 +795,10 @@ fun Float.closeF(other: Float, epsilon: Float = Complex.EPSILON_FLOAT): Boolean 
     return abs(other - this) < epsilon
 }
 
+/**
+ * The character NUL is the null character, ASCII 0 and Unicode 0; not to be
+ * confused with a null reference.
+ */
 const val NUL = '\u0000'
 /**
  * Format a double, optionally with another [char] (like i or j). If [char] is
